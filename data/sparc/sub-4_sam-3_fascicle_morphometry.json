@@ -1,0 +1,372 @@
+{
+  "sample": "sub-4_sam-3_P4-3",
+  "species": "pig",
+  "nerve_type": "cervical vagus",
+  "scale_um_per_pixel": 0.7215,
+  "nerve_equiv_diameter_um": 1862.9,
+  "nerve_centroid_y_px": 989.6,
+  "nerve_centroid_z_px": 2693.0,
+  "num_fascicles": 40,
+  "fascicles": [
+    {
+      "fascicle_id": 1,
+      "centroid_y_um": 834.89,
+      "centroid_z_um": 2469.65,
+      "centroid_y_rel_um": 120.89,
+      "centroid_z_rel_um": 526.68,
+      "area_um2": 49663.8,
+      "equiv_diameter_um": 251.46
+    },
+    {
+      "fascicle_id": 2,
+      "centroid_y_um": 860.18,
+      "centroid_z_um": 1275.92,
+      "centroid_y_rel_um": 146.18,
+      "centroid_z_rel_um": -667.05,
+      "area_um2": 38031.3,
+      "equiv_diameter_um": 220.05
+    },
+    {
+      "fascicle_id": 3,
+      "centroid_y_um": 443.52,
+      "centroid_z_um": 2379.96,
+      "centroid_y_rel_um": -270.48,
+      "centroid_z_rel_um": 436.99,
+      "area_um2": 33130.2,
+      "equiv_diameter_um": 205.38
+    },
+    {
+      "fascicle_id": 4,
+      "centroid_y_um": 840.46,
+      "centroid_z_um": 2978.23,
+      "centroid_y_rel_um": 126.47,
+      "centroid_z_rel_um": 1035.26,
+      "area_um2": 24515.9,
+      "equiv_diameter_um": 176.68
+    },
+    {
+      "fascicle_id": 5,
+      "centroid_y_um": 1046.77,
+      "centroid_z_um": 1582.04,
+      "centroid_y_rel_um": 332.77,
+      "centroid_z_rel_um": -360.93,
+      "area_um2": 24482.6,
+      "equiv_diameter_um": 176.56
+    },
+    {
+      "fascicle_id": 6,
+      "centroid_y_um": 362.37,
+      "centroid_z_um": 2843.76,
+      "centroid_y_rel_um": -351.62,
+      "centroid_z_rel_um": 900.79,
+      "area_um2": 22885.0,
+      "equiv_diameter_um": 170.7
+    },
+    {
+      "fascicle_id": 7,
+      "centroid_y_um": 562.74,
+      "centroid_z_um": 3067.18,
+      "centroid_y_rel_um": -151.26,
+      "centroid_z_rel_um": 1124.21,
+      "area_um2": 20818.9,
+      "equiv_diameter_um": 162.81
+    },
+    {
+      "fascicle_id": 8,
+      "centroid_y_um": 948.31,
+      "centroid_z_um": 1816.5,
+      "centroid_y_rel_um": 234.31,
+      "centroid_z_rel_um": -126.47,
+      "area_um2": 17974.5,
+      "equiv_diameter_um": 151.28
+    },
+    {
+      "fascicle_id": 9,
+      "centroid_y_um": 1158.03,
+      "centroid_z_um": 1425.61,
+      "centroid_y_rel_um": 444.03,
+      "centroid_z_rel_um": -517.36,
+      "area_um2": 17788.2,
+      "equiv_diameter_um": 150.49
+    },
+    {
+      "fascicle_id": 10,
+      "centroid_y_um": 634.53,
+      "centroid_z_um": 2375.63,
+      "centroid_y_rel_um": -79.47,
+      "centroid_z_rel_um": 432.66,
+      "area_um2": 16888.6,
+      "equiv_diameter_um": 146.64
+    },
+    {
+      "fascicle_id": 11,
+      "centroid_y_um": 757.19,
+      "centroid_z_um": 3222.95,
+      "centroid_y_rel_um": 43.19,
+      "centroid_z_rel_um": 1279.98,
+      "area_um2": 16460.7,
+      "equiv_diameter_um": 144.77
+    },
+    {
+      "fascicle_id": 12,
+      "centroid_y_um": 1087.14,
+      "centroid_z_um": 563.32,
+      "centroid_y_rel_um": 373.14,
+      "centroid_z_rel_um": -1379.65,
+      "area_um2": 16093.7,
+      "equiv_diameter_um": 143.15
+    },
+    {
+      "fascicle_id": 13,
+      "centroid_y_um": 658.99,
+      "centroid_z_um": 2815.95,
+      "centroid_y_rel_um": -55.01,
+      "centroid_z_rel_um": 872.98,
+      "area_um2": 14894.4,
+      "equiv_diameter_um": 137.71
+    },
+    {
+      "fascicle_id": 14,
+      "centroid_y_um": 738.45,
+      "centroid_z_um": 3015.12,
+      "centroid_y_rel_um": 24.45,
+      "centroid_z_rel_um": 1072.15,
+      "area_um2": 13013.0,
+      "equiv_diameter_um": 128.72
+    },
+    {
+      "fascicle_id": 15,
+      "centroid_y_um": 743.74,
+      "centroid_z_um": 1542.61,
+      "centroid_y_rel_um": 29.74,
+      "centroid_z_rel_um": -400.36,
+      "area_um2": 12827.2,
+      "equiv_diameter_um": 127.8
+    },
+    {
+      "fascicle_id": 16,
+      "centroid_y_um": 532.58,
+      "centroid_z_um": 1363.95,
+      "centroid_y_rel_um": -181.41,
+      "centroid_z_rel_um": -579.02,
+      "area_um2": 12496.6,
+      "equiv_diameter_um": 126.14
+    },
+    {
+      "fascicle_id": 17,
+      "centroid_y_um": 744.66,
+      "centroid_z_um": 1406.84,
+      "centroid_y_rel_um": 30.67,
+      "centroid_z_rel_um": -536.13,
+      "area_um2": 12064.1,
+      "equiv_diameter_um": 123.94
+    },
+    {
+      "fascicle_id": 18,
+      "centroid_y_um": 953.44,
+      "centroid_z_um": 666.3,
+      "centroid_y_rel_um": 239.44,
+      "centroid_z_rel_um": -1276.67,
+      "area_um2": 11635.1,
+      "equiv_diameter_um": 121.71
+    },
+    {
+      "fascicle_id": 19,
+      "centroid_y_um": 1003.52,
+      "centroid_z_um": 2281.38,
+      "centroid_y_rel_um": 289.53,
+      "centroid_z_rel_um": 338.41,
+      "area_um2": 11615.8,
+      "equiv_diameter_um": 121.61
+    },
+    {
+      "fascicle_id": 20,
+      "centroid_y_um": 854.55,
+      "centroid_z_um": 1507.4,
+      "centroid_y_rel_um": 140.55,
+      "centroid_z_rel_um": -435.57,
+      "area_um2": 11452.4,
+      "equiv_diameter_um": 120.75
+    },
+    {
+      "fascicle_id": 21,
+      "centroid_y_um": 427.74,
+      "centroid_z_um": 2247.79,
+      "centroid_y_rel_um": -286.26,
+      "centroid_z_rel_um": 304.82,
+      "area_um2": 11306.6,
+      "equiv_diameter_um": 119.98
+    },
+    {
+      "fascicle_id": 22,
+      "centroid_y_um": 453.32,
+      "centroid_z_um": 2630.15,
+      "centroid_y_rel_um": -260.68,
+      "centroid_z_rel_um": 687.18,
+      "area_um2": 11244.7,
+      "equiv_diameter_um": 119.65
+    },
+    {
+      "fascicle_id": 23,
+      "centroid_y_um": 647.42,
+      "centroid_z_um": 2031.87,
+      "centroid_y_rel_um": -66.58,
+      "centroid_z_rel_um": 88.9,
+      "area_um2": 10563.8,
+      "equiv_diameter_um": 115.98
+    },
+    {
+      "fascicle_id": 24,
+      "centroid_y_um": 522.77,
+      "centroid_z_um": 2118.07,
+      "centroid_y_rel_um": -191.22,
+      "centroid_z_rel_um": 175.1,
+      "area_um2": 10546.6,
+      "equiv_diameter_um": 115.88
+    },
+    {
+      "fascicle_id": 25,
+      "centroid_y_um": 843.39,
+      "centroid_z_um": 2047.58,
+      "centroid_y_rel_um": 129.39,
+      "centroid_z_rel_um": 104.61,
+      "area_um2": 9954.7,
+      "equiv_diameter_um": 112.58
+    },
+    {
+      "fascicle_id": 26,
+      "centroid_y_um": 932.78,
+      "centroid_z_um": 2027.59,
+      "centroid_y_rel_um": 218.78,
+      "centroid_z_rel_um": 84.62,
+      "area_um2": 9722.6,
+      "equiv_diameter_um": 111.26
+    },
+    {
+      "fascicle_id": 27,
+      "centroid_y_um": 473.36,
+      "centroid_z_um": 2941.88,
+      "centroid_y_rel_um": -240.63,
+      "centroid_z_rel_um": 998.91,
+      "area_um2": 9595.5,
+      "equiv_diameter_um": 110.53
+    },
+    {
+      "fascicle_id": 28,
+      "centroid_y_um": 685.23,
+      "centroid_z_um": 1135.9,
+      "centroid_y_rel_um": -28.77,
+      "centroid_z_rel_um": -807.07,
+      "area_um2": 8635.1,
+      "equiv_diameter_um": 104.85
+    },
+    {
+      "fascicle_id": 29,
+      "centroid_y_um": 960.83,
+      "centroid_z_um": 539.82,
+      "centroid_y_rel_um": 246.83,
+      "centroid_z_rel_um": -1403.15,
+      "area_um2": 7992.2,
+      "equiv_diameter_um": 100.88
+    },
+    {
+      "fascicle_id": 30,
+      "centroid_y_um": 634.01,
+      "centroid_z_um": 1863.28,
+      "centroid_y_rel_um": -79.98,
+      "centroid_z_rel_um": -79.69,
+      "area_um2": 6932.9,
+      "equiv_diameter_um": 93.95
+    },
+    {
+      "fascicle_id": 31,
+      "centroid_y_um": 531.27,
+      "centroid_z_um": 2767.26,
+      "centroid_y_rel_um": -182.73,
+      "centroid_z_rel_um": 824.29,
+      "area_um2": 6831.4,
+      "equiv_diameter_um": 93.26
+    },
+    {
+      "fascicle_id": 32,
+      "centroid_y_um": 764.61,
+      "centroid_z_um": 1947.9,
+      "centroid_y_rel_um": 50.61,
+      "centroid_z_rel_um": 4.93,
+      "area_um2": 6758.0,
+      "equiv_diameter_um": 92.76
+    },
+    {
+      "fascicle_id": 33,
+      "centroid_y_um": 893.99,
+      "centroid_z_um": 1075.18,
+      "centroid_y_rel_um": 179.99,
+      "centroid_z_rel_um": -867.79,
+      "area_um2": 5424.3,
+      "equiv_diameter_um": 83.1
+    },
+    {
+      "fascicle_id": 34,
+      "centroid_y_um": 1080.82,
+      "centroid_z_um": 1804.64,
+      "centroid_y_rel_um": 366.83,
+      "centroid_z_rel_um": -138.33,
+      "area_um2": 4508.6,
+      "equiv_diameter_um": 75.77
+    },
+    {
+      "fascicle_id": 35,
+      "centroid_y_um": 520.08,
+      "centroid_z_um": 2462.06,
+      "centroid_y_rel_um": -193.92,
+      "centroid_z_rel_um": 519.09,
+      "area_um2": 4110.9,
+      "equiv_diameter_um": 72.35
+    },
+    {
+      "fascicle_id": 36,
+      "centroid_y_um": 801.85,
+      "centroid_z_um": 1861.58,
+      "centroid_y_rel_um": 87.85,
+      "centroid_z_rel_um": -81.39,
+      "area_um2": 3564.8,
+      "equiv_diameter_um": 67.37
+    },
+    {
+      "fascicle_id": 37,
+      "centroid_y_um": 1138.28,
+      "centroid_z_um": 738.11,
+      "centroid_y_rel_um": 424.28,
+      "centroid_z_rel_um": -1204.86,
+      "area_um2": 2011.5,
+      "equiv_diameter_um": 50.61
+    },
+    {
+      "fascicle_id": 38,
+      "centroid_y_um": 617.99,
+      "centroid_z_um": 1627.17,
+      "centroid_y_rel_um": -96.01,
+      "centroid_z_rel_um": -315.8,
+      "area_um2": 1919.8,
+      "equiv_diameter_um": 49.44
+    },
+    {
+      "fascicle_id": 39,
+      "centroid_y_um": 668.57,
+      "centroid_z_um": 1765.64,
+      "centroid_y_rel_um": -45.42,
+      "centroid_z_rel_um": -177.33,
+      "area_um2": 1672.0,
+      "equiv_diameter_um": 46.14
+    },
+    {
+      "fascicle_id": 40,
+      "centroid_y_um": 572.47,
+      "centroid_z_um": 1763.46,
+      "centroid_y_rel_um": -141.53,
+      "centroid_z_rel_um": -179.51,
+      "area_um2": 1311.8,
+      "equiv_diameter_um": 40.87
+    }
+  ]
+}

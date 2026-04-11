@@ -1,0 +1,1518 @@
+{
+    "pennsieveDatasetId": 64,
+    "version": 4,
+    "name": "Quantified Morphology of the Pig Vagus Nerve ",
+    "description": "Binary traces from segmentation of cross sections of cervical and subdiaphragmatic pig vagus nerves stained with Masson's trichrome. Quantified effective nerve diameter, effective fascicle diameter, and number of fascicles.",
+    "creator": {
+        "first_name": "Nicole",
+        "last_name": "Pelot",
+        "orcid": "0000-0003-2844-0190"
+    },
+    "contributors": [
+        {
+            "first_name": "Nicole",
+            "last_name": "A. Pelot"
+        },
+        {
+            "first_name": "Gabriel",
+            "last_name": "B. Goldhagen"
+        },
+        {
+            "first_name": "Jake",
+            "last_name": "E. Cariello"
+        },
+        {
+            "first_name": "Warren",
+            "last_name": "M. Grill"
+        }
+    ],
+    "sourceOrganization": "SPARC Consortium",
+    "keywords": [
+        "vagus nerve stimulation",
+        "vagus nerve morphology",
+        "autonomic nervous system",
+        "sus scrofa domesticus",
+        "neural anatomy",
+        "vagus nerve",
+        "perineurium"
+    ],
+    "datePublished": "2020-10-01T00:00:00Z",
+    "license": "Creative Commons Attribution",
+    "@id": "https://doi.org/10.26275/maq2-eii4",
+    "publisher": "Blackfynn, Inc",
+    "@context": "http://schema.org/",
+    "@type": "Dataset",
+    "schemaVersion": "http://schema.org/version/3.7/",
+    "files": [
+        {
+            "name": "",
+            "path": "files/code/AnalyzeAllSamples.m",
+            "size": 3090,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:45598ed2-aa21-46f6-944c-41e0d89afa68",
+            "s3VersionId": "o7UjaoSTbeI82VAPFKt9NnZ1mjLZqI9H",
+            "sha256": "u6VmFvcTZiQauVJK6XCMGQ1m5yRUshr5THHIS9WbWaU="
+        },
+        {
+            "name": "",
+            "path": "files/code/DataExtraction_v3.m",
+            "size": 8010,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:e63c88ae-03f9-40da-aa4d-974c8ffa7de0",
+            "s3VersionId": "Y0eZnJkRi5B4qfa21JfKwH4F93dWXS2S",
+            "sha256": "ENCEMtGV42RDdeDijiEqBHoQ+VK3GslDkD7PCum3A6k="
+        },
+        {
+            "name": "",
+            "path": "files/code/DataPlotting_v4.m",
+            "size": 65637,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:87d0e954-7882-4aa6-bb89-0c1a93cd8ebe",
+            "s3VersionId": "NE7exF3V1eDlq1bsMGjun0H0aQ1HnY8X",
+            "sha256": "Zld5dvDkRUAQST4sDwPhxH+Z9rGBi6/IqkStwo30juI="
+        },
+        {
+            "name": "",
+            "path": "files/code/PAbdominalAnteriorFemale.xlsx",
+            "size": 9731,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:ab6dc16b-a266-44c5-84bf-6413dfc6e966",
+            "s3VersionId": "ld9rMJemQiPqoyG7bm4RRLW9uJ.n5j64",
+            "sha256": "EWk2u0IEn7V1d19AAnc8JR0waHyOItUnDeHWZeCiLmQ="
+        },
+        {
+            "name": "",
+            "path": "files/code/PAbdominalAnteriorMale.xlsx",
+            "size": 8383,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:0f5876b0-8ca9-4fde-a140-d22c5b436439",
+            "s3VersionId": "n2cAJfrMMtR8kVvRHGromS95MFAEOGD6",
+            "sha256": "2wk+QcQuAW/I16K5IFxHWUdAiNTnY7QlsZmO1AyDdRQ="
+        },
+        {
+            "name": "",
+            "path": "files/code/PAbdominalPosteriorFemale.xlsx",
+            "size": 9499,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:79af541d-9ef5-4a22-bba8-761868d10d0f",
+            "s3VersionId": "JECXn.I8Uog53O0RjJ5VYCnseKa1waXH",
+            "sha256": "A+sUrUWFiz8AgsIgZZfLVCQRQQpgQMDRKJJCAKcifrQ="
+        },
+        {
+            "name": "",
+            "path": "files/code/PAbdominalPosteriorMale.xlsx",
+            "size": 8219,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:eb9448b2-4aab-4641-8974-8ab44d58b2ab",
+            "s3VersionId": "0d8JFTC8Oq8ml_FQg2zCUDyhybxlID4i",
+            "sha256": "T5BfdgM1zCie5w6tMgqN3D1FYXEnB0AnimC6NM8UuJQ="
+        },
+        {
+            "name": "",
+            "path": "files/code/PCervicalLeftFemale.xlsx",
+            "size": 9726,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:b50bae5b-8299-4c18-9299-ec416ed09d18",
+            "s3VersionId": "vwFlHi6ydcaBwdQU4vG3MGZsmx17n4__",
+            "sha256": "yN+9LYFydYGvmJQrHJs/l6i6c6DMd/Q6nsRF3lS7PsU="
+        },
+        {
+            "name": "",
+            "path": "files/code/PCervicalLeftMale.xlsx",
+            "size": 8382,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:69bc394e-edd7-46c9-aed8-62e0744aad01",
+            "s3VersionId": "K40Ecp0wXbVTufspYMeXAbKyWHPTZ2bD",
+            "sha256": "WTu7aqczCEunmQ1mRWNnfvjbE8hV9hDBHAVOvqUTKAk="
+        },
+        {
+            "name": "",
+            "path": "files/code/PCervicalRightFemale.xlsx",
+            "size": 9795,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:58662337-6eaa-4609-9978-75858c0d534a",
+            "s3VersionId": "c1O_ZfxZI1mt_6FG70pin56yWVmJlDw_",
+            "sha256": "dirj5EJL4cwl0Kq3BH/SvQipJajfFKnX/CLZTQLYW34="
+        },
+        {
+            "name": "",
+            "path": "files/code/PCervicalRightMale.xlsx",
+            "size": 8264,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:df397661-7cb3-4893-bcc3-460946e8e93b",
+            "s3VersionId": "DKP2NXU_VD7KczWYmycdeIGeRPwofTQo",
+            "sha256": "kDDito8rddkFXTM4ZjdRQfAGVWOfuFJ7n63T1fo+QbM="
+        },
+        {
+            "name": "",
+            "path": "files/docs/PelotEtAl_2019_DukeUniversity_PigVagusNerveTraces.jpg",
+            "size": 9258616,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:9be7b53a-913f-4f6e-ba5f-f13e9b2b6d73",
+            "s3VersionId": "OttRwShTJoq7Tf8zxmgwwCYvHEAMai.J",
+            "sha256": "xgbEATrpgQB5JW6sbZUyPBMrob7XqCsQxG09wZb+UCk="
+        },
+        {
+            "name": "",
+            "path": "files/code/PerineuriumComplexMatch_v2.m",
+            "size": 2175,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:b8ee5b5f-1e1d-4f1c-9d6b-ecd64cfaec03",
+            "s3VersionId": "e1thPTse62Px7XEUlciaMGeCjHdU2_LA",
+            "sha256": "eGN68mGleq2QZ8zIEmuOLs3ziYhpddSH1zjjFqElDsU="
+        },
+        {
+            "name": "",
+            "path": "files/code/PigIFMorphology.mat",
+            "size": 14174,
+            "fileType": "MAT",
+            "sourcePackageId": "N:package:dc75e71e-90e6-47d8-a8ce-12b70c5fe0ef",
+            "s3VersionId": "C1.rGkmoJ9t.iE8l7_OQzbvu9VyRJSS.",
+            "sha256": "ZC6ZpOnDjKVLQrWz/f3gcMmWUMszhI6caRq5LKxhM4s="
+        },
+        {
+            "name": "",
+            "path": "files/code/PigSegmentationAnalysis_v2.m",
+            "size": 10533,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:f9dae5ff-1a87-4df5-a249-d64e6d34758e",
+            "s3VersionId": "R4nX3NkiSPi55uVpS_3tGEbHhjZj8bgu",
+            "sha256": "2hhUG/Y6Fhe6pLhrW2AlBznqu0p1La62rywrJAhzSig="
+        },
+        {
+            "name": "",
+            "path": "files/code/PigVNMorphology_OutputMetrics.mat",
+            "size": 6906,
+            "fileType": "MAT",
+            "sourcePackageId": "N:package:6063b38a-c1b6-4f6c-a001-22101bcf8126",
+            "s3VersionId": "tteWdBWthiTf58FG9i8jQwXDbZow8AuS",
+            "sha256": "N5FoRnF5DgWwl+730BUzcBKi+MwS7qIyK/yKCUVHRmk="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/PigVNMorphology_OutputMetrics.mat",
+            "size": 8568,
+            "fileType": "MAT",
+            "sourcePackageId": "N:package:0fdab415-dfb1-4f10-a7a6-d36147b8ab5a",
+            "s3VersionId": "APuyWRab75WEjQbMcyKd2qRJ0EY0bdHH",
+            "sha256": "Rlh3p45MciI8qCVmT0CY9hy1jMqTfiE9AoSHwAfxLNM="
+        },
+        {
+            "name": "",
+            "path": "files/code/Pig_Peri.mat",
+            "size": 1917,
+            "fileType": "MAT",
+            "sourcePackageId": "N:package:00dd19fb-f1b6-43fe-ae44-edfff406eb6e",
+            "s3VersionId": "3THga96aGtU4jZ49RdGZnifF5hkuT02Z",
+            "sha256": "5hdhhI2QAmPT9JfWh8vajJvrlhpQhXJTXtBNWpeH4bU="
+        },
+        {
+            "name": "",
+            "path": "files/protocol/Protocol.pdf",
+            "size": 559422,
+            "fileType": "PDF",
+            "sourcePackageId": "N:package:85253782-4de1-46f7-a56d-7ad3059cc678",
+            "s3VersionId": "Lw..NNAuUszpGCoRw.lo4q9QVIAfqr.w",
+            "sha256": "N06sQVXjnzaodTm/NWZohL0h1Oief2WptBJC5DjqH4k="
+        },
+        {
+            "name": "",
+            "path": "files/code/README.txt",
+            "size": 1464,
+            "fileType": "Text",
+            "sourcePackageId": "N:package:71bd78c1-4627-4761-a731-941e019979dd",
+            "s3VersionId": "mpCoQ88pbK37oI_VfLPfIWedoH6.09Tr",
+            "sha256": "9PTIz9+oH7yDSMUuivPhP1HVdskGPko3fHKaQIrQ8bk="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/Readme",
+            "size": 656,
+            "fileType": "GenericData",
+            "sourcePackageId": "N:package:cc500cfc-9941-4d5c-b5d6-0824cf207c57",
+            "s3VersionId": "t5eMg0AjShaO6zbYySeRe1drEQ2FhCfX",
+            "sha256": "1MkFxkJ6f++gA4lX/hXmYq9onf5sS8Ri3qP7LtkzdpU="
+        },
+        {
+            "name": "",
+            "path": "files/protocol/Readme",
+            "size": 99,
+            "fileType": "GenericData",
+            "sourcePackageId": "N:package:27ca5732-e163-41a9-bc41-5c2a2c72f399",
+            "s3VersionId": "cHaclb3jBU4GNYrKYjP0Sjn62lietBQO",
+            "sha256": "F4VhbhlYVvwPtgvuIMm+tluH9B8L6zW0GY+hsXvuRF4="
+        },
+        {
+            "name": "",
+            "path": "files/docs/Readme",
+            "size": 88,
+            "fileType": "GenericData",
+            "sourcePackageId": "N:package:fa39ee5c-d67c-41b0-9cf2-1ad90b3a756c",
+            "s3VersionId": "DRxWCTiXhm0LVqD6pannmXLFdf9je0Rp",
+            "sha256": "5TTlFCO60BVG37ZjPiOUG0o0xMabq19ZCflnmUM5XP4="
+        },
+        {
+            "name": "",
+            "path": "files/code/ReorderTraces.m",
+            "size": 2492,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:244c45bb-62e0-420d-9dcd-b8e8273c8482",
+            "s3VersionId": "IbwGaH0sUg.dDYY8zy8OonrFHbYmLC4q",
+            "sha256": "8uEuqBOS0MLX6/pDDIb0bAzhi9/90kCESeeUs14prlM="
+        },
+        {
+            "name": "",
+            "path": "metadata/records/animal_subject.csv",
+            "size": 1324,
+            "fileType": "CSV",
+            "s3VersionId": "jLpIM2dWlLJli4NAoxFRxGipM8EX58Oq",
+            "sha256": "r3PfXsAZwhkIDRq3cSyIoh8vZG0ARBFDH/fvHecrUsY="
+        },
+        {
+            "name": "",
+            "path": "metadata/records/award.csv",
+            "size": 2937,
+            "fileType": "CSV",
+            "s3VersionId": "IHTYpMaNwvJeLxwEQFuVwK92Nk4hLhTK",
+            "sha256": "NIvO10Be2BO32/I3g1aLMMpjQGoR3sEbQMajBMQOLRQ="
+        },
+        {
+            "name": "",
+            "path": "banner.jpg",
+            "size": 41629,
+            "fileType": "JPEG",
+            "s3VersionId": "ElrVtuU9wPUThN4jejoglY.T.qmwxQTo",
+            "sha256": "MApyVTbAuZ2e0018+9DjSeNQDaECMcc10SVTOaDRQBo="
+        },
+        {
+            "name": "",
+            "path": "files/code/beeswarm.m",
+            "size": 8023,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:4da91a89-d849-449a-a205-1c20709e8c2c",
+            "s3VersionId": "_k3ZYqTNK.3RO4_nsINe_XiKAPPJjZJB",
+            "sha256": "1y3VnpNeqo7L8QYmy25Su1Glst8kT/MsxGaJ22UzeMc="
+        },
+        {
+            "name": "",
+            "path": "files/code/beeswarm_LICENSE",
+            "size": 18655,
+            "fileType": "GenericData",
+            "sourcePackageId": "N:package:aa5fe950-2383-4ebb-86b5-24042e090421",
+            "s3VersionId": "jxKm1fTwQM7RsXbWy8KpewPs3mOul8Rl",
+            "sha256": "Tusp3ZsSmmsSR8wRvPSlJ/Ylz1LtvKig1+Ey4WYjGkg="
+        },
+        {
+            "name": "",
+            "path": "files/code/beeswarm_mod.m",
+            "size": 8203,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:04e1fe74-ba52-410f-b43b-1bf3673e3b83",
+            "s3VersionId": "I6NEVg7VTvLZNhf3W6YMrHSy9GIFPVzF",
+            "sha256": "7HlIG1c/MPe1PrRfHkViVXS1Q46D3pu0AKM7/HFgtNY="
+        },
+        {
+            "name": "",
+            "path": "files/dataset_description.xlsx",
+            "size": 41337,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:d037026f-7f12-4a3b-ba5b-e016807511c9",
+            "s3VersionId": "szHrRZF2Vq6VE1vMgxqx7.c9ebkk_SDU",
+            "sha256": "H6QmsvctU5q+S5Lh+5ZX2cp5QfbZp5a4D1fooq6pVt8="
+        },
+        {
+            "name": "",
+            "path": "metadata/records/file.csv",
+            "size": 20655,
+            "fileType": "CSV",
+            "s3VersionId": "42ycXKhQElLuAhN4vGmduGYnvESZZ0Gc",
+            "sha256": "HYd91HDiQ4nzUO4yKnth3kRbWXLq9E7C+2vPrHP5ME8="
+        },
+        {
+            "name": "",
+            "path": "files/code/fitellipse.m",
+            "size": 12596,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:675b3f42-6422-49e7-98e7-1e1b5f434465",
+            "s3VersionId": "Kd9u_uu3rhuDouO29VxRuGE3ln0kR1W5",
+            "sha256": "GSf9b/Dk5S87aXVEhOiDn6JaBe2/lar0kU63wJaSaW4="
+        },
+        {
+            "name": "",
+            "path": "files/code/fitellipse_license.txt",
+            "size": 1313,
+            "fileType": "Text",
+            "sourcePackageId": "N:package:4661420f-b9cd-4655-be2b-fa80e37f88d9",
+            "s3VersionId": "B97AWfLOxHp9n8T.pfgNJus1et_tmg19",
+            "sha256": "vfCJMuxE1dUlYEpo+zNtGGMsbR5bEu2cx/rZJQTDsAA="
+        },
+        {
+            "name": "",
+            "path": "files/code/getpos.m",
+            "size": 5664,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:484192da-2380-4429-98f5-e7218b2cd627",
+            "s3VersionId": "gNB3gAxHKta3eENfHClvlhLIfkekmvQZ",
+            "sha256": "oYMZAi4GO0lmqOwfNxy60XFYmteiskSOSkLzxsAU4JE="
+        },
+        {
+            "name": "",
+            "path": "metadata/relationships/hasContactPerson.csv",
+            "size": 206,
+            "fileType": "CSV",
+            "s3VersionId": "4W2KQiG8O5KtPJjcQZ5YBt3Xdrj1ir_u",
+            "sha256": "l96YDRhqmbVIJ8oJR3hzmche5J105fstP6RNfVL3ISk="
+        },
+        {
+            "name": "",
+            "path": "metadata/relationships/hasResponsiblePrincipalInvestigator.csv",
+            "size": 133,
+            "fileType": "CSV",
+            "s3VersionId": "AtFc3CNBwn8RkPZ2j9FLtlhHgABlSClu",
+            "sha256": "DwxMSjMi2pNvUqeHsRmmrk2j1YSBvR5Yrh97Xt/1bEI="
+        },
+        {
+            "name": "",
+            "path": "files/code/legendflex.m",
+            "size": 31588,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:c787e2c3-d346-49ea-8030-ea8c1d7b6de4",
+            "s3VersionId": "VDoqEVFM7MeC3N4Sh.W4PIUYAQV0GkhB",
+            "sha256": "c848psSEG467i9iB9NqIikg/TTIMU3SzPaRN+hwm2a4="
+        },
+        {
+            "name": "",
+            "path": "files/code/legendflex_getpos_LICENSE.txt",
+            "size": 1080,
+            "fileType": "Text",
+            "sourcePackageId": "N:package:5ff97ed6-99f8-443b-9f25-56b1ca5fb09c",
+            "s3VersionId": "Rdu_HEHQt_20uLSEcW0KKk58LDKDSWYq",
+            "sha256": "eRPtQfuxgdYvxfM5pD+JgCTK/bZ7Xf6qduLivuymREA="
+        },
+        {
+            "name": "",
+            "path": "files/code/legendflex_getpos_README.m",
+            "size": 15230,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:46699ffe-ac1d-4723-b06a-4eefa870bc1b",
+            "s3VersionId": "3E6szO9ZvQjP9ZcxD8qohj9QlTVqKm2t",
+            "sha256": "vypMz9EZW+K+AgbQoNeocDpdj5aHx/kxxLiHC6OuJRI="
+        },
+        {
+            "name": "",
+            "path": "manifest.json",
+            "size": 64691,
+            "fileType": "Json"
+        },
+        {
+            "name": "",
+            "path": "files/code/manifest.xlsx",
+            "size": 11497,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:01a93142-ed5d-4c0d-b60f-dad828852bca",
+            "s3VersionId": "zOyC5bqIJmKFwsQS5v6N1Pmp0CxL1l7r",
+            "sha256": "+cA95BGYQTKjidQ0YSDI3kCQDn2pd4jrZ4lCElIEdyY="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/manifest.xlsx",
+            "size": 12759,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:794fea6e-a6a5-4b37-96b2-5d7ad1a5fb39",
+            "s3VersionId": "dcEY.Kt._beb1D4WGb6dZF_3z4xc96gc",
+            "sha256": "nM4/9yYY24JaTO1fkcefLd7QuZ6BJRSY9O9464YuEC0="
+        },
+        {
+            "name": "",
+            "path": "files/protocol/manifest.xlsx",
+            "size": 8870,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:e2cf329b-064e-4474-ae2a-10731b7fe311",
+            "s3VersionId": "VNxKg3KgjYy3sVu1XMms5mBJRseGSzV.",
+            "sha256": "4It8a7BOhKHvASZFdyUU+hV2hP90SRq0+1isVEliNEc="
+        },
+        {
+            "name": "",
+            "path": "files/docs/manifest.xlsx",
+            "size": 9059,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:239fe763-c23e-431b-8893-bff2039ead26",
+            "s3VersionId": "lgZUhkywCK2V_bDvXUKvVRFLaq6GH1W8",
+            "sha256": "0qtYuMRDuguZKmIr6tUSXfXN/G0RCkACl+L81kbuhjk="
+        },
+        {
+            "name": "",
+            "path": "files/primary/manifest.xlsx",
+            "size": 12483,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:8de35419-1274-4126-9cbc-93c9a20c30af",
+            "s3VersionId": "QRm.M1Z5gHLsSbSfUue9Xgb5cbxmGNyv",
+            "sha256": "cLhyHcKd3pI+SGvEW2rHoReJdhFlY3NnOwz/7qVVNlI="
+        },
+        {
+            "name": "",
+            "path": "metadata/records/protocol.csv",
+            "size": 258,
+            "fileType": "CSV",
+            "s3VersionId": "c2SdkiJfH9204MZVYTpcNoEGO3a.6MjL",
+            "sha256": "gvz8sFi+Ra0LGzGGqiHvYpxQa11CFqB2ieJLOIbSZSk="
+        },
+        {
+            "name": "",
+            "path": "readme.md",
+            "size": 2379,
+            "fileType": "Markdown",
+            "s3VersionId": "ibsDAOcDWO7bfvZP8D9FLcVfp7.MgBqj",
+            "sha256": "JS4Yt7ATdfT0jHPkaJGLNXjjgvssR5SrluTw9NPm/Ww="
+        },
+        {
+            "name": "",
+            "path": "metadata/records/researcher.csv",
+            "size": 920,
+            "fileType": "CSV",
+            "s3VersionId": "gien7BBdyggA_K0TjN8F6r6FW_RKTTAR",
+            "sha256": "BX+vH8JV3sVaXi4TEl/+Vm4jaBCO8RWP4iQXvdSbsEc="
+        },
+        {
+            "name": "",
+            "path": "metadata/records/sample.csv",
+            "size": 3831,
+            "fileType": "CSV",
+            "s3VersionId": "8PoD7LIJs7SjDhHIoihr7j.dyYGUNjTW",
+            "sha256": "UJhx+vCLVNLoKw/aD5dIERyvZwEspUAkWXlT3M6K0r0="
+        },
+        {
+            "name": "",
+            "path": "files/samples.xlsx",
+            "size": 36053,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:a3572a22-e8b9-49ba-b69e-d2f20b248f68",
+            "s3VersionId": ".TPKjDKe_.aYcVIOPNI1ugUNKp189G4f",
+            "sha256": "dYL+G3U42OF2zBzAy4WOZM8pXe3jv/b9SClSkaY+WUY="
+        },
+        {
+            "name": "",
+            "path": "metadata/schema.json",
+            "size": 23538,
+            "fileType": "Json",
+            "s3VersionId": "FxkEBWoyyZiPG4bSnNGlxkgLrdfoGLRl",
+            "sha256": "S2d2bxKOVWSArpRP81as0WTgqtpkmlQm23FcKBEO/XE="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-10/sam-1/sub-10_sam-1_P10-1FascMask.tif",
+            "size": 47464,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:db07c6fb-9b55-4063-92c2-275003f7fbee",
+            "s3VersionId": "9q_92jmqRoefk_P6.B.1TihfL7riXp.I",
+            "sha256": "A9yDB18H+W/MvWouMJfLt2sjnoqr9DGo8o8E0ZrPoTE="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-10/sam-1/sub-10_sam-1_P10-1MergeMask.xml",
+            "size": 592635,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:b15f0795-9a5a-4a6c-9633-d843bcaf5983",
+            "s3VersionId": "da4O0nEAgMOgrnxZz4ToB9BtkV17h7Xm",
+            "sha256": "LurJN8RknbG5T2kOWaitb5bgUBeDnvlE3hWy5R9Fq7w="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-10/sam-1/sub-10_sam-1_P10-1NerveMask.tif",
+            "size": 48628,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:99c32451-8511-4c20-a854-234c989d90ff",
+            "s3VersionId": "s5WrbJ_EZ.Y7sWRs0UBR1T7zEdH__ZsK",
+            "sha256": "IYxanM61V9Pnm3GTGHn6Ip0SnwgdvB+epU9ZLmB5xcs="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-10/sam-1/sub-10_sam-1_P10-1ScaleMask.tif",
+            "size": 34704,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:aa9ac02d-48f7-4bb3-ad42-ca7e82263570",
+            "s3VersionId": "UyWPok0oOOm6LZqRqhpeSZNU.NQqBp0G",
+            "sha256": "7iF6lSpV/GB+n37eN9pMk6ldh6axyDX54MaoGht/OaQ="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-10/sam-1/sub-10sam-1P10-1Slide2p3MT10x.jp2",
+            "size": 2072681,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:0f3c31b8-7108-4d33-b9c4-05f74040624f",
+            "s3VersionId": "MVFw0LnrOpdE1RuiXBloV9n6Ju9rvu8G",
+            "sha256": "VpMM3bQejrlNljD5tZ994X2Fpv/Oyn3GTBrb4d9x9/Y="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-10/sam-1/sub-10sam-1P10-1Slide2p3MT10x.tif",
+            "size": 41387034,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:c80c1349-71bf-49ce-a88a-d5908ba181eb",
+            "s3VersionId": "7ZXZzwBkODqElnyp6ahf58OTCf5rQQuR",
+            "sha256": "/1dyZwIhZXxWdKsbZYLP/RN5rFIA1XaihbKOCc8FY6A="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-11/sam-1/sub-11_sam-1_P11-1FascMask.tif",
+            "size": 79248,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:bf159134-4695-42f5-9c07-e945f0801a14",
+            "s3VersionId": "yfXA6vcp29E9n72I2I.JWrd9k_XN5NX6",
+            "sha256": "BYwV06ZJPuCGqmrhdzZGM82Ohhc1GjAenihmVTgPTLI="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-11/sam-1/sub-11_sam-1_P11-1MergeMask.xml",
+            "size": 1691977,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:e835a8e2-d5be-4fa6-8388-2147c2f0a610",
+            "s3VersionId": "Il4KSKamLsIJqfhxL2ceYKU1rDIORq23",
+            "sha256": "csIH7cPWWtaNgf8C03VM3C4bNPD9PBdNqNq9BD8FOJw="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-11/sam-1/sub-11_sam-1_P11-1NerveMask.tif",
+            "size": 42048,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:ca00be09-3f37-4153-a5d1-e4f62a15f6ad",
+            "s3VersionId": "iAeCnPDbAeBWVJDm4wTsi8kSM.L33.8p",
+            "sha256": "1KfVhu5uZCr2s2+g9QB7mQJQzZcmLOJMoqzGzAbw3TI="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-11/sam-1/sub-11_sam-1_P11-1ScaleMask.tif",
+            "size": 46944,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:aa71612e-70b7-4c6e-b679-93389808c877",
+            "s3VersionId": "_z.arL9BOuQDywd8ySOBlJ8kn0FFQXDA",
+            "sha256": "+rsnZA1jlaPcz4IU1oJyVBSz+LZwSdcOMTQBc6VaA3M="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-11/sam-3/sub-11_sam-3_P11-3FascMask.tif",
+            "size": 52264,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:24295f7e-7649-4ab1-8eda-58d1b8e11ed1",
+            "s3VersionId": "FpN4HWGm6XihHQ5hM2tesnPnFuv3iHc_",
+            "sha256": "F6eyghscJWtHSfYtBfYW5q2DvLuOSbHu2kDDqBw5obY="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-11/sam-3/sub-11_sam-3_P11-3MergeMask.xml",
+            "size": 594790,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:a4db43f7-381a-4cd8-9317-e5e61aee7193",
+            "s3VersionId": "Nzwea91Xx11vEL5WaKaDuZmM6CK3a4P6",
+            "sha256": "03ncyT0XVyiPbJu2sDGcH/qIlIcCGCeBuvcPZVkbPpc="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-11/sam-3/sub-11_sam-3_P11-3NerveMask.tif",
+            "size": 48506,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:9431164f-5acf-4ae3-ab2a-679d39d84e3b",
+            "s3VersionId": "ULhCvvsFNpHYJ5DQK7fpF97cK6f635ZY",
+            "sha256": "SzxMZpTryT0UygOBuxQRcCXjlB2+d28FFaBV9zvhJPk="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-11/sam-3/sub-11_sam-3_P11-3ScaleMask.tif",
+            "size": 34814,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:e5c3a181-3b52-4f1a-9fbf-902d8d3b43ff",
+            "s3VersionId": "2jscekrkScW4ckSMOs8FixdhEUZ_smX5",
+            "sha256": "1IrmUm8sPOL+VExdDYzTvh5SN8j5GivKZGyx9DJthKo="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-11/sam-1/sub-11sam-1P11-1Slide2P1_10x.jp2",
+            "size": 2750579,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:d83c2107-d2af-4580-89b3-2a15a9aab132",
+            "s3VersionId": "wh.95sklhPxy.O_xeb7WBTZbWCxgiggV",
+            "sha256": "YaTRir+krgjYZBi+bHh9MEgRd7ukKDhqg+Z3F9LtLxs="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-11/sam-1/sub-11sam-1P11-1Slide2P1_10x.tif",
+            "size": 54918831,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:24c7d5ed-7d3b-48e2-8a26-686b6772f66e",
+            "s3VersionId": "rf0ZJN5AR9l.vJoAZLFJz2bbfHqgHwzw",
+            "sha256": "i+yedbxJ4XSv+nZYSUCr6TMumCAJcqhnVDDLmOXakQ0="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-11/sam-3/sub-11sam-3P11-3Slide2P1_10x.jp2",
+            "size": 2079998,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:78bdd25d-516e-4ba7-bae3-14f694b998f7",
+            "s3VersionId": "UoTjVKwuy6N.2NTTIt92YC6Zs9QitRnR",
+            "sha256": "jg0afgWJ5WgLWnwj6TIdglTyCIA0NvZK8shw9gXtbTs="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-11/sam-3/sub-11sam-3P11-3Slide2P1_10x.tif",
+            "size": 41536296,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:239519b7-31ba-48bd-8143-4efd4bea1f3c",
+            "s3VersionId": "hQTlJBvjZnrH.jy4I41DCii1NIjfOBTB",
+            "sha256": "2op3vXByI3VUf7MUcP2IB4b/JzLf6ySMlgSjTaPLorY="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-12/sam-1/sub-12_sam-1_P12-1FascMask.tif",
+            "size": 92138,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:983abb62-cff2-4426-bcde-46eed77afd04",
+            "s3VersionId": "smJD0no8YjSQ1VQFzDEokCVruxGgm6UU",
+            "sha256": "YYUEF49wK39XyrHuCTsVeOQ5E95JFonCxhpoiTq7aUA="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-12/sam-1/sub-12_sam-1_P12-1MergeMask (1).xml",
+            "size": 1796449,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:171775cd-5d11-4157-a49a-dbeee7e083a6",
+            "s3VersionId": "ffTYrvTIg8o.TQqflwL0piWMutXKXTgM",
+            "sha256": "v6YHadHPkCwYy2/jTwf2oBO0E9ZvFmHSC9+c+dzD6Kg="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-12/sam-1/sub-12_sam-1_P12-1NerveMask.tif",
+            "size": 64552,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:78725ae3-146b-4aba-8aaa-68168d838483",
+            "s3VersionId": "_xVKk4gmKT1kyJ6RhondPnm0CH1zWEE4",
+            "sha256": "2hMipdmOPdr6bVpakl5V9rkUkszOzUupw4UGgVbWWLU="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-12/sam-1/sub-12_sam-1_P12-1ScaleMask.tif",
+            "size": 46884,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:181fd123-ec79-4b64-b936-644e94ebe53e",
+            "s3VersionId": "ckemgB6MU1M1WiJ8MpHTgAzNWgix4W1X",
+            "sha256": "HAn73nojQv/Vz3J1AsM7wHG0Xz2b2I2/KILaPDzP4Bk="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-12/sam-3/sub-12_sam-3_P12-3FascMask.tif",
+            "size": 43776,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:f6467055-b13b-4adb-a9e5-dd9a6a7b84f1",
+            "s3VersionId": "5ctr8pHRCu6qnzg8Amd9ROGAAbo2xpnu",
+            "sha256": "f3seiAic3hAFbobIl6vwj0njZZv8/K4lCfqJcPmKDfU="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-12/sam-3/sub-12_sam-3_P12-3MergeMask.xml",
+            "size": 146172,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:3935b9dd-6135-490c-8e17-809747670b81",
+            "s3VersionId": "BcU3Yic6jbCB4DzODDgFnFgkOoIPD8Vq",
+            "sha256": "jLMZCLIuS/ZStfaABHl9wH0HpRNnOAmarNMhKyNlRUQ="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-12/sam-3/sub-12_sam-3_P12-3NerveMask.tif",
+            "size": 45404,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:2e16e61a-ff31-423b-affc-15a09bbd5d83",
+            "s3VersionId": "CdsCn5R0ymc0H86z6yOi9AU1OEZWblz_",
+            "sha256": "1O/dnEC6JnmbHMRkLoKCHfDK1lXHN+Vmgw3XFX5MgMk="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-12/sam-3/sub-12_sam-3_P12-3ScaleMask.tif",
+            "size": 34758,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:9cdbe0ba-c829-4a1f-b195-d87fc1cb31fc",
+            "s3VersionId": "gYHlDjBFdvSCz7ci0KOBuytcpMUizjkk",
+            "sha256": "JZrIYE3m2oEz4iJ0WpXlZOAm0ChCcBufDWP8XwpEsSo="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-12/sam-1/sub-12sam-1P12-1Slide2P1_10x.jp2",
+            "size": 2747499,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:351d17fc-b03c-4487-a377-9ab2e73f15cf",
+            "s3VersionId": "W9F4_IIa6SvwCHcaTT5fXWVs83nD7LuZ",
+            "sha256": "fmkZ+TDvRgl8xerex9wKnEDrU5nfKcJSRqvVXnu4f2M="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-12/sam-1/sub-12sam-1P12-1Slide2P1_10x.tif",
+            "size": 54855496,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:d5518270-cccb-486c-bae6-66d2ed2a5b82",
+            "s3VersionId": "qe_JA_FvuNeQSUSvbv31TrV3mO0gzQNu",
+            "sha256": "l0sLqBDDAajYNvk0TJjF3pCwhzvLWn2npgR0h6/OiYg="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-12/sam-3/sub-12sam-3P12-3Slide2P2_10x.jp2",
+            "size": 2077743,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:9faccf58-e68f-491e-a737-06bd7f7c12b0",
+            "s3VersionId": "j8hbn7yXEA8xTmp2nSIy02r97q9xVEe.",
+            "sha256": "2IANbRzA3SxWmuGIgJYfcyMse7QogC4TJCqlUS2z13I="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-12/sam-3/sub-12sam-3P12-3Slide2P2_10x.tif",
+            "size": 41491350,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:9c8dc96c-c1f1-4eec-b77c-6b978347e5df",
+            "s3VersionId": "wCyN6W3jZXHxyS4bmyfKBcwQ5f2Ynjfu",
+            "sha256": "RZyFFYjbivRNja/O3rMkzJCKnnrgNqponjOAIroEM/I="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-13/sam-1/sub-13_sam-1_P13-1FascMask.tif",
+            "size": 62136,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:5672de06-3c72-4f94-8a57-e50578779036",
+            "s3VersionId": "B_FUhv4PoQYZ4Ch9colbqa34gegKnqZm",
+            "sha256": "J65EIkjh5mmnBimVAMHlAW0sK4fo5ejW2vgCFrhcCXE="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-13/sam-1/sub-13_sam-1_P13-1MergeMask (1).xml",
+            "size": 1653479,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:fee3f032-cb0b-4d81-b563-4faa32791be7",
+            "s3VersionId": "DSxEAiO6vmyggtQ0WvHVi5V46R5Thzkq",
+            "sha256": "+INMVPuSwJKQSq7MTUxa2UcegQWBT85CxoW3PdOJhEU="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-13/sam-1/sub-13_sam-1_P13-1NerveMask.tif",
+            "size": 78932,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:ad593608-9092-40ba-b760-b0f6fa4a11ee",
+            "s3VersionId": "T132l.WFCkemAQWN0PFCR3SRUCv7Pr2s",
+            "sha256": "UPpeRCn/4rAK1N454jcv7hISFuAnopFYcXGleiB6Ovw="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-13/sam-1/sub-13_sam-1_P13-1ScaleMask.tif",
+            "size": 58340,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:d4261f8d-3aa2-47e5-9b41-b9c76a029395",
+            "s3VersionId": "EJLfgmSchOJTeg8ShkkdVOPf.bU53ELI",
+            "sha256": "BxO8yEjfEnAlaQOaEyNelDlDqulahngO+bJ66SlMREw="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-13/sam-3/sub-13_sam-3_P13-3FascMask.tif",
+            "size": 50748,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:87ed6e02-9e20-4a42-9dea-5213d506c044",
+            "s3VersionId": "GicQcrxA2owfD89L1efCyuu7Eq0z2bZB",
+            "sha256": "aPHokz9/OiV7dS4Lztosk4iwGjev0dVWQ/EzRoV0Y74="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-13/sam-3/sub-13_sam-3_P13-3MergeMask (1).xml",
+            "size": 781190,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:49eeb3ec-6eb0-427d-8b27-1e871f6cc13f",
+            "s3VersionId": "QDNdU6.UoBw2cK1D4to4PRZ8ddxxPMXi",
+            "sha256": "8NHh6rFAwfN3DHCqFN1PKnv1zadb86rZOlo8TPdvDFI="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-13/sam-3/sub-13_sam-3_P13-3MergeMask.xml",
+            "size": 156364,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:cce65502-3d4c-4fce-94be-d60092bedd0f",
+            "s3VersionId": "kFBS9O7Ncz6nW0W_Yw5xoHkYU_cJaCYx",
+            "sha256": "0kiiFikW6qCLBCxJ91tazzALvPM6OS+gw1StdbTWqaY="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-13/sam-3/sub-13_sam-3_P13-3NerveMask.tif",
+            "size": 52088,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:a7147734-f21b-4698-8466-82c0c98e9c4b",
+            "s3VersionId": "taMLbupNMKy841gyhdxBM9b6Ls4MU3Pj",
+            "sha256": "qPVvrGWDcmtCiXpnYDnhJmC4lFXhQq4uC79JixBm5qc="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-13/sam-3/sub-13_sam-3_P13-3ScaleMask.tif",
+            "size": 34816,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:c41f0f74-9f5c-4432-aca8-1a741acbf18a",
+            "s3VersionId": "fIEZW20a1zuGLbCq3hkbNK405awosAPj",
+            "sha256": "YFygk+7Gr6NTR1DcvdNfX9Sck7KI4Fi9oD+oZNBHFWQ="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-13/sam-1/sub-13sam-1P13-1Slide2P4_10x.jp2",
+            "size": 3419716,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:8ecf0c3a-5d5d-4d3e-82b2-ee48c713b97f",
+            "s3VersionId": "wuZCMJ_Pga1ZM3nj6me3blCt_.AM1pWc",
+            "sha256": "mThhSyKk//w/4zlBNh7GP25hqe2MoL28kdGuepcJXsM="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-13/sam-1/sub-13sam-1P13-1Slide2P4_10x.tif",
+            "size": 68289584,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:636064bf-9090-4b9f-8e1b-85a6efca56d4",
+            "s3VersionId": "XlWjnmHZQIo66qNSsx6G4tllA0wG8ZFQ",
+            "sha256": "iQl+R4/KCzPhKF60kfba7Ts2N7tjZZs2BhW9jsyXj6k="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-13/sam-3/sub-13sam-3P13-3Slide2P3_10x.jp2",
+            "size": 2079569,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:5a4c2ec2-c44a-4e1d-b897-b67bf0711a25",
+            "s3VersionId": "kF1Ss55TsgQZCTAQGVLmZkRGPRVKyfCf",
+            "sha256": "gJQFZfK96nHEb89qI3ig/AP7ESuVZbhbIsmNKL8foaM="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-13/sam-3/sub-13sam-3P13-3Slide2P3_10x.tif",
+            "size": 41527596,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:e46cbbdc-8d53-4195-80da-09ba0af255c4",
+            "s3VersionId": "0AP9qtEy8h2BBQYchvCq6tNth5aBtALW",
+            "sha256": "fZiHTIQx1z5kPVPQJbi6+DFqCuhEMzAiu9mczyPMuoc="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-14/sam-2/sub-14_sam-2_P14-2FascMask.tif",
+            "size": 51924,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:94761d34-04f9-4788-ab96-63417aac0b1d",
+            "s3VersionId": "QEamO.32_BA3SJeoCzphAEOT470OD8gN",
+            "sha256": "Y9kLbMQmu5Z+MeaSCUGr86UhLpyV3RIn5YnzPaejzrg="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-14/sam-2/sub-14_sam-2_P14-2MergeMask (1).xml",
+            "size": 1489946,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:904323c9-0fd4-44de-b490-95a0e0bb90c0",
+            "s3VersionId": "za_rbwAoVs_OFkZax18F12MwS9OFlq.n",
+            "sha256": "M0vueBB8x581fSsChqCAo38QDXuVWMUnkJkVNUCr46o="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-14/sam-2/sub-14_sam-2_P14-2NerveMask.tif",
+            "size": 38480,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:d10894b4-bc19-447d-99bc-47a972ae0a5d",
+            "s3VersionId": "kcIwjioQuFXwQGC.LRAucnxp9wgyMi7y",
+            "sha256": "PqLnSN8NvdhinZ9DQ3SiBaMoJzO3JhZCI40XQNA+K7Y="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-14/sam-2/sub-14_sam-2_P14-2ScaleMask.tif",
+            "size": 46914,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:48b79c55-4d26-4dad-9bb1-2fb0f1b6608f",
+            "s3VersionId": "binXrw6.p8JYw93LyMRRTGZrtJMQubGs",
+            "sha256": "qPC1kuS/3CQl8HMp7+KURv2ULS8QB4UmI6TSJPRV/cU="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-14/sam-3/sub-14_sam-3_P14-3FascMask.tif",
+            "size": 50772,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:c8850d55-2fc6-4b13-b9b7-1b34156d1a91",
+            "s3VersionId": "hJHc3zrSzYuiVslBZI0cuIv_cB9oR6gf",
+            "sha256": "pLHW5+J3mdabZiHRejuyIGUVytee269otdem7uLrIpQ="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-14/sam-3/sub-14_sam-3_P14-3MergeMask (1).xml",
+            "size": 804545,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:0cbd1568-a29b-4f8e-b042-b3d338200498",
+            "s3VersionId": "huO7ZFVaKgRof4xHM30T4mfdxtaB05Qr",
+            "sha256": "NGhP43VK0bPYbHKOMT52CFjtD9kfsI5gPOldiclOjHc="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-14/sam-3/sub-14_sam-3_P14-3NerveMask.tif",
+            "size": 48756,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:fe894193-16d2-40c6-b551-740170358228",
+            "s3VersionId": "sWQQVaWsZFc1cIjaH5McEoQTeJMADV2w",
+            "sha256": "6jRYb+KKzNV5zt7yyj5OmrGmamLxv+gjM3OjeNr/qVA="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-14/sam-3/sub-14_sam-3_P14-3ScaleMask.tif",
+            "size": 34726,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:d5c8ebc8-e66e-450c-a955-e14176c1036a",
+            "s3VersionId": "xbyzNpgsKkMWMrDSNkqMx2cGpja20uuC",
+            "sha256": "Zd8giggvF8KAepU23XUaVDjudG+kU/IrLaGvoIMLnys="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-14/sam-2/sub-14sam-2P14-2Slide2P1MT10x.jp2",
+            "size": 2751056,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:ff77f879-e944-49a1-8865-6d1ef22331fe",
+            "s3VersionId": "RhbRR4Z4oG9eP3p38gc2.A2CCD8Qp06Q",
+            "sha256": "yu7YJMEeX5B9wOg8Jr+xcs7zk0LpohEbJaUhWRcLFd8="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-14/sam-2/sub-14sam-2P14-2Slide2P1MT10x.tif",
+            "size": 54928018,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:592e4839-519d-48f1-b6d0-e10a4a74b0e9",
+            "s3VersionId": "DP6nYCGMTUDYKgPqquYGjRNqjkn6OpuQ",
+            "sha256": "mVGJn9XB3gmtzUkWZ/hEZbCgQjmzolaGquV/n4DbgMA="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-14/sam-3/sub-14sam-3P14-3Slide2P3MT10x.jp2",
+            "size": 2076009,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:8e783955-3522-49af-8971-55a2639e42bf",
+            "s3VersionId": "0cGCz2F0DPqp1oUJwRRFZzpKgmT67tPL",
+            "sha256": "6uvpqyCM+zUJeNWKvE4Wq9EZDwj2m03nuQyWrOCC8ng="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-14/sam-3/sub-14sam-3P14-3Slide2P3MT10x.tif",
+            "size": 41455105,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:57143e77-625f-4d24-a5d4-6cb7998645ba",
+            "s3VersionId": "qvPHxPI68NI2rNXJvYEpXveZk1RBG6eC",
+            "sha256": "LX53wOd0I1e7cS6+Lq4/WvdHvc/HD9Vt3da8AatOUVM="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-15/sam-2/sub-15_sam-2_P15-2FascMask.tif",
+            "size": 58564,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:e593bd13-f8d2-446c-b24a-f1db8bea9d7b",
+            "s3VersionId": "0810yL0jjTWptxRpeSfZ58OCEzvn0rJE",
+            "sha256": "7Ahfb0umrp3oQi0Da7rpal0GAvdlYqmZ/rs4y0jOKeU="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-15/sam-2/sub-15_sam-2_P15-2MergeMask (1).xml",
+            "size": 1595556,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:1c944008-4612-42fc-9fcf-4c03911a490a",
+            "s3VersionId": "HQamCfdhMOh1P3ReGttCKD_uYtPAzj8k",
+            "sha256": "FsLkJ4TAzCb47RSL0S7JUPog5NQ3nov3YlyuJVloYGA="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-15/sam-2/sub-15_sam-2_P15-2NerveMask.tif",
+            "size": 63592,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:d0bcf80a-bfc0-483b-959e-e567285d8517",
+            "s3VersionId": "OBTwEie7eMUs6UkrjHffFDNh0wyhCRNy",
+            "sha256": "YZ0jm75QG+vKacACtNUgQ2wtpb1kmyMhTGCkvkghEv8="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-15/sam-2/sub-15_sam-2_P15-2ScaleMask.tif",
+            "size": 46926,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:d1c6074d-ea77-41d4-8ec1-7d9dbca293ff",
+            "s3VersionId": "bfRfGGiE0NQrBmF24Ua0PVPaSlFCJThk",
+            "sha256": "VNXMblWGsBcA5rmPO9K/6NHroqD8guAyEs5So7byBxI="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-15/sam-3/sub-15_sam-3_P15-3FascMask.tif",
+            "size": 45848,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:f8e63ba7-b6fd-47f7-a701-92e1de6a0d24",
+            "s3VersionId": "RKH_K9FIXJetApqRhhhig9yAqjX7z4P.",
+            "sha256": "d+v4TMap59nCWpQIJqNnOztR8uEP6Gosfmdh/Qu9hnk="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-15/sam-3/sub-15_sam-3_P15-3MergeMask.xml",
+            "size": 121386,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:8b6ca367-02fe-4b96-8d57-5ac14bb782fb",
+            "s3VersionId": "R85wunj8th8YWTWIxJttGwScK2r9fvyv",
+            "sha256": "n3mV6qrHToPTY1YS9qT5ISY6BIchxo/5HEcLxKbTVy4="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-15/sam-3/sub-15_sam-3_P15-3NerveMask.tif",
+            "size": 46380,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:a4a4fcc8-225b-456f-af0d-0dae316c297b",
+            "s3VersionId": "TGauUtuh4ghDPpfvka9QBLVFWG9EBa63",
+            "sha256": "kOnIAoi8Nxe9yU3P4FDblORb39b3niqrjAu4OHPSuzg="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-15/sam-3/sub-15_sam-3_P15-3ScaleMask.tif",
+            "size": 34748,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:ecd72360-1bb9-4255-b0df-6f7c00b5e686",
+            "s3VersionId": "wVQTuFRBX4S04SYgzE8kbB8Vz6wpcOuT",
+            "sha256": "i6QzOOq70gJ9ClzwcaiYgyxYyJQoV0GcQJhtSwqoK34="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-15/sam-2/sub-15sam-2P15-2Slide2P2MT10x.jp2",
+            "size": 2748819,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:51f44a95-9e87-4ae3-bf44-8098c88c5227",
+            "s3VersionId": "wN9HPDkiGyhnlfO5aWJLunRVHUfiGQ9v",
+            "sha256": "l/mDotaTgnhL+Mbj7CdkI5pzPAoHg32Z0P15QXwOwSE="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-15/sam-2/sub-15sam-2P15-2Slide2P2MT10x.tif",
+            "size": 54882555,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:cfdc2c13-4847-42a6-9dbe-55c83ddfcd8e",
+            "s3VersionId": "Ov.R1hh8txIR.L7odvmXNUVukIbNHUHR",
+            "sha256": "ZOFrTXEOmomV0fuxv3A/upJ4cKW+0BLHYMeEzwtDOdA="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-15/sam-3/sub-15sam-3P15-3Slide14P4MT10x.jp2",
+            "size": 2078279,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:9617f2a5-b2e5-4303-bf0a-1981a04af3e4",
+            "s3VersionId": ".GFjCJQJ_JSX7DrL9y14hQgykCAqzx2n",
+            "sha256": "ls/QAvtarLhk342Acsmlvc1f3k6uVLtWfWdP1Ewb+RU="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-15/sam-3/sub-15sam-3P15-3Slide14P4MT10x.tif",
+            "size": 41500517,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:4ea49041-f8a0-4d8d-a214-87ee9a74ad55",
+            "s3VersionId": "PyTCVELQwE1uCRJmY_lv60A8nyZNabvM",
+            "sha256": "6x2QgghdQ50BIh6VzjGuctf6IoMxOTUcuNdol3CU+RA="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-4/sam-3/sub-4_sam-3_P4-3FascMask.tif",
+            "size": 53436,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:258f0398-c945-42e4-9bfe-b32a95025721",
+            "s3VersionId": "4qlcgjjU7vNyiVPG3Ilh0BFf.1StUfTi",
+            "sha256": "PW9ax6DecLeojiHKSA2JfN6ksSIdpbAwxQwqvbUavqQ="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-4/sam-3/sub-4_sam-3_P4-3NerveMask.tif",
+            "size": 61098,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:c3634d96-aee3-4352-814b-e54654742273",
+            "s3VersionId": "06enFX53wWyyOr8LxHS6ccA.jeSclyIy",
+            "sha256": "u7Xgd72wo9xcz6jfVTB5PEjjdJXJeutYoqDFIqp7SS4="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-4/sam-3/sub-4_sam-3_P4-3ScaleMask.tif",
+            "size": 44540,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:383f3309-6b82-4807-866c-22aa9d19191f",
+            "s3VersionId": "9e_ZaOb3LrAqn8wJFJVqKclhTvfAIXyk",
+            "sha256": "43RTKApZbvHoosqSEf7pSkiUEkxCIhA5FesKH1UkJYw="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-4/sam-3/sub-4_sam3_P4-3MergeMask.xml",
+            "size": 1106294,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:c83ec8f6-880b-491d-a3e5-c6e47060cb24",
+            "s3VersionId": "FoPawrNpYvT1BP8PK6KpTAkd2Mj9JLmW",
+            "sha256": "lKvK+6aNDyZ4hlr6QAT+Fsi/ng+7B2FWyx4W3TkjYqQ="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-4/sam-3/sub-4sam-3P4-3Slide2p1_10x.jp2",
+            "size": 2739251,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:1dea0c31-7da6-4c35-b85b-8f2380bff518",
+            "s3VersionId": "ni8mqbeFLU3a9KOQlDSLXQ.O_Yb7fC3t",
+            "sha256": "90J/MsetkKPZljPz/yZ9IKSjz5/k2M0K4e847brvjdg="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-4/sam-3/sub-4sam-3P4-3Slide2p1_10x.tif",
+            "size": 54702684,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:de4498b4-063d-4b1d-9f12-24323f634643",
+            "s3VersionId": "JLw2dVtGDj5rVJJvxzMU2JszsULFGb2L",
+            "sha256": "GcKSYA0uiU5Ec2hfvXSmW0BnONo964iVEYrnDkUISYs="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-5/sam-1/sub-5_sam-1_P5-1FascMask.tif",
+            "size": 49516,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:246f9b4d-4da7-42f7-b5ff-b7aca6ac0781",
+            "s3VersionId": "ozeJ6L6E8u_XfRUJLzjkqaN7k0ZhGYFr",
+            "sha256": "4x+ebiKRCW/f+Ny4osGgdUiKX5/s5HO88bSFMykpHoA="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-5/sam-1/sub-5_sam-1_P5-1MergeMask.xml",
+            "size": 1073906,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:3b2d9ce4-2563-4959-8ab5-d007cd058313",
+            "s3VersionId": "0zL4VN7nWra8RsmHqwfx7XdIUVEHvj35",
+            "sha256": "5Pw+xU1ZvLcRB7XhKyDG/zWuUASc6X6mK8M03W2ZVKI="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-5/sam-1/sub-5_sam-1_P5-1NerveMask.tif",
+            "size": 61312,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:083d1e5c-f5d6-4dd1-b3c3-38035f17ca81",
+            "s3VersionId": "M1NSCWZMxj6XATdgy4NEKn0q6CE7tFzb",
+            "sha256": "ohztaTCbK4ZOyS6ZN3ZOElzpCMp2OjFgyYEbiIa4vN0="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-5/sam-1/sub-5_sam-1_P5-1ScaleMask.tif",
+            "size": 44554,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:c9202ec5-7377-4d9d-8cd2-f00bf5df24c7",
+            "s3VersionId": "0l65lCSntvY6xY9prk0E5eFjla6Iyf64",
+            "sha256": "ERz2pmF+Qo46E5cR1bQIEBuhNrbiGD6XU3tLJmBWd1A="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-5/sam-3/sub-5_sam-3_P5-3FascMask.tif",
+            "size": 47688,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:9cbb2220-5a05-4ea9-8f36-d7739945e17b",
+            "s3VersionId": "gQx5drCal8.sca3.idNOdUOQXBJifnSj",
+            "sha256": "AnVuhWSUfLcAT815nXwn8Kjoh28pNY64FXembP7oERc="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-5/sam-3/sub-5_sam-3_P5-3MergeMask.xml",
+            "size": 691901,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:57dcdc0f-880f-4221-8752-ce1227cb032d",
+            "s3VersionId": "mS4ucO4ttrOSlGE7.HocUvzqKIlx9HSh",
+            "sha256": "flvM7FD0n8M+zerY6UX+gTUsm6qizb4WlWAhuNOWIic="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-5/sam-3/sub-5_sam-3_P5-3NerveMask.tif",
+            "size": 47678,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:54c5b67d-a4ed-46ad-94bf-3284188f6b34",
+            "s3VersionId": "JJZ4lXHHm_DywlsuuXUoFLhcK2Z3tWUO",
+            "sha256": "IqjDQLQGOuBbCGs51EeDmA4BOOd19coLocbelr/Z7sI="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-5/sam-3/sub-5_sam-3_P5-3ScaleMask.tif",
+            "size": 34776,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:4ddbdc5c-9c2a-4408-8278-e3375ec1c6f2",
+            "s3VersionId": "SkeDNShkCRrxTlSJTwX.a46a3S0ghjrf",
+            "sha256": "vX/8vDYzsRXQlywetUBbx5HPtJrjmPW7wHBjGuy7iY8="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-5/sam-1/sub-5sam-1P5-1Slide2p2_10x.jp2",
+            "size": 2740630,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:ba76434f-ce44-4aa9-8393-0c8a7b599b20",
+            "s3VersionId": "4y54b4IfI8YblJleYVMXXco6l7vxRpkA",
+            "sha256": "ZZuBLF7iBmrx8JbpMSvygD/6RgkwokSgrpP6FwoF8Dc="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-5/sam-1/sub-5sam-1P5-1Slide2p2_10x.tif",
+            "size": 54730192,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:46534c93-7e74-4309-b49c-d0beb75de65e",
+            "s3VersionId": "NKT12NMK_4zA7VDWvtWE2_L4FLYS.6yH",
+            "sha256": "xa529S6UnHfHUhu0JfLQZYC1WOO6hDdwL/0UFLpZt80="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-5/sam-3/sub-5sam-3P5-3Slide2p1_10x.jp2",
+            "size": 2077892,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:64b38b37-5c06-48c8-883e-5309b736de7a",
+            "s3VersionId": "QxcCYR4pzPWUgsxx4jXBZokUwmaAAiag",
+            "sha256": "Qw/4f5UpNAu5uf81IoKRhTtWqufFxWE1v+RaH5qNkNw="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-5/sam-3/sub-5sam-3P5-3Slide2p1_10x.tif",
+            "size": 41500334,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:ec258baa-0a79-4477-a413-0271ed292b0c",
+            "s3VersionId": "JN8i.e2RNZxjdszQp6uGkIjgDugweOh7",
+            "sha256": "Mn1fkePJ8a4QpCENM1YS6E87dNJ75pe0AAqfo5MZJ4s="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-6/sam-7/sub-6_sam-7_P6-7FascMask.tif",
+            "size": 74356,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:e00d85fb-02d4-4176-94a3-7ff962f53f4c",
+            "s3VersionId": "G.9KeLC4YfmRqZ1VzE_M3ud53SgSV6S7",
+            "sha256": "IBN6PHLbUzu/Fzkomsvw3XTCyNpdoKjNq8zydMo0sb8="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-6/sam-7/sub-6_sam-7_P6-7MergeMask.xml",
+            "size": 1566335,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:40181d25-fb4a-40c1-8778-c7425ae0b680",
+            "s3VersionId": "qUSNmPWtFRzQMDxSRQPdlG_D_9bzBd96",
+            "sha256": "FpLrwpda0Wpjor7719cgll6F6WZdQ2UObhkIkUrJokE="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-6/sam-7/sub-6_sam-7_P6-7NerveMask.tif",
+            "size": 110222,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:f0d7d80e-6f55-4fbb-9f4d-840ffa2153ba",
+            "s3VersionId": "U8w1.Szr9r0IQWWfPqfqpXMhyxsdKfiq",
+            "sha256": "kJFdrqE/sBQa1eCWewKgZjfgJIE+Rvti0BzTWphRiRM="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-6/sam-7/sub-6_sam-7_P6-7ScaleMask.tif",
+            "size": 84634,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:f114459a-9d4b-4013-aaaa-4699c309a5ff",
+            "s3VersionId": "quvJFo7CxAU9oayYFWWwo3TUxDmeExHM",
+            "sha256": "CiNS0T1mt2HTfvr8FpXoKamWAq3P4Io6XiFgQ7OCes8="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-6/sam-7/sub-6sam-7P6-7Slide2p3_10x.jp2",
+            "size": 5001359,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:792d5cfb-b390-4eff-b561-198d83f305d2",
+            "s3VersionId": "KztrehLERV4m3TIoxUpYULnNMALZWlWt",
+            "sha256": "wjvVfNgglxLxzWv4FUUcJVZp4i1SH7vqJmLBzFVj4T0="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-6/sam-7/sub-6sam-7P6-7Slide2p3_10x.tif",
+            "size": 67633152,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:d273cb6e-4e99-4f6c-80ca-0d53a383e4a4",
+            "s3VersionId": "V0Id_ExsgcBOWOyIVNKm0NfDXMRFtMM0",
+            "sha256": "3u86e5iM8PNgJeqCanqPEroffTNpbUWifPrnWShKmag="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-8/sam-1/sub-8_sam-1_P8-1FascMask.tif",
+            "size": 48856,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:06728e65-7726-406f-9c6e-89a456d4781d",
+            "s3VersionId": "dm3XyZbso.nw4lfa2RDcSFOQbE_evGmh",
+            "sha256": "PNVLNlISIHWq3PQL30DGHX+vKWFcc95HXJcVm7YBCw4="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-8/sam-1/sub-8_sam-1_P8-1MergeMask.xml",
+            "size": 956563,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:284ac044-a1ea-46f0-9583-c36f6beaa1e6",
+            "s3VersionId": "cnoZouNAaTyp5str.VxHwMH1ihQ_T_6C",
+            "sha256": "NBsn99Hq1PXJAi1HPWMnZ4iqWsVZFwzZHWF6HhtYVxA="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-8/sam-1/sub-8_sam-1_P8-1NerveMask.tif",
+            "size": 48770,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:a185f33b-fff3-4ad6-8cc7-f1e4f206f4fa",
+            "s3VersionId": "4ydrYOhE4rGP0vqO17xcXZcJs7VynEfQ",
+            "sha256": "k3C7hPFuQ84UxffFGrLRNAGJkyXO3WN5YcKdJuDaxro="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-8/sam-1/sub-8_sam-1_P8-1ScaleMask.tif",
+            "size": 34754,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:1bcd185f-5e66-4534-82c3-56b9c8a60e57",
+            "s3VersionId": "IcM5Ah4ag1w34HBwnDd4Tfak_Z6nopOj",
+            "sha256": "xrwsxcMXatcjGwz7R3pCWb0+9Caa+5/wqwTGLmrVDX8="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-8/sam-7/sub-8_sam-7_P8-7FascMask.tif",
+            "size": 59168,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:f0dcfe96-8fbd-41d0-84aa-b66f235cffa8",
+            "s3VersionId": "pVsypsQGVrNRACof76y168S6KRbs8OeM",
+            "sha256": "tJZXudKRHR76+nHoC818caDg2sgCmJYWjLsTh+E1glc="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-8/sam-7/sub-8_sam-7_P8-7MergeMask.xml",
+            "size": 1264649,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:6f4230ca-d435-4a4b-af8e-492330f40d4c",
+            "s3VersionId": "aaqNmawvIySurAebe1_6KnPX6aiBnqAS",
+            "sha256": "mFLiyDPU2kSp78fWYqwrmO4Z9xD6yum4X/rTa2YmSO0="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-8/sam-7/sub-8_sam-7_P8-7NerveMask.tif",
+            "size": 50790,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:a9b754b3-f052-43fb-9371-01a43f71b800",
+            "s3VersionId": "KHpjGI80MbfCtP5SUSAuUZ8tdrgx_8Oo",
+            "sha256": "3g1fiDKwYs6ro4Xk+tHbxmmteknQ0IkvNdY4rzPdOiY="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-8/sam-7/sub-8_sam-7_P8-7ScaleMask.tif",
+            "size": 33926,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:b3c0eeb7-eb2c-4634-b102-92d166b2c5e8",
+            "s3VersionId": "ai07IfHQ.UpquAYU5TZQUQZEKeWWlA0s",
+            "sha256": "1BQ+fsuNN/mL92vRc7iws3sGUu5pkSHVaWVVQ0YeMiQ="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-8/sam-1/sub-8sam-1P8-1Slide2p3_10x.jp2",
+            "size": 2074048,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:9dbedb41-d332-402a-beff-25bda86c6da8",
+            "s3VersionId": "yEel3UdyR6GpwblKPY3MvgVr_0aByOpN",
+            "sha256": "dYhiRSlz1dYwhFSl3YN43y77Mh+4fEMoqBZrDfZu+ts="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-8/sam-1/sub-8sam-1P8-1Slide2p3_10x.tif",
+            "size": 41414311,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:c0b346ad-2153-43d7-93b6-58771d491379",
+            "s3VersionId": "8OtnzC7wujEQl91jdNufgAQAiHKduS9c",
+            "sha256": "MQ4ez2iv5s6196gCo8JPO+qJsy9khJxHRU2eqAVeyds="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-8/sam-7/sub-8sam-7P8-7Slide2p1_10x.jp2",
+            "size": 2049621,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:55d4996d-ab10-4475-aa87-9052377631a7",
+            "s3VersionId": "Sy.vxBQMiJPZenoqO1RswLg1O2RNctI7",
+            "sha256": "Bb2EJgQlP0z+mUmfQ57e5Y7E+VIwYLoV6r/lJ0BccEM="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-8/sam-7/sub-8sam-7P8-7Slide2p1_10x.tif",
+            "size": 40916800,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:74d083ac-200a-4fa7-8fde-1c1764469be9",
+            "s3VersionId": "2CSc.Sk1lr.sV8VBX3uZBicGnG4ocBaD",
+            "sha256": "RT2XdK0Z7jkubC0u5ZPrEZSGpdS3ftA3E3dSQ2Yyyxk="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-9/sam-3/sub-9_sam-3_P9-3FascMask.tif",
+            "size": 66444,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:6b8b93d1-95b5-46ac-803a-f7800ad3cebf",
+            "s3VersionId": ".1hrc2aTSzf0ZkXbOWukz65l3_yMBkUg",
+            "sha256": "eM+V/l1kDwzo8uH+hhWd5G1lE13OZt4axjUiv7n99VY="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-9/sam-3/sub-9_sam-3_P9-3MergeMask.xml",
+            "size": 1650548,
+            "fileType": "XML",
+            "sourcePackageId": "N:package:01219a1c-c05f-402a-9316-073c6a774820",
+            "s3VersionId": "jrM1RH9fz5_sIt5FPoJ0w0HqtTfXa.Qo",
+            "sha256": "BlZix0iniyS0WBfsQMVmYeT+zG/+2pR7Boures6nxyk="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-9/sam-3/sub-9_sam-3_P9-3NerveMask.tif",
+            "size": 63846,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:b61127ae-4cb1-45f2-95f4-8e1877dc3085",
+            "s3VersionId": "dnPhw_q6jgGRYkkazA4dTcrzVI.8DS3y",
+            "sha256": "OsYnfm1sTUtdSr2xGYefe34KVGYT//Ud8Q8DtUY+FoM="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-9/sam-3/sub-9_sam-3_P9-3ScaleMask.tif",
+            "size": 42862,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:2c9d29e9-d111-4982-8a19-636abb808fbe",
+            "s3VersionId": "rZItrC9RYhpDtz4xyre48ZPvq4Pbje7f",
+            "sha256": "2CD/gyX11uoFTGcSZcFoZIvTqKlvjXNHFqitKYQJhBg="
+        },
+        {
+            "name": "",
+            "path": "files/derivative/sub-9/sam-3/sub-9sam-3P9-3Slide2p3MT10x.jp2",
+            "size": 2561442,
+            "fileType": "JPEG",
+            "sourcePackageId": "N:package:b8595540-6d16-465d-a617-d404237b62c5",
+            "s3VersionId": "rgW8bLXs5yfJZ39WSHcLBxcAv580wFzF",
+            "sha256": "23GKJlwUTNZT8y5CKYIv4wuf0qCpPPgKcn7zTUPXiW0="
+        },
+        {
+            "name": "",
+            "path": "files/primary/sub-9/sam-3/sub-9sam-3P9-3Slide2p3MT10x.tif",
+            "size": 51138259,
+            "fileType": "TIFF",
+            "sourcePackageId": "N:package:f7156734-f86a-4b99-8625-5726955c6fb3",
+            "s3VersionId": "BfG2GtPfgJr58Tbdr8yRCCl8Rl6yHTaS",
+            "sha256": "wxEJcaCTR3eit0lKjQUUbAJzQ4LtnnJYrjBxsWmxh/A="
+        },
+        {
+            "name": "",
+            "path": "files/subjects.xlsx",
+            "size": 60358,
+            "fileType": "MSExcel",
+            "sourcePackageId": "N:package:2169687a-00de-46ce-bbf8-fdf3aa2d8dc3",
+            "s3VersionId": "nxM2f7czNM99ld16yeQ1SMu1y3OUB.fc",
+            "sha256": "0Xo/wbFKHAgyuQJ8h0wEFicwVL8rigxgiYMfcQHcSug="
+        },
+        {
+            "name": "",
+            "path": "metadata/records/summary.csv",
+            "size": 1216,
+            "fileType": "CSV",
+            "s3VersionId": "JcGRYm1pOtvQPtMxuM_euf.7Dyjax.MD",
+            "sha256": "AS7qwQGIYb1Msmq3dtfdzjBuNF2huBOmqPhj+aRUNhU="
+        },
+        {
+            "name": "",
+            "path": "files/code/summary_stats.m",
+            "size": 426,
+            "fileType": "MATLAB",
+            "sourcePackageId": "N:package:268bde08-f963-4152-903c-e37c9ac021e6",
+            "s3VersionId": ".HjLF2jlJBKHND25upBMFOi4sID6mM1H",
+            "sha256": "WBkZHIPyxIuvuGyei8tbOpVAJBrhexCK/CyqXSizp9M="
+        },
+        {
+            "name": "",
+            "path": "metadata/records/term.csv",
+            "size": 244,
+            "fileType": "CSV",
+            "s3VersionId": "l1x8l2lLwHyIzGZGP6sMHVg8U3R7EQGE",
+            "sha256": "wX3HH0i5jlA0ifKcspCbPFiovmzkhz2zeEPzAL42DA8="
+        }
+    ],
+    "pennsieveSchemaVersion": "4.0"
+}

@@ -1,0 +1,738 @@
+{
+  "source": "P12-1 pig cervical vagus, Pelot et al. 2020 SPARC-64",
+  "transform": "PCA-aligned, uniform scale, collision-resolved, elliptical boundary",
+  "scale_factor": 1.2611,
+  "pca_angle_deg": 170.0,
+  "nerve": {
+    "semi_major_um": 2500,
+    "semi_minor_um": 1785.7,
+    "diameter_um": 5000,
+    "aspect_ratio": 1.4
+  },
+  "vagal_fascicles": [
+    {
+      "id": 1,
+      "y_um": -974.4,
+      "z_um": -565.0,
+      "diameter_um": 358.3,
+      "type": "vagal"
+    },
+    {
+      "id": 2,
+      "y_um": -271.3,
+      "z_um": 366.9,
+      "diameter_um": 330.8,
+      "type": "vagal"
+    },
+    {
+      "id": 3,
+      "y_um": 520.6,
+      "z_um": 177.1,
+      "diameter_um": 320.0,
+      "type": "vagal"
+    },
+    {
+      "id": 4,
+      "y_um": 859.8,
+      "z_um": 416.6,
+      "diameter_um": 317.3,
+      "type": "vagal"
+    },
+    {
+      "id": 5,
+      "y_um": 1195.4,
+      "z_um": -506.0,
+      "diameter_um": 309.5,
+      "type": "vagal"
+    },
+    {
+      "id": 6,
+      "y_um": 767.1,
+      "z_um": -455.4,
+      "diameter_um": 307.9,
+      "type": "vagal"
+    },
+    {
+      "id": 7,
+      "y_um": -703.3,
+      "z_um": 521.5,
+      "diameter_um": 306.7,
+      "type": "vagal"
+    },
+    {
+      "id": 8,
+      "y_um": -570.8,
+      "z_um": 213.5,
+      "diameter_um": 299.1,
+      "type": "vagal"
+    },
+    {
+      "id": 9,
+      "y_um": -1373.9,
+      "z_um": 213.1,
+      "diameter_um": 296.1,
+      "type": "vagal"
+    },
+    {
+      "id": 10,
+      "y_um": -1132.8,
+      "z_um": 1.0,
+      "diameter_um": 295.2,
+      "type": "vagal"
+    },
+    {
+      "id": 11,
+      "y_um": 218.8,
+      "z_um": 275.1,
+      "diameter_um": 294.8,
+      "type": "vagal"
+    },
+    {
+      "id": 12,
+      "y_um": -1942.1,
+      "z_um": -21.4,
+      "diameter_um": 294.8,
+      "type": "vagal"
+    },
+    {
+      "id": 13,
+      "y_um": 1979.1,
+      "z_um": -151.9,
+      "diameter_um": 291.7,
+      "type": "vagal"
+    },
+    {
+      "id": 14,
+      "y_um": -509.0,
+      "z_um": -74.3,
+      "diameter_um": 269.6,
+      "type": "vagal"
+    },
+    {
+      "id": 15,
+      "y_um": 594.0,
+      "z_um": 560.7,
+      "diameter_um": 267.5,
+      "type": "vagal"
+    },
+    {
+      "id": 16,
+      "y_um": 1035.1,
+      "z_um": 167.2,
+      "diameter_um": 265.3,
+      "type": "vagal"
+    },
+    {
+      "id": 17,
+      "y_um": -246.6,
+      "z_um": 64.1,
+      "diameter_um": 256.9,
+      "type": "vagal"
+    },
+    {
+      "id": 18,
+      "y_um": 1991.1,
+      "z_um": 198.9,
+      "diameter_um": 248.6,
+      "type": "vagal"
+    },
+    {
+      "id": 19,
+      "y_um": 195.6,
+      "z_um": -584.1,
+      "diameter_um": 243.1,
+      "type": "vagal"
+    },
+    {
+      "id": 20,
+      "y_um": 1642.7,
+      "z_um": -197.1,
+      "diameter_um": 242.6,
+      "type": "vagal"
+    },
+    {
+      "id": 21,
+      "y_um": 1201.3,
+      "z_um": 367.9,
+      "diameter_um": 235.9,
+      "type": "vagal"
+    },
+    {
+      "id": 22,
+      "y_um": 305.6,
+      "z_um": -360.3,
+      "diameter_um": 235.8,
+      "type": "vagal"
+    },
+    {
+      "id": 23,
+      "y_um": 153.9,
+      "z_um": 542.6,
+      "diameter_um": 235.7,
+      "type": "vagal"
+    },
+    {
+      "id": 24,
+      "y_um": 1707.7,
+      "z_um": -435.5,
+      "diameter_um": 231.5,
+      "type": "vagal"
+    },
+    {
+      "id": 25,
+      "y_um": -1867.0,
+      "z_um": -324.3,
+      "diameter_um": 231.5,
+      "type": "vagal"
+    },
+    {
+      "id": 26,
+      "y_um": 1436.3,
+      "z_um": 115.5,
+      "diameter_um": 226.2,
+      "type": "vagal"
+    },
+    {
+      "id": 27,
+      "y_um": 1400.5,
+      "z_um": -185.9,
+      "diameter_um": 222.3,
+      "type": "vagal"
+    },
+    {
+      "id": 28,
+      "y_um": -81.2,
+      "z_um": -320.9,
+      "diameter_um": 215.1,
+      "type": "vagal"
+    },
+    {
+      "id": 29,
+      "y_um": 49.1,
+      "z_um": 27.5,
+      "diameter_um": 214.8,
+      "type": "vagal"
+    },
+    {
+      "id": 30,
+      "y_um": -317.4,
+      "z_um": -476.5,
+      "diameter_um": 211.5,
+      "type": "vagal"
+    },
+    {
+      "id": 31,
+      "y_um": -988.1,
+      "z_um": 219.9,
+      "diameter_um": 209.6,
+      "type": "vagal"
+    },
+    {
+      "id": 32,
+      "y_um": 339.4,
+      "z_um": -23.6,
+      "diameter_um": 191.3,
+      "type": "vagal"
+    },
+    {
+      "id": 33,
+      "y_um": -994.6,
+      "z_um": -210.0,
+      "diameter_um": 189.3,
+      "type": "vagal"
+    },
+    {
+      "id": 34,
+      "y_um": 1690.4,
+      "z_um": 23.5,
+      "diameter_um": 188.8,
+      "type": "vagal"
+    },
+    {
+      "id": 35,
+      "y_um": -1388.2,
+      "z_um": -167.5,
+      "diameter_um": 187.3,
+      "type": "vagal"
+    },
+    {
+      "id": 36,
+      "y_um": 857.3,
+      "z_um": -102.2,
+      "diameter_um": 184.1,
+      "type": "vagal"
+    },
+    {
+      "id": 37,
+      "y_um": -727.6,
+      "z_um": -164.4,
+      "diameter_um": 183.3,
+      "type": "vagal"
+    },
+    {
+      "id": 38,
+      "y_um": -405.0,
+      "z_um": -290.1,
+      "diameter_um": 180.4,
+      "type": "vagal"
+    },
+    {
+      "id": 39,
+      "y_um": 1773.2,
+      "z_um": 192.4,
+      "diameter_um": 167.4,
+      "type": "vagal"
+    },
+    {
+      "id": 40,
+      "y_um": 1647.7,
+      "z_um": 317.7,
+      "diameter_um": 167.3,
+      "type": "vagal"
+    },
+    {
+      "id": 41,
+      "y_um": -1026.0,
+      "z_um": 431.4,
+      "diameter_um": 167.2,
+      "type": "vagal"
+    },
+    {
+      "id": 42,
+      "y_um": -1741.2,
+      "z_um": -153.5,
+      "diameter_um": 166.0,
+      "type": "vagal"
+    },
+    {
+      "id": 43,
+      "y_um": -1582.8,
+      "z_um": -328.8,
+      "diameter_um": 162.4,
+      "type": "vagal"
+    },
+    {
+      "id": 44,
+      "y_um": 1150.9,
+      "z_um": -155.0,
+      "diameter_um": 159.2,
+      "type": "vagal"
+    },
+    {
+      "id": 45,
+      "y_um": -1259.2,
+      "z_um": -353.2,
+      "diameter_um": 158.2,
+      "type": "vagal"
+    },
+    {
+      "id": 46,
+      "y_um": -1566.1,
+      "z_um": -131.4,
+      "diameter_um": 155.7,
+      "type": "vagal"
+    },
+    {
+      "id": 47,
+      "y_um": 1207.3,
+      "z_um": 3.7,
+      "diameter_um": 149.5,
+      "type": "vagal"
+    },
+    {
+      "id": 48,
+      "y_um": 1439.8,
+      "z_um": -515.7,
+      "diameter_um": 141.3,
+      "type": "vagal"
+    },
+    {
+      "id": 49,
+      "y_um": -1585.2,
+      "z_um": 81.7,
+      "diameter_um": 138.8,
+      "type": "vagal"
+    },
+    {
+      "id": 50,
+      "y_um": -1700.2,
+      "z_um": 181.5,
+      "diameter_um": 137.5,
+      "type": "vagal"
+    },
+    {
+      "id": 51,
+      "y_um": -36.6,
+      "z_um": 548.7,
+      "diameter_um": 125.3,
+      "type": "vagal"
+    },
+    {
+      "id": 52,
+      "y_um": -768.5,
+      "z_um": 308.2,
+      "diameter_um": 119.3,
+      "type": "vagal"
+    },
+    {
+      "id": 53,
+      "y_um": -852.0,
+      "z_um": 128.2,
+      "diameter_um": 98.6,
+      "type": "vagal"
+    },
+    {
+      "id": 54,
+      "y_um": 644.0,
+      "z_um": -284.9,
+      "diameter_um": 92.6,
+      "type": "vagal"
+    },
+    {
+      "id": 55,
+      "y_um": 1794.6,
+      "z_um": 354.6,
+      "diameter_um": 91.8,
+      "type": "vagal"
+    },
+    {
+      "id": 56,
+      "y_um": -1579.9,
+      "z_um": 290.4,
+      "diameter_um": 60.9,
+      "type": "vagal"
+    },
+    {
+      "id": 57,
+      "y_um": -1607.4,
+      "z_um": 227.5,
+      "diameter_um": 49.4,
+      "type": "vagal"
+    }
+  ],
+  "sympathetic_fascicles": [
+    {
+      "id": 58,
+      "y_um": -174.5,
+      "z_um": 588.2,
+      "diameter_um": 114.6,
+      "type": "sympathetic"
+    },
+    {
+      "id": 59,
+      "y_um": 1653.3,
+      "z_um": 494.6,
+      "diameter_um": 125.6,
+      "type": "sympathetic"
+    },
+    {
+      "id": 60,
+      "y_um": 591.4,
+      "z_um": -642.4,
+      "diameter_um": 125.9,
+      "type": "sympathetic"
+    },
+    {
+      "id": 61,
+      "y_um": 1001.0,
+      "z_um": -617.2,
+      "diameter_um": 78.5,
+      "type": "sympathetic"
+    },
+    {
+      "id": 62,
+      "y_um": -1007.8,
+      "z_um": -808.1,
+      "diameter_um": 74.7,
+      "type": "sympathetic"
+    },
+    {
+      "id": 63,
+      "y_um": 458.2,
+      "z_um": -534.1,
+      "diameter_um": 133.5,
+      "type": "sympathetic"
+    },
+    {
+      "id": 64,
+      "y_um": -576.6,
+      "z_um": -319.5,
+      "diameter_um": 123.8,
+      "type": "sympathetic"
+    },
+    {
+      "id": 65,
+      "y_um": -1182.4,
+      "z_um": 252.8,
+      "diameter_um": 73.9,
+      "type": "sympathetic"
+    },
+    {
+      "id": 66,
+      "y_um": 584.6,
+      "z_um": 759.2,
+      "diameter_um": 99.7,
+      "type": "sympathetic"
+    },
+    {
+      "id": 67,
+      "y_um": -2131.1,
+      "z_um": 71.5,
+      "diameter_um": 60.3,
+      "type": "sympathetic"
+    },
+    {
+      "id": 68,
+      "y_um": -1155.5,
+      "z_um": -742.8,
+      "diameter_um": 91.7,
+      "type": "sympathetic"
+    },
+    {
+      "id": 69,
+      "y_um": -12.5,
+      "z_um": 206.2,
+      "diameter_um": 108.8,
+      "type": "sympathetic"
+    },
+    {
+      "id": 70,
+      "y_um": -1465.3,
+      "z_um": -0.6,
+      "diameter_um": 84.3,
+      "type": "sympathetic"
+    },
+    {
+      "id": 71,
+      "y_um": -903.4,
+      "z_um": 624.5,
+      "diameter_um": 112.4,
+      "type": "sympathetic"
+    },
+    {
+      "id": 72,
+      "y_um": -264.2,
+      "z_um": -263.0,
+      "diameter_um": 72.1,
+      "type": "sympathetic"
+    },
+    {
+      "id": 73,
+      "y_um": 2108.0,
+      "z_um": 53.6,
+      "diameter_um": 104.7,
+      "type": "sympathetic"
+    },
+    {
+      "id": 74,
+      "y_um": 138.4,
+      "z_um": 751.5,
+      "diameter_um": 88.8,
+      "type": "sympathetic"
+    },
+    {
+      "id": 75,
+      "y_um": 791.3,
+      "z_um": 663.0,
+      "diameter_um": 115.0,
+      "type": "sympathetic"
+    },
+    {
+      "id": 76,
+      "y_um": -806.5,
+      "z_um": 713.4,
+      "diameter_um": 79.5,
+      "type": "sympathetic"
+    },
+    {
+      "id": 77,
+      "y_um": 1930.1,
+      "z_um": 409.0,
+      "diameter_um": 109.0,
+      "type": "sympathetic"
+    },
+    {
+      "id": 78,
+      "y_um": 638.7,
+      "z_um": 385.9,
+      "diameter_um": 72.2,
+      "type": "sympathetic"
+    },
+    {
+      "id": 79,
+      "y_um": 1074.0,
+      "z_um": -696.4,
+      "diameter_um": 81.8,
+      "type": "sympathetic"
+    },
+    {
+      "id": 80,
+      "y_um": 729.2,
+      "z_um": -693.7,
+      "diameter_um": 78.3,
+      "type": "sympathetic"
+    },
+    {
+      "id": 81,
+      "y_um": -46.4,
+      "z_um": 652.6,
+      "diameter_um": 62.7,
+      "type": "sympathetic"
+    },
+    {
+      "id": 82,
+      "y_um": 61.9,
+      "z_um": -127.6,
+      "diameter_um": 69.4,
+      "type": "sympathetic"
+    },
+    {
+      "id": 83,
+      "y_um": 1863.6,
+      "z_um": -316.6,
+      "diameter_um": 79.2,
+      "type": "sympathetic"
+    },
+    {
+      "id": 84,
+      "y_um": -297.2,
+      "z_um": 578.8,
+      "diameter_um": 65.3,
+      "type": "sympathetic"
+    },
+    {
+      "id": 85,
+      "y_um": 1326.0,
+      "z_um": -680.3,
+      "diameter_um": 84.8,
+      "type": "sympathetic"
+    },
+    {
+      "id": 86,
+      "y_um": -710.9,
+      "z_um": -588.6,
+      "diameter_um": 92.7,
+      "type": "sympathetic"
+    },
+    {
+      "id": 87,
+      "y_um": 1239.7,
+      "z_um": 139.8,
+      "diameter_um": 97.3,
+      "type": "sympathetic"
+    },
+    {
+      "id": 88,
+      "y_um": 225.7,
+      "z_um": -780.0,
+      "diameter_um": 68.6,
+      "type": "sympathetic"
+    },
+    {
+      "id": 89,
+      "y_um": 534.6,
+      "z_um": -390.3,
+      "diameter_um": 136.3,
+      "type": "sympathetic"
+    },
+    {
+      "id": 90,
+      "y_um": -469.0,
+      "z_um": 648.9,
+      "diameter_um": 131.1,
+      "type": "sympathetic"
+    },
+    {
+      "id": 91,
+      "y_um": 1381.9,
+      "z_um": -410.4,
+      "diameter_um": 68.0,
+      "type": "sympathetic"
+    },
+    {
+      "id": 92,
+      "y_um": 1875.5,
+      "z_um": -559.5,
+      "diameter_um": 130.3,
+      "type": "sympathetic"
+    },
+    {
+      "id": 93,
+      "y_um": -2060.8,
+      "z_um": -246.8,
+      "diameter_um": 108.9,
+      "type": "sympathetic"
+    },
+    {
+      "id": 94,
+      "y_um": 1509.2,
+      "z_um": 375.8,
+      "diameter_um": 83.5,
+      "type": "sympathetic"
+    },
+    {
+      "id": 95,
+      "y_um": 983.0,
+      "z_um": -233.5,
+      "diameter_um": 138.2,
+      "type": "sympathetic"
+    },
+    {
+      "id": 96,
+      "y_um": 1249.5,
+      "z_um": -280.3,
+      "diameter_um": 73.1,
+      "type": "sympathetic"
+    },
+    {
+      "id": 97,
+      "y_um": 807.3,
+      "z_um": -248.4,
+      "diameter_um": 67.0,
+      "type": "sympathetic"
+    },
+    {
+      "id": 98,
+      "y_um": -691.2,
+      "z_um": -30.8,
+      "diameter_um": 64.1,
+      "type": "sympathetic"
+    },
+    {
+      "id": 99,
+      "y_um": -171.4,
+      "z_um": -155.0,
+      "diameter_um": 119.2,
+      "type": "sympathetic"
+    },
+    {
+      "id": 100,
+      "y_um": 2203.5,
+      "z_um": -227.0,
+      "diameter_um": 111.6,
+      "type": "sympathetic"
+    },
+    {
+      "id": 101,
+      "y_um": 1481.2,
+      "z_um": -687.0,
+      "diameter_um": 121.4,
+      "type": "sympathetic"
+    },
+    {
+      "id": 102,
+      "y_um": 104.3,
+      "z_um": -284.2,
+      "diameter_um": 67.3,
+      "type": "sympathetic"
+    },
+    {
+      "id": 103,
+      "y_um": 4.7,
+      "z_um": 339.7,
+      "diameter_um": 72.8,
+      "type": "sympathetic"
+    }
+  ],
+  "total_fascicles": 103
+}

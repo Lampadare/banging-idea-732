@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VagalBov — Selective Vagus Nerve Stimulation for Cattle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">VagalBov</a>
+      <div class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#nerve">The Nerve</a>
+        <a href="#simulation">Simulation</a>
+        <a href="#anatomy">Anatomy</a>
+        <a href="#viewer">3D Model</a>
+        <a href="#results">Results</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <p class="hero-eyebrow">SF Neurotech Hackathon 2026</p>
+      <h1 class="hero-title">Vagal<span class="accent">Bov</span></h1>
+      <p class="hero-subtitle">Selective Vagus Nerve Stimulation for Cattle</p>
+      <p class="hero-tagline">One nerve. Five systems. A billion-dollar problem.</p>
+      <a href="#problem" class="hero-cta">Read the story &darr;</a>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section" id="problem">
+    <div class="container">
+      <h2 class="section-title reveal">The Problem</h2>
+      <p class="section-lead reveal">The cattle industry loses over <strong>$1 billion annually</strong> to problems caused by its own practices &mdash; and every existing technology can only monitor the damage. None of them can intervene.</p>
+
+      <div class="problem-grid">
+        <div class="problem-card reveal">
+          <div class="problem-icon">01</div>
+          <h3>Inflammation &amp; Disease</h3>
+          <p>Bovine Respiratory Disease (BRD) costs the US cattle industry billions per year. The primary driver is systemic inflammation. Current treatment: prophylactic antibiotics &mdash; which consumers and regulators increasingly reject.</p>
+        </div>
+        <div class="problem-card reveal">
+          <div class="problem-icon">02</div>
+          <h3>Pre-Slaughter Stress</h3>
+          <p>Cortisol release before slaughter causes meat darkening, toughening, and pH shifts that directly reduce carcass value. Stress management is a top farmer KPI with no neural-level intervention available today.</p>
+        </div>
+        <div class="problem-card reveal">
+          <div class="problem-icon">03</div>
+          <h3>Digestive Efficiency</h3>
+          <p>A cow is a meat factory where the engine is the digestive system. Feed-to-meat conversion ratio is the single biggest cost lever. The vagus nerve directly controls gut motility, appetite, and rumination.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE NERVE -->
+  <section class="section section-dark" id="nerve">
+    <div class="container">
+      <h2 class="section-title reveal">The Vagus Nerve</h2>
+      <p class="section-lead reveal">The vagus is the longest cranial nerve in the mammalian body. In cattle, it fuses with the sympathetic trunk into a single cable &mdash; the <strong>vagosympathetic trunk</strong> &mdash; running alongside the carotid artery.</p>
+
+      <div class="nerve-systems reveal">
+        <div class="nerve-system">
+          <div class="nerve-dot" style="--dot-color: #b84040"></div>
+          <span>Inflammation</span>
+        </div>
+        <div class="nerve-system">
+          <div class="nerve-dot" style="--dot-color: #3a7d44"></div>
+          <span>Digestion</span>
+        </div>
+        <div class="nerve-system">
+          <div class="nerve-dot" style="--dot-color: #c4742e"></div>
+          <span>Stress Response</span>
+        </div>
+        <div class="nerve-system">
+          <div class="nerve-dot" style="--dot-color: #5aa564"></div>
+          <span>Immune Regulation</span>
+        </div>
+        <div class="nerve-system">
+          <div class="nerve-dot" style="--dot-color: #6b5340"></div>
+          <span>Eructation</span>
+        </div>
+      </div>
+
+      <div class="nerve-quote reveal">
+        <blockquote>Every competitor addresses a single KPI. VagalBov is the only platform that can simultaneously target inflammation, stress, digestion, antibiotic use, and emissions &mdash; because the vagus nerve controls all five.</blockquote>
+      </div>
+
+      <div class="fiber-table reveal">
+        <h3>Fiber Types &amp; Activation Thresholds</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Fiber Type</th>
+                <th>Diameter</th>
+                <th>Threshold (200&mu;s)</th>
+                <th>Function</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="fiber-badge fiber-a">A&alpha;/A&beta;</span></td>
+                <td>5&ndash;20 &mu;m</td>
+                <td>0.3&ndash;0.5 mA</td>
+                <td>Laryngeal motor, baroreceptor</td>
+              </tr>
+              <tr>
+                <td><span class="fiber-badge fiber-ad">A&delta;</span></td>
+                <td>2&ndash;5 &mu;m</td>
+                <td>0.5&ndash;1.5 mA</td>
+                <td>Nociceptive, cough reflex</td>
+              </tr>
+              <tr>
+                <td><span class="fiber-badge fiber-b">B</span></td>
+                <td>1&ndash;3 &mu;m</td>
+                <td>1.5&ndash;4.4 mA</td>
+                <td>Parasympathetic efferents (anti-inflammatory)</td>
+              </tr>
+              <tr>
+                <td><span class="fiber-badge fiber-c">C</span></td>
+                <td>0.2&ndash;1.5 &mu;m</td>
+                <td>~17 mA</td>
+                <td>Visceral afferents (80% of vagus)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMULATION PIPELINE -->
+  <section class="section" id="simulation">
+    <div class="container">
+      <h2 class="section-title reveal">The Simulation Pipeline</h2>
+      <p class="section-lead reveal">We built a multiphysics simulation of the bovine vagus nerve to computationally validate our electrode design and find the therapeutic window for selective fiber activation.</p>
+
+      <div class="pipeline reveal">
+        <div class="pipeline-step">
+          <div class="pipeline-num">1</div>
+          <h4>Geometry</h4>
+          <p>Parametric bovine vagosympathetic cross-section: 4&times;3mm ellipse, 12 fascicles via rejection sampling, 8-electrode cuff ring</p>
+        </div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step">
+          <div class="pipeline-num">2</div>
+          <h4>Potentials</h4>
+          <p>Extracellular field computation using point-source model in homogeneous tissue (&rho; = 3.0 &Omega;&middot;m)</p>
+        </div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step">
+          <div class="pipeline-num">3</div>
+          <h4>Cable Model</h4>
+          <p>MRG model for myelinated fibers (A&alpha;, B), Sundt model for unmyelinated C fibers via NRV + NEURON</p>
+        </div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step">
+          <div class="pipeline-num">4</div>
+          <h4>Recruitment</h4>
+          <p>Binary-search threshold finding per electrode-fascicle-fiber combination, recruitment curve generation</p>
+        </div>
+      </div>
+
+      <div class="tech-stack reveal">
+        <span class="tech-tag">NRV 1.3.2</span>
+        <span class="tech-tag">NEURON 9.0</span>
+        <span class="tech-tag">DOLFINx 0.9</span>
+        <span class="tech-tag">Python 3.12</span>
+        <span class="tech-tag">NumPy</span>
+        <span class="tech-tag">Matplotlib</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANATOMY PIPELINE -->
+  <section class="section section-dark" id="anatomy">
+    <div class="container">
+      <h2 class="section-title reveal">From Pig to Bovine</h2>
+      <p class="section-lead reveal">No published bovine vagus histomorphometry exists. We built a geometry pipeline that transforms real pig SPARC data into a realistic bovine vagosympathetic cross-section.</p>
+
+      <div class="result-block reveal">
+        <div class="result-figure">
+          <img src="assets/figures/07_all_pig_samples.png" alt="9 pig cervical vagus cross-sections from SPARC-64 dataset" loading="lazy">
+        </div>
+        <div class="result-text">
+          <h3>Ground Truth: 9 Pig Samples</h3>
+          <p>Real fascicle positions from the SPARC-64 dataset (Pelot et al.). Each panel shows a different pig cervical vagus cross-section with 33&ndash;63 fascicles, providing the morphometric foundation for our bovine extrapolation.</p>
+        </div>
+      </div>
+
+      <div class="result-block result-block-reverse reveal">
+        <div class="result-figure">
+          <img src="assets/figures/08_p12_bovine_transform.png" alt="PCA-aligned elliptical wrapping transform from pig to bovine scale" loading="lazy">
+        </div>
+        <div class="result-text">
+          <h3>PCA-Aligned Transform</h3>
+          <p>We take a representative pig sample (P12-1, 57 fascicles), rotate it to PCA-aligned axes, then apply uniform &times;1.25 scaling with elliptical wrapping (1.4:1 aspect ratio) to match estimated bovine dimensions. Fascicle diameters scale proportionally.</p>
+        </div>
+      </div>
+
+      <div class="result-block reveal">
+        <div class="result-figure">
+          <img src="assets/figures/09_bovine_final_geometry.png" alt="Final bovine vagosympathetic trunk with collision-resolved fascicles and sympathetic fibers" loading="lazy">
+        </div>
+        <div class="result-text">
+          <h3>Bovine Vagosympathetic Trunk</h3>
+          <p>The final geometry: 57 vagal fascicles (blue) + 42 sympathetic fascicles (orange, 15% of cross-sectional area). Sympathetic fibers are distributed throughout the trunk &mdash; not segregated &mdash; reflecting the fused vagosympathetic anatomy unique to ruminants. This is the core selectivity challenge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D VIEWER -->
+  <section class="section" id="viewer">
+    <div class="container">
+      <h2 class="section-title reveal">Interactive Nerve Cross-Section</h2>
+      <p class="section-lead reveal">Explore the synthetic bovine vagus nerve geometry. Drag to rotate, scroll to zoom. Click fascicles and electrodes for details.</p>
+      <div class="viewer-container reveal">
+        <canvas id="nerve-canvas"></canvas>
+        <div class="viewer-info" id="viewer-info">
+          <p>Hover over structures for details</p>
+        </div>
+      </div>
+      <div class="viewer-legend reveal">
+        <div class="legend-item">
+          <span class="legend-color" style="background: #4a9eff"></span> Fascicles (n=12)
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background: #ff6b35"></span> Cuff Electrodes (n=8)
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background: rgba(255,255,255,0.3)"></span> Nerve Boundary (4&times;3 mm)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="section" id="results">
+    <div class="container">
+      <h2 class="section-title reveal">Simulation Results</h2>
+
+      <div class="result-block reveal">
+        <div class="result-figure">
+          <img src="assets/figures/01_nerve_cross_section.png" alt="Bovine vagus nerve cross-section showing 12 fascicles and 8 cuff electrodes" loading="lazy">
+        </div>
+        <div class="result-text">
+          <h3>Nerve Cross-Section</h3>
+          <p>Synthetic bovine vagus anatomy: 12 fascicles (blue) packed inside an elliptical boundary (4&times;3 mm), surrounded by an 8-electrode cuff (orange). Fascicle radii range from 50&ndash;300 &mu;m, matching published pig vagus morphometry scaled to bovine dimensions.</p>
+          <p class="result-detail">Fascicle placement uses rejection sampling with minimum gap constraints to prevent overlap. The elliptical cross-section (aspect ratio 1.33:1) reflects the non-circular geometry observed in large-animal vagus nerve preparations.</p>
+        </div>
+      </div>
+
+      <div class="result-block result-block-reverse reveal">
+        <div class="result-figure">
+          <img src="assets/figures/02_monopolar_thresholds.png" alt="Monopolar stimulation threshold heatmaps for three fiber types" loading="lazy">
+        </div>
+        <div class="result-text">
+          <h3>Monopolar Thresholds</h3>
+          <p>Activation thresholds vary dramatically by fiber type. A&alpha; fibers (16 &mu;m) activate at the lowest currents, while C fibers (0.8 &mu;m) require orders-of-magnitude more current. This separation is the basis for selective stimulation.</p>
+          <p class="result-detail">Each panel shows threshold current (&mu;A) per fascicle from Electrode 1. Fascicles nearest the active electrode have the lowest thresholds. The 15&ndash;20&times; threshold separation between A and B fibers defines the therapeutic window.</p>
+        </div>
+      </div>
+
+      <div class="result-block reveal">
+        <div class="result-figure">
+          <img src="assets/figures/03_recruitment_curves.png" alt="Recruitment curves showing fiber activation percentages vs stimulus current" loading="lazy">
+        </div>
+        <div class="result-text">
+          <h3>Recruitment Curves</h3>
+          <p>The therapeutic window emerges between fiber populations. A&alpha; motor fibers recruit fully below 0.5 mA. B autonomic fibers &mdash; carrying the anti-inflammatory pathway &mdash; recruit between 0.5&ndash;1.2 mA. C fibers remain inert throughout the therapeutic range.</p>
+          <p class="result-detail">These curves demonstrate that selective B-fiber activation is computationally achievable at the cervical level, validating the core premise of VagalBov: targeted anti-inflammatory stimulation without C-fiber side effects.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THERAPEUTIC TARGETS -->
+  <section class="section section-dark" id="targets">
+    <div class="container">
+      <h2 class="section-title reveal">Therapeutic Targets</h2>
+
+      <div class="target-cards">
+        <div class="target-card reveal">
+          <div class="target-priority">Priority 1</div>
+          <h3>Anti-Inflammatory Pathway</h3>
+          <div class="target-feasibility" style="--feasibility: 80%">
+            <div class="feasibility-bar"></div>
+            <span>~80% feasibility</span>
+          </div>
+          <p>The cholinergic anti-inflammatory pathway (CAP) operates via B-fiber efferents &rarr; celiac ganglion &rarr; splenic nerve &rarr; &alpha;7nAChR on macrophages &rarr; &darr;TNF-&alpha;. A parallel A-fiber afferent pathway via the NTS provides additional anti-inflammatory tone. Both pathways are activated by non-selective stimulation.</p>
+          <div class="target-params">1.5&ndash;3 mA &middot; 250 &mu;s &middot; 10&ndash;20 Hz &middot; 30s ON / 5 min OFF</div>
+        </div>
+
+        <div class="target-card reveal">
+          <div class="target-priority">Priority 2</div>
+          <h3>Gut Motility</h3>
+          <div class="target-feasibility" style="--feasibility: 70%">
+            <div class="feasibility-bar"></div>
+            <span>~70% feasibility</span>
+          </div>
+          <p>B-fiber efferents in the dorsal/ventral vagal trunks project to the enteric nervous system. Cervically, these are interleaved with cardiac and laryngeal efferents. Subdiaphragmatic placement bypasses the selectivity problem entirely &mdash; GI fibers are already spatially segregated at that level.</p>
+          <div class="target-params">1.5&ndash;4 mA &middot; 300&ndash;500 &mu;s &middot; 5&ndash;10 Hz</div>
+        </div>
+
+        <div class="target-card reveal">
+          <div class="target-priority">Priority 3</div>
+          <h3>Stress &amp; Eructation</h3>
+          <div class="target-feasibility" style="--feasibility: 30%">
+            <div class="feasibility-bar"></div>
+            <span>~30% feasibility</span>
+          </div>
+          <p>Eructation is a coordinated brainstem reflex driven by a medullary CPG. Open-loop stimulation can modulate frequency but cannot trigger on-demand eructation. Pre-slaughter stress reduction via vagal tone enhancement is more tractable and couples naturally with anti-inflammatory activation.</p>
+          <div class="target-params">Downstream readout of gut motility modulation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section" id="process">
+    <div class="container">
+      <h2 class="section-title reveal">Our Process</h2>
+      <p class="section-lead reveal">How we built a selective VNS simulation framework in a weekend.</p>
+
+      <div class="process-timeline reveal">
+        <div class="process-item">
+          <div class="process-marker"></div>
+          <div class="process-content">
+            <h4>Research Deep-Dive</h4>
+            <p>Comprehensive literature review of bovine vagus anatomy, fiber composition, activation thresholds, and EIT-guided selective stimulation. Key finding: zero published bovine histomorphometric data exists &mdash; every parameter must be extrapolated from pig or treated as a sweep variable.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-marker"></div>
+          <div class="process-content">
+            <h4>Simulation Architecture</h4>
+            <p>Designed a 7-stage pipeline: geometry generator &rarr; FEM solver &rarr; cable model &rarr; recruitment computer &rarr; selectivity scorer &rarr; parameter optimizer &rarr; sensitivity analysis. Built with NRV (Neuron Response Vue) and NEURON simulator backend.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-marker"></div>
+          <div class="process-content">
+            <h4>Computational Validation</h4>
+            <p>Generated synthetic nerve geometry, computed extracellular potentials, and ran threshold searches across all fiber types. Produced recruitment curves demonstrating a clear therapeutic window for selective B-fiber activation.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-marker"></div>
+          <div class="process-content">
+            <h4>Anatomical Validation</h4>
+            <p>Sourced and dissected sheep/goat cervical anatomy to validate surgical approach and identify the vagosympathetic trunk, carotid artery, and jugular vein in their true spatial relationship.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-marker"></div>
+          <div class="process-content">
+            <h4>System Design</h4>
+            <p>Designed closed-loop architecture: VNS cuff electrode + analog front-end + ADC for neural recording, with ultrasound-guided feedback for real-time stimulation protocol optimization.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Placeholder for additional blog content -->
+      <div class="process-addendum reveal" id="blog-content">
+        <p class="placeholder-note">Additional narrative content will be added here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY NUMBERS -->
+  <section class="section section-dark" id="numbers">
+    <div class="container">
+      <h2 class="section-title reveal">Key Numbers</h2>
+      <div class="stats-grid reveal">
+        <div class="stat">
+          <div class="stat-value">4&ndash;7 mm</div>
+          <div class="stat-label">Bovine vagus diameter</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">30&ndash;80</div>
+          <div class="stat-label">Estimated fascicle count</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">80&ndash;85%</div>
+          <div class="stat-label">C fibers by count</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">15&ndash;20&times;</div>
+          <div class="stat-label">A vs B threshold separation</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">&lt;$300</div>
+          <div class="stat-label">Target device cost</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~180 &mu;s</div>
+          <div class="stat-label">Chronaxie (A &amp; B fibers)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="team">
+    <div class="container">
+      <div class="footer-brand">
+        <h2>Vagal<span class="accent">Bov</span></h2>
+        <p>Selective Vagus Nerve Stimulation for Cattle</p>
+      </div>
+      <div class="footer-team">
+        <h4>Team</h4>
+        <div class="team-list">
+          <span>Martin</span>
+          <span>Sidney</span>
+          <span>Natalie</span>
+          <span>Dameer</span>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <p>Built at SF Neurotech Hackathon &middot; April 2026</p>
+        <p class="footer-small">Simulation powered by NRV + NEURON &middot; Visualization with Three.js</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="js/nerve-viewer.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
