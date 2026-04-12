@@ -241,8 +241,11 @@ def setup_mp(nerve, n_contact):
 # ============================================================
 # Voltage sampling
 # ============================================================
+V_SCALE = 1000.0  # NRV converts V → mV in get_potentials(); match that here
+
+
 def sample_basis_centroids(model, all_fascs, n_xpts, nerve_length, n_electrodes):
-    """Sample each electrode's basis field at all 57 centroids."""
+    """Sample each electrode's basis field at all 57 centroids (in mV, matching calibration)."""
     x_pts = np.linspace(0, nerve_length, n_xpts)
     basis = {}  # {electrode_idx: {fascicle_id: V_array}}
 
@@ -251,15 +254,16 @@ def sample_basis_centroids(model, all_fascs, n_xpts, nerve_length, n_electrodes)
         for fg in all_fascs:
             y_f, z_f = float(fg["y_um"]), float(fg["z_um"])
             try:
-                V = model.sim_res[e].eval(
+                raw = model.sim_res[e].eval(
                     [[x, y_f, z_f] for x in x_pts],
                     model.is_multi_proc,
                 )
-                v_arr = np.array(V, dtype=float).ravel()[:n_xpts]
+                v_arr = np.array(raw, dtype=float).ravel()[:n_xpts] * V_SCALE
                 basis[e][fg["id"]] = v_arr
             except Exception as ex:
                 basis[e][fg["id"]] = np.zeros(n_xpts)
-        log(f"  Electrode {e}: sampled {len(all_fascs)} centroids")
+        log(f"  Electrode {e}: sampled {len(all_fascs)} centroids, "
+            f"|V|_max={max(np.abs(v).max() for v in basis[e].values()):.2f} mV")
     return x_pts, basis
 
 
@@ -280,7 +284,7 @@ def sample_basis_grid(model, sa, sb, grid_res, x_center, n_electrodes):
         v = np.full((grid_res, grid_res), np.nan)
         try:
             vals = model.sim_res[e].eval(pts_inside.tolist(), model.is_multi_proc)
-            v[inside] = np.array(vals, dtype=float).ravel()
+            v[inside] = np.array(vals, dtype=float).ravel() * V_SCALE
         except Exception as ex:
             log(f"  Grid electrode {e} FAILED: {ex}")
         grids[e] = v
@@ -547,7 +551,7 @@ if __name__ == "__main__":
             pcm, nerve.extra_stim.model.mesh
         )
 
-        # FEM solve — NRV automatically does one solve per electrode
+        # FEM solve — manual per-contact basis field loop
         log(f"FEM solving ({n_elec} basis fields)...")
         log(f"  Expected: {n_elec} sequential solves, ~3 min each")
 
@@ -557,7 +561,8 @@ if __name__ == "__main__":
         def _hb():
             while not _hb_stop.wait(60):
                 el = time.time() - _t0_fem
-                n_done = len(nerve.extra_stim.model.sim_res) if hasattr(nerve.extra_stim.model, 'sim_res') else 0
+                mdl = nerve.extra_stim.model
+                n_done = len(mdl.sim_res) if hasattr(mdl, 'sim_res') and mdl.sim_res else 0
                 try:
                     rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
                     rss_gb = rss / (1024**3) if IS_MAC else rss / (1024**2)
@@ -567,17 +572,91 @@ if __name__ == "__main__":
         threading.Thread(target=_hb, daemon=True).start()
 
         t0 = time.time()
-        nerve.extra_stim.run_model()
+        model = nerve.extra_stim.model
+        from nrv.fmod.FEM.mesh_creator._NerveMshCreator import ENT_DOM_offset
+        from dolfinx.fem import Constant
+        from petsc4py.PETSc import ScalarType
+
+        # Step 1: Let NRV do normal setup (mesh + 1 BC for E0)
+        if not nerve.extra_stim.setup:
+            nerve.extra_stim.setup_FEM()
+        if not model.is_sim_ready:
+            model.setup_simulations()
+
+        n_bcs = len(model.j_electrode)
+        log(f"  NRV created {n_bcs} BCs: {list(model.j_electrode.keys())}")
+
+        # Step 2: For MP, inject additional Neumann BCs directly into the linear form
+        if n_bcs < n_elec:
+            log(f"  Injecting {n_elec - n_bcs} extra contact BCs into linear form...")
+            for c in range(n_bcs, n_elec):
+                e_var = f"E{c}"
+                e_dom = ENT_DOM_offset["Surface"] + ENT_DOM_offset["Electrode"] + (2 * c)
+                model.j_electrode[e_var] = 0
+
+                # Create a dolfinx Constant for this BC's current density
+                const = Constant(model.sim.domain, ScalarType(0))
+
+                # Add term to linear form: L += const * u[0] * ds(e_dom)
+                # Electrode contacts are in the outer domain (subspace 0)
+                # With inbound=True (mixed elements), must use u[0] not u
+                if model.sim.inbound:
+                    model.sim.L = model.sim.L + const * model.sim.u[0] * model.sim.ds(e_dom)
+                else:
+                    model.sim.L = model.sim.L + const * model.sim.u * model.sim.ds(e_dom)
+
+                # Register for value updates in __set_neumann_BC
+                bound_key = f"mp_contact_{c}"
+                model.sim.nboundaries_list[bound_key] = {
+                    "mesh_domain": str(e_dom),
+                    "mesh_domain_3D": 0,  # outer domain
+                    "condition": "neumann",
+                    "variable": e_var,
+                }
+                model.sim.Neuman_list[bound_key] = const
+                log(f"    E{c}: surface domain {e_dom}, BC added to L")
+
+            # Force LinearProblem recompilation on next solve
+            model.sim.cg_problem = None
+            # Update args so __set_neumann_BC can find our variables
+            model.sim.args = dict(model.j_electrode)
+            log(f"  Now have {len(model.j_electrode)} BCs: {list(model.j_electrode.keys())}")
+
+        # Step 3: Per-contact solve loop
+        model.sim_res = []
+        for E in range(n_elec):
+            t0_solve = time.time()
+            # Activate this contact, zero all others
+            for e_var in model.j_electrode:
+                if e_var == f"E{E}":
+                    e_dom = ENT_DOM_offset["Surface"] + ENT_DOM_offset["Electrode"] + (2 * E)
+                    try:
+                        surf = model.sim.get_surface(e_dom)
+                        model.j_electrode[e_var] = model.i_stim / surf
+                        log(f"  E{E}: current density = {model.j_electrode[e_var]:.4f} (surface={surf:.1f})")
+                    except Exception as ex:
+                        log(f"  E{E}: get_surface({e_dom}) failed: {ex}, using 1.0")
+                        model.j_electrode[e_var] = model.i_stim
+                else:
+                    model.j_electrode[e_var] = 0
+
+            # Update Neumann BC values and solve
+            model.sim.setup_sim(**model.j_electrode)
+            result = model.sim.solve()
+            result.vout.label = f"E{E}"
+            model.sim_res.append(result)
+            log(f"  Solve {E+1}/{n_elec}: {time.time()-t0_solve:.1f}s")
+
+        model.is_computed = True
         _hb_stop.set()
         t_fem = time.time() - t0
 
-        n_fields = len(nerve.extra_stim.model.sim_res)
+        n_fields = len(model.sim_res)
         log(f"FEM done: {t_fem:.1f}s ({t_fem/60:.1f} min), {n_fields} fields")
 
-        # Verify we got the expected number of fields
         if n_fields != n_elec:
-            log(f"  WARNING: expected {n_elec} fields, got {n_fields}")
-            n_elec = n_fields  # adjust downstream
+            log(f"  FATAL: expected {n_elec} fields, got {n_fields}. Skipping config.")
+            continue
 
         # Sample basis fields
         log("Sampling basis fields...")

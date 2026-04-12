@@ -111,6 +111,33 @@ The result extraction then counts recruited axons into three reporting groups:
 
 This means sympathetic recruitment is a label-based reporting category over small unmyelinated axons. It is not a distinct sympathetic NEURON model.
 
+### Selectivity Index (SI)
+
+```
+SI = (vagal myelinated %) − max(vagal unmyelinated %, sympathetic %)
+```
+
+Evaluated at each stimulus amplitude. Ranges from -1 to +1:
+- **SI = 1.0**: all myelinated fibers recruited, zero off-target activation. Perfect selectivity.
+- **SI = 0**: equal recruitment of target and off-target fibers. No selectivity.
+- **SI < 0**: more off-target fibers recruited than target. Counter-therapeutic.
+
+In our amplitude range (100-1000 μA), unmyelinated C-fibers and sympathetic fibers have activation thresholds >2 mA, so they remain at 0% recruitment. This means SI equals the myelinated recruitment fraction at each amplitude. The selectivity difference between electrode configurations comes from spatial focusing: a steered multi-contact field concentrates current on specific fascicles, achieving higher myelinated recruitment in those fascicles at the same total current compared to a uniform ring electrode that spreads current across all fascicles equally.
+
+## Electrode Comparison
+
+Per-contact basis field approach using superposition:
+
+1. Build nerve geometry with 6 representative fascicles
+2. Create CUFF_MP_electrode with N contacts around the cuff ring
+3. Solve FEM once per contact (1 mA on active contact, 0 on others, distant ground)
+4. Linear combination: V_total = Σ(w_i × V_i) for any weight vector w (sum = 0)
+5. Search candidate weight vectors for optimal selectivity
+
+Superposition is exact for ohmic tissue (linear Laplace equation). Current conservation is enforced by requiring Σw_i = 0. The basis fields are sampled at all 57 fascicle centroids and on a cross-section grid, then combined in numpy — no re-solving needed.
+
+The NRV CUFF_MP_electrode creates the mesh geometry with N contact patches, but only registers one Neumann BC in the FEM simulation. We inject the remaining N-1 contact BCs directly into the dolfinx linear form using the correct mixed-element subspace (u[0] for the outer domain), then solve per-contact with the standard CG+ILU solver.
+
 ## Output Files (per batch)
 
 ```

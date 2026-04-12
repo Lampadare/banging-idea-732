@@ -4,3 +4,4 @@ __pycache__/
 *.pt
 *.txt
 .DS_Store
+blender-illustrations/
