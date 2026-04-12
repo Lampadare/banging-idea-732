@@ -245,59 +245,94 @@ def plot_eta_results(all_results, geom, save_prefix):
     fig2.write_image(f"{save_prefix}_eta_bar.png", scale=3)
     print(f"Saved: {save_prefix}_eta_bar.html + .png")
 
-    # === Figure 3: Target region maps ===
-    fig3 = make_subplots(rows=1, cols=len(cfg_list),
+    # === Figure 3: Target region maps — viridis fill + bright outlines ===
+    import plotly.express as px
+    viridis = px.colors.sequential.Viridis
+
+    def viridis_color(frac):
+        """Map 0-1 to viridis colorscale."""
+        idx = min(int(frac * (len(viridis) - 1)), len(viridis) - 1)
+        return viridis[idx]
+
+    fig3 = make_subplots(rows=2, cols=2,
         subplot_titles=[f"<b>{CONFIG_LABELS[c]}</b><br><sub>η={all_results[c]['eta_max']:.2f}</sub>"
                         for c in cfg_list],
-        horizontal_spacing=0.05)
+        horizontal_spacing=0.06, vertical_spacing=0.12)
 
     theta = np.linspace(0, 2 * np.pi, 200)
 
-    for col, cfg in enumerate(cfg_list, 1):
+    # Track if we've added legend entries
+    legend_added = {"target": False, "off_target": False}
+
+    for idx, cfg in enumerate(cfg_list):
+        row = idx // 2 + 1
+        col = idx % 2 + 1
+        ax_idx = idx + 1  # 1-based subplot index
         d = all_results[cfg]
         target_ids = set(d["target_fascicle_ids"])
         recruits = d["per_fascicle_recruit"]
 
+        # Nerve boundary
         fig3.add_trace(go.Scatter(
             x=sa * np.cos(theta), y=sb * np.sin(theta),
             mode="lines", line=dict(color="rgba(255,255,255,0.4)", width=1.5),
-            showlegend=False, hoverinfo="skip"), row=1, col=col)
+            showlegend=False, hoverinfo="skip"), row=row, col=col)
 
         for fg in all_fascs:
             fid = fg["id"]
             is_target = fid in target_ids
             r_val = recruits.get(str(fid), 0)
+            fill_color = viridis_color(r_val)
 
             if is_target:
-                color = f"rgba(76,175,80,{0.3 + 0.7 * r_val})"
-                border = dict(color="#4CAF50", width=2)
+                border = dict(color="#00FF88", width=3.5)
+                show_legend = not legend_added["target"]
+                legend_name = "Target region"
+                legend_added["target"] = True
             else:
-                gray = int(60 + 120 * r_val)
-                color = f"rgba({gray},{gray},{gray},0.6)"
-                border = dict(color="rgba(255,255,255,0.3)", width=0.5)
+                border = dict(color="#FF4444", width=1.5, dash="dot")
+                show_legend = not legend_added["off_target"]
+                legend_name = "Off-target"
+                legend_added["off_target"] = True
 
-            t = np.linspace(0, 2 * np.pi, 40)
+            t = np.linspace(0, 2 * np.pi, 50)
             rad = fg["diameter_um"] / 2
             fig3.add_trace(go.Scatter(
                 x=fg["y_um"] + rad * np.cos(t),
                 y=fg["z_um"] + rad * np.sin(t),
-                mode="lines", fill="toself", fillcolor=color, line=border,
-                showlegend=False,
-                hovertext=f"F{fid}: {r_val*100:.0f}% {'[TARGET]' if is_target else ''}",
-                hoverinfo="text"), row=1, col=col)
+                mode="lines", fill="toself", fillcolor=fill_color, line=border,
+                name=legend_name if show_legend else None,
+                showlegend=show_legend,
+                legendgroup="target" if is_target else "off_target",
+                hovertext=f"F{fid}: {r_val*100:.0f}% {'[TARGET]' if is_target else '[OFF-TARGET]'}",
+                hoverinfo="text"), row=row, col=col)
 
-        fig3.update_xaxes(range=[-sa*1.2, sa*1.2], scaleanchor=f"y{col}",
-            showgrid=False, zeroline=False, row=1, col=col)
+        scaleanchor = f"y{ax_idx}" if ax_idx > 1 else "y"
+        fig3.update_xaxes(range=[-sa*1.2, sa*1.2], scaleanchor=scaleanchor,
+            showgrid=False, zeroline=False, row=row, col=col)
         fig3.update_yaxes(range=[-sb*1.4, sb*1.4], showgrid=False, zeroline=False,
-            row=1, col=col)
+            row=row, col=col)
+
+    # Colorbar for recruitment level
+    fig3.add_trace(go.Scatter(
+        x=[sa * 2] * 50, y=np.linspace(-sb, sb, 50),
+        mode="markers", marker=dict(size=0.1, color=np.linspace(0, 1, 50),
+            colorscale="Viridis", cmin=0, cmax=1, showscale=True,
+            colorbar=dict(title=dict(text="Myelinated<br>recruitment", side="right"),
+                x=1.02, len=0.6, thickness=15,
+                tickvals=[0, 0.25, 0.5, 0.75, 1],
+                ticktext=["0%", "25%", "50%", "75%", "100%"])),
+        showlegend=False, hoverinfo="skip"), row=2, col=2)
 
     fig3.update_layout(template=TEMPLATE,
-        title=dict(text=f"<b>Target Regions — Top {N_TARGET} Fascicles per Config</b><br>"
-                        "<sub>Green = target fascicles (highest voltage), gray = off-target, "
-                        "brightness = recruitment level</sub>",
-                   x=0.5, y=0.96),
-        height=550, width=400 * len(cfg_list),
-        margin=dict(t=120, b=40, l=40, r=40))
+        title=dict(text=f"<b>Optimal Target Regions — Top {N_TARGET} Fascicles</b><br>"
+                        "<sub>Fill = recruitment level (viridis), "
+                        "green outline = target, red dashed = off-target</sub>",
+                   x=0.5, y=0.98),
+        height=900, width=900,
+        legend=dict(orientation="h", y=-0.02, x=0.5, xanchor="center",
+            font=dict(size=12), bgcolor="rgba(0,0,0,0.4)"),
+        margin=dict(t=100, b=50, l=40, r=100))
     fig3.write_html(f"{save_prefix}_eta_targets.html")
     fig3.write_image(f"{save_prefix}_eta_targets.png", scale=3)
     print(f"Saved: {save_prefix}_eta_targets.html + .png")

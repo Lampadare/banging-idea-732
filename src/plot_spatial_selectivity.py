@@ -125,27 +125,27 @@ def plot_spatial_selectivity(all_data, geom, save_prefix):
 
     cfg_list = [c for c in ["bipolar", "4contact", "8contact", "16contact"] if c in all_data]
 
-    # === Figure 1: Spatial selectivity map (per fascicle, per config) ===
-    fig = make_subplots(rows=1, cols=len(cfg_list),
+    # === Figure 1: Spatial selectivity map (2×2) ===
+    fig = make_subplots(rows=2, cols=2,
         subplot_titles=[f"<b>{CONFIG_LABELS[c]}</b><br><sub>SSI={all_data[c]['mean_ssi']:.2f}</sub>"
                         for c in cfg_list],
-        horizontal_spacing=0.05)
+        horizontal_spacing=0.06, vertical_spacing=0.12)
 
     theta = np.linspace(0, 2 * np.pi, 200)
 
-    for col, cfg in enumerate(cfg_list, 1):
+    for idx, cfg in enumerate(cfg_list):
+        row = idx // 2 + 1
+        col = idx % 2 + 1
+        ax_idx = idx + 1
         d = all_data[cfg]
 
-        # Nerve boundary
         fig.add_trace(go.Scatter(
             x=sa * np.cos(theta), y=sb * np.sin(theta),
             mode="lines", line=dict(color="rgba(255,255,255,0.4)", width=1.5),
-            showlegend=False, hoverinfo="skip"), row=1, col=col)
+            showlegend=False, hoverinfo="skip"), row=row, col=col)
 
-        # Color each fascicle by its spatial selectivity
         for fi, fg in enumerate(all_fascs):
             ssi_val = d["per_fascicle"][fi]
-            # Green = high selectivity (controllable), gray = low (always same)
             r = int(80 + 175 * (1 - ssi_val))
             g = int(80 + 175 * ssi_val)
             b = 80
@@ -160,12 +160,13 @@ def plot_spatial_selectivity(all_data, geom, save_prefix):
                 line=dict(color="rgba(255,255,255,0.5)", width=0.8),
                 showlegend=False,
                 hovertext=f"F{fg['id']}: SSI={ssi_val:.2f}",
-                hoverinfo="text"), row=1, col=col)
+                hoverinfo="text"), row=row, col=col)
 
-        fig.update_xaxes(range=[-sa*1.2, sa*1.2], scaleanchor=f"y{col}",
-            showgrid=False, zeroline=False, row=1, col=col)
+        scaleanchor = f"y{ax_idx}" if ax_idx > 1 else "y"
+        fig.update_xaxes(range=[-sa*1.2, sa*1.2], scaleanchor=scaleanchor,
+            showgrid=False, zeroline=False, row=row, col=col)
         fig.update_yaxes(range=[-sb*1.4, sb*1.4], showgrid=False, zeroline=False,
-            row=1, col=col)
+            row=row, col=col)
 
     # Colorbar
     fig.add_trace(go.Scatter(
@@ -174,15 +175,15 @@ def plot_spatial_selectivity(all_data, geom, save_prefix):
             colorscale=[[0, "rgb(255,80,80)"], [0.5, "rgb(180,180,80)"], [1, "rgb(80,255,80)"]],
             cmin=0, cmax=1, showscale=True,
             colorbar=dict(title=dict(text="Spatial<br>selectivity", side="right"),
-                x=1.02, len=0.7, thickness=15,
+                x=1.02, len=0.6, thickness=15,
                 tickvals=[0, 0.5, 1], ticktext=["0 (fixed)", "0.5", "1 (steerable)"])),
-        showlegend=False, hoverinfo="skip"), row=1, col=len(cfg_list))
+        showlegend=False, hoverinfo="skip"), row=2, col=2)
 
     fig.update_layout(template=TEMPLATE,
         title=dict(text="<b>Spatial Selectivity — Which Fascicles Can Be Targeted?</b><br>"
                         "<sub>Green = controllable by steering, red = always activated regardless of rotation</sub>",
-                   x=0.5, y=0.96),
-        height=550, width=400 * len(cfg_list),
+                   x=0.5, y=0.98),
+        height=900, width=900,
         margin=dict(t=120, b=40, l=40, r=100))
     fig.write_html(f"{save_prefix}_spatial_map.html")
     fig.write_image(f"{save_prefix}_spatial_map.png", scale=3)
