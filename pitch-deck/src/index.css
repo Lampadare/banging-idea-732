@@ -1,32 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,800&family=Space+Grotesk:wght@500;700&family=Instrument+Serif&family=Playfair+Display:wght@700;900&family=DM+Serif+Display&family=Cormorant+Garamond:wght@700&family=Libre+Bodoni:wght@700&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Manrope:wght@700;800&family=Outfit:wght@700;800&family=Epilogue:wght@700;800&family=Inter+Tight:wght@700;800&family=Sora:wght@700;800&family=Bricolage+Grotesque:wght@700;800&display=swap');
+@import url('https://fonts.cdnfonts.com/css/rl-madena');
+@import url('https://fonts.cdnfonts.com/css/recoleta');
+@import url('https://fonts.cdnfonts.com/css/clash-display');
+@import url('https://fonts.cdnfonts.com/css/general-sans');
 
 :root {
   --bg: #FFFFFF;
-  --bg-soft: #F4F8F6;
-  --bg-sage: #E8F0EC;
-  --bg-sage-mid: #D5E5DC;
-  --bg-sage-deep: #C2D6C9;
+  --bg-soft: #FBF6EC;
+  --bg-sage: #F3E9D0;
+  --bg-sage-mid: #E5D4A4;
+  --bg-sage-deep: #C9AE6A;
 
-  --green: #2DA87A;
-  --green-dark: #1E7A58;
-  --green-darker: #145940;
-  --green-light: #6BC4A0;
-  --green-pale: #A8DBCA;
-  --green-bg: rgba(45,168,122,0.07);
+  --green: #C9953D;
+  --green-dark: #8A5F1F;
+  --green-darker: #5A3E12;
+  --green-light: #E4B96A;
+  --green-pale: #F2DFAE;
+  --green-bg: rgba(201,149,61,0.08);
+  --outline: #5A3E12;
 
-  --text: #1A2B23;
-  --text-sec: #4A5E54;
-  --text-muted: #8FA498;
+  --text: #2B1F0A;
+  --text-sec: #5A4A28;
+  --text-muted: #A08A5C;
 
-  --border: #DAE5DF;
+  --border: #E5D4A4;
 
   --red: #C45B3C;
   --red-soft: #E8845F;
   --red-bg: rgba(196,91,60,0.06);
 
-  --circle-1: rgba(45,168,122,0.06);
-  --circle-2: rgba(45,168,122,0.04);
-  --circle-3: rgba(45,168,122,0.09);
+  --circle-1: rgba(201,149,61,0.06);
+  --circle-2: rgba(201,149,61,0.04);
+  --circle-3: rgba(201,149,61,0.10);
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,7 +42,7 @@ html {
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'RL Madena', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, serif;
   background: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;

@@ -298,6 +298,163 @@ input[type="range"]::-webkit-slider-thumb {
 .cow-status.alert { background: var(--amber-bg); color: var(--amber); }
 .cow-status.critical { background: var(--red-bg); color: var(--red); }
 
+/* ══ Per-cow dose section header ══ */
+.dose-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 32px 0 16px;
+  padding: 12px 18px;
+  background: var(--green-bg);
+  border: 1px solid rgba(45,168,122,0.15);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--green);
+  letter-spacing: 0.5px;
+}
+
+/* ══ Dose Response Page ══ */
+.dr-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .dr-grid { grid-template-columns: 1fr; }
+}
+
+.dr-col {
+  background: #1a2b23;
+  border-radius: 8px;
+  padding: 20px;
+  color: #e8f0ec;
+}
+
+.dr-col-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(232,240,236,0.6);
+  margin-bottom: 16px;
+}
+
+.dr-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dr-item {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.dr-item:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.dr-item-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 6px;
+}
+
+.dr-item-desc {
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(232,240,236,0.65);
+}
+
+.dr-arrow {
+  font-size: 13px;
+  font-weight: 800;
+  margin-left: 6px;
+}
+
+.dr-arrow.up { color: var(--green-light); }
+.dr-arrow.down { color: #FCA5A5; }
+
+.dr-col .slider-section {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.dr-col .slider-label { color: rgba(232,240,236,0.7); }
+.dr-col .slider-val { color: var(--green-light); }
+
+.deliverable-card {
+  background: var(--green-bg);
+  border: 1px solid rgba(45,168,122,0.2);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 700px) {
+  .deliverable-card { grid-template-columns: 1fr; }
+}
+
+.deliverable-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.deliverable-label > span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.deliverable-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.deliverable-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.deliverable-list li {
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.5;
+  padding-left: 18px;
+  position: relative;
+}
+
+.deliverable-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
 /* ══ Pilot badge ══ */
 .pilot-badge {
   display: inline-flex;

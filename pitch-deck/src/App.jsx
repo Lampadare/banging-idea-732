@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion'
 import { ShieldOff, FlaskConical, Thermometer, Pill, Users, ShieldCheck, DollarSign, Beaker, Cpu, Activity } from 'lucide-react'
 import './App.css'
 
-const TOTAL = 13
+const TOTAL = 22
 
 function Reveal({ children, delay = 0, y = 20 }) {
   const ref = useRef(null)
@@ -48,14 +48,14 @@ function S1() {
         <div className="hero-wrap">
           <div className="hero-left">
             <Reveal><img src="/logo.png" alt="BoVa" className="logo" /></Reveal>
-            <Reveal delay={0.1}><div className="hero-tagline">$1.3 billion lost every year.</div></Reveal>
+            <Reveal delay={0.1}><div className="hero-tagline">1 billion dollars lost every year.</div></Reveal>
             <Reveal delay={0.2}><div className="hero-tagline-sub">Same nerve. Different animal.</div></Reveal>
           </div>
           <div className="hero-right">
             <ScaleIn delay={0.3}>
               <div className="hero-circle-outer">
                 <div className="hero-circle-inner">
-                  <div className="hero-number">$1.3B</div>
+                  <div className="hero-number">$1B</div>
                   <div className="hero-number-label">Lost yearly</div>
                 </div>
               </div>
@@ -430,31 +430,61 @@ function S10() {
 /* ═══ S11 — DATA FLYWHEEL ═══ */
 function S11() {
   return (
-    <div className="slide moonshot-bg compact" id="slide-10">
+    <div className="slide moonshot-bg compact" id="slide-10" style={{ justifyContent: 'flex-start' }}>
       <SlideLogo />
-      <div className="slide-inner" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+      <div className="slide-inner" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', justifyContent: 'flex-start', paddingTop: '4vh' }}>
         <Reveal>
-          <div style={{ fontSize: 'clamp(18px, 2vw, 24px)', fontWeight: 600, color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>The Data</div>
-          <div style={{ fontSize: 'clamp(48px, 8vw, 96px)', fontWeight: 800, letterSpacing: '-3px', lineHeight: 1 }}>
+          <div style={{ fontSize: 'clamp(36px, 5vw, 60px)', fontWeight: 700, color: 'rgba(255,255,255,0.7)', marginBottom: 16, letterSpacing: '-1px' }}>The Data</div>
+          <div style={{ fontSize: 'clamp(56px, 9vw, 120px)', fontWeight: 800, letterSpacing: '-3px', lineHeight: 1 }}>
             <span className="cow-text">Mooooo-nshot</span>
-          </div>
-        </Reveal>
-        <Reveal delay={0.15}>
-          <div className="subtitle" style={{ textAlign: 'center', margin: '20px auto 0', maxWidth: 600 }}>
-            Every device records vagal nerve activity 24/7. 1,000 cows in year one builds the world's largest mammal peripheral nerve dataset.
           </div>
         </Reveal>
         <div className="flywheel-visual" style={{ marginTop: 40 }}>
           <ScaleIn delay={0.3} className="flywheel-circle input">
-            <div className="flywheel-num">1,000</div>
-            <div className="flywheel-label" style={{ color: 'rgba(255,255,255,0.6)' }}>Cows year one</div>
+            <div className="flywheel-num">100,000</div>
+            <div className="flywheel-label" style={{ color: 'rgba(255,255,255,0.7)' }}>Cows</div>
           </ScaleIn>
           <motion.div className="flywheel-arrow" initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>&rarr;</motion.div>
-          <ScaleIn delay={0.5} className="flywheel-circle output">
-            <div className="flywheel-num">1,000x</div>
-            <div className="flywheel-label">World's vagal dataset</div>
+          <ScaleIn delay={0.5} className="flywheel-circle output" style={{ width: 260, height: 260 }}>
+            <div className="flywheel-label" style={{ fontSize: 15, fontWeight: 700, maxWidth: 190, lineHeight: 1.5, letterSpacing: 0.3, textTransform: 'uppercase', padding: '0 8px' }}>
+              The world's largest mammal peripheral nerve dataset
+            </div>
           </ScaleIn>
         </div>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ S11b — DATASET LICENSING (Moonshot follow-up) ═══ */
+function S11b_Licensing() {
+  return (
+    <div className="slide moonshot-bg" id="slide-10b">
+      <SlideLogo />
+      <div className="slide-inner" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+        <Reveal>
+          <div style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 800, color: 'white', letterSpacing: '-0.8px', lineHeight: 1.2, maxWidth: 900, marginBottom: 16 }}>
+            At <span style={{ color: 'var(--green-light)' }}>100,000 cattle</span>, we hold a dataset licensable to <span style={{ color: 'var(--green-light)' }}>billion-dollar businesses</span>
+          </div>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <div style={{ fontSize: 'clamp(16px, 1.8vw, 20px)', fontWeight: 500, color: 'rgba(255,255,255,0.65)', maxWidth: 760, margin: '0 auto 48px' }}>
+            These companies build vagal stimulation devices — but none of them have access to chronic vagal recording data at scale yet. We do.
+          </div>
+        </Reveal>
+        <Reveal delay={0.3}>
+          <div className="licensing-logos">
+            <div className="licensing-logo-card">
+              <img src="/logos/setpoint.svg" alt="SetPoint Medical" />
+            </div>
+            <div className="licensing-logo-card">
+              <img src="/logos/livanova.svg" alt="LivaNova" />
+            </div>
+            <div className="licensing-logo-card">
+              <img src="/logos/inspire.svg" alt="Inspire Medical Systems" className="invert-logo" />
+            </div>
+          </div>
+        </Reveal>
       </div>
     </div>
   )
@@ -499,25 +529,514 @@ function S12() {
   )
 }
 
-/* ═══ S13 — CLOSE ═══ */
+/* ═══ Shared phase card layout (used by Unit Economics & Roadmap) ═══ */
+function PhaseCardsSlide({ id, title, labels, phases }) {
+  return (
+    <div className="slide" id={id}>
+      <SlideLogo />
+      <div className="slide-inner">
+        <Reveal>
+          <div className="title" style={{ marginBottom: 40, color: 'var(--green)', fontSize: 'clamp(40px, 5.5vw, 64px)', textAlign: 'center' }}>{title}</div>
+        </Reveal>
+        <div className="phase-layout">
+          <div className="phase-labels">
+            {labels.map(l => <div key={l} className="phase-label">{l}</div>)}
+          </div>
+          <div className="phase-cards-row">
+            {phases.map((p, i) => (
+              <ScaleIn key={p.num} delay={0.2 + i * 0.15} className={`phase-card-v2 tier-${i + 1} ${p.highlight ? 'highlight' : ''}`}>
+                <div className="phase-card-num">{p.num}</div>
+                <div className="phase-card-title">{p.title}</div>
+                <div className="phase-card-rows">
+                  {p.values.map((v, vi) => (
+                    <div key={vi} className="phase-card-value">{v}</div>
+                  ))}
+                </div>
+              </ScaleIn>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ S13 — UNIT ECONOMICS (three circles) ═══ */
+function S13_Roadmap() {
+  const phases = [
+    {
+      num: '01',
+      phaseLabel: 'PHASE 1',
+      title: 'Electrode Cuff',
+      units: '40',
+      cost: '$1,150–2,200',
+      total: '$50–90k',
+      tier: 1,
+    },
+    {
+      num: '02',
+      phaseLabel: 'PHASE 2',
+      title: 'VNS Efficacy Trial',
+      units: '40',
+      cost: '$70–165',
+      total: '$200–400k',
+      tier: 2,
+    },
+    {
+      num: '03',
+      phaseLabel: 'PHASE 3',
+      title: 'Stent at Scale',
+      units: '100,000',
+      cost: '$48–83',
+      total: '$4.8M–8.3M',
+      tier: 3,
+      highlight: true,
+    },
+  ]
+  return (
+    <div className="slide" id="slide-12">
+      <SlideLogo />
+      <div className="slide-inner">
+        <Reveal>
+          <div className="title" style={{ marginBottom: 48, color: 'var(--green)', fontSize: 'clamp(40px, 5.5vw, 64px)', textAlign: 'center' }}>Unit Economics</div>
+        </Reveal>
+        <div className="econ-circles">
+          {phases.map((p, i) => (
+            <ScaleIn key={p.num} delay={0.2 + i * 0.15} className={`econ-circle tier-${p.tier}`}>
+              <div className="econ-circle-ring">
+                <div className="econ-circle-inner">
+                  <div className="econ-circle-num">{p.phaseLabel}</div>
+                  <div className="econ-circle-total">{p.cost}</div>
+                  <div className="econ-circle-total-label">per head</div>
+                </div>
+              </div>
+              <div className="econ-circle-caption">
+                <div className="econ-circle-title">{p.title}</div>
+                <div className="econ-circle-stats">
+                  <span><strong>{p.units}</strong> units</span>
+                  <span className="dot">·</span>
+                  <span><strong>{p.total}</strong> total</span>
+                </div>
+              </div>
+            </ScaleIn>
+          ))}
+        </div>
+        <Reveal delay={0.65}>
+          <div className="phase-outcome">
+            <div className="phase-outcome-pill">
+              <div className="po-label">Phase 3 Margin</div>
+              <div className="po-value">Breakeven → +$12/head</div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ S14 — ROADMAP (wavy path + circles & cards) ═══ */
+function S14_Roadmap() {
+  const phases = [
+    {
+      num: '01',
+      title: 'Nerve Cuff Validation',
+      timeline: 'Months 1–24',
+      units: '40 head pen trial',
+      output: 'Efficacy + safety data, parameter optimisation',
+    },
+    {
+      num: '02',
+      title: 'VNS Efficacy Trial',
+      timeline: 'Months 24–36',
+      units: '120–150 head (3× scale up)',
+      output: 'Active vs sham vs SOC — CVM pre-submission',
+    },
+    {
+      num: '03',
+      title: 'Stent at Scale',
+      timeline: 'Year 3–5',
+      units: '100,000 units',
+      output: 'Disposable stent + reusable wireless collar',
+      highlight: true,
+    },
+  ]
+  return (
+    <div className="slide" id="slide-13">
+      <SlideLogo />
+      <div className="slide-inner">
+        <Reveal>
+          <div className="title" style={{ marginBottom: 32, color: 'var(--green)', fontSize: 'clamp(40px, 5.5vw, 64px)', textAlign: 'center' }}>Roadmap</div>
+        </Reveal>
+        <div className="roadmap-wavy">
+          <svg className="roadmap-wavy-path" viewBox="0 0 1000 200" preserveAspectRatio="none">
+            <path
+              d="M 140 150 Q 320 20 500 110 T 850 40"
+              fill="none"
+              stroke="var(--green)"
+              strokeWidth="6"
+              strokeDasharray="14 10"
+              strokeLinecap="round"
+            />
+            <polygon points="830,20 880,40 830,60" fill="var(--green)" />
+          </svg>
+          {phases.map((p, i) => (
+            <ScaleIn key={p.num} delay={0.2 + i * 0.2} className={`roadmap-item-v2 ${p.highlight ? 'highlight' : ''}`}>
+              <div className="roadmap-circle-v2">{p.num}</div>
+              <div className="roadmap-card-v2">
+                <div className="roadmap-card-title">{p.title}</div>
+                <div className="roadmap-card-timeline">{p.timeline}</div>
+                <div className="roadmap-card-meta">{p.units}</div>
+                <div className="roadmap-card-output">{p.output}</div>
+              </div>
+            </ScaleIn>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ S14b — PHASE 1 DETAIL ═══ */
+function S14b_Phase1() {
+  return (
+    <div className="slide" id="slide-14b">
+      <SlideLogo />
+      <div className="slide-inner">
+        <Reveal>
+          <div className="phase-header">
+            <div className="phase-header-pill">PHASE 01</div>
+            <div className="title" style={{ color: 'var(--green)', fontSize: 'clamp(36px, 4.5vw, 52px)', marginBottom: 0 }}>Nerve Cuff Validation</div>
+          </div>
+        </Reveal>
+        <div className="phase1-layout-v2">
+          {/* Left: vertical stat circles */}
+          <Reveal delay={0.1}>
+            <div className="phase1-stats-col">
+              <div className="phase-detail-circle">
+                <div className="phase-detail-num">40</div>
+                <div className="phase-detail-label">Animals</div>
+              </div>
+              <div className="phase-detail-circle">
+                <div className="phase-detail-num">30d</div>
+                <div className="phase-detail-label">Trial</div>
+              </div>
+              <div className="phase-detail-circle">
+                <div className="phase-detail-num">6</div>
+                <div className="phase-detail-label">Biomarkers</div>
+              </div>
+            </div>
+          </Reveal>
+          {/* Middle: stimulate → measure → analyse cycle */}
+          <Reveal delay={0.2}>
+            <div className="phase1-cycle">
+              <div className="cycle-label">Study Cycle</div>
+              <div className="cycle-diagram">
+                <svg className="cycle-arrows" viewBox="0 0 400 340" preserveAspectRatio="xMidYMid meet">
+                  <defs>
+                    <marker id="cycle-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+                      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--green)" />
+                    </marker>
+                  </defs>
+                  <path d="M 175 110 L 115 215" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" markerEnd="url(#cycle-arrow)" />
+                  <path d="M 127 270 L 273 270" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" markerEnd="url(#cycle-arrow)" />
+                  <path d="M 285 215 L 225 110" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" markerEnd="url(#cycle-arrow)" />
+                </svg>
+                <div className="cycle-node stim-node">
+                  <div className="cycle-node-title">Stimulate</div>
+                  <div className="cycle-node-sub">VNS cuff active</div>
+                </div>
+                <div className="cycle-node measure-node">
+                  <div className="cycle-node-title">Measure</div>
+                  <div className="cycle-node-sub">Blood draw, HRV</div>
+                </div>
+                <div className="cycle-node analyse-node">
+                  <div className="cycle-node-title">Analyse</div>
+                  <div className="cycle-node-sub">Biomarker response</div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+          {/* Right: biomarker buckets stacked */}
+          <Reveal delay={0.3}>
+            <div className="phase1-buckets">
+              <div className="cycle-label">Biomarker Buckets</div>
+              <div className="bucket-stack">
+                <div className="bucket-row bucket-row-1">
+                  <div className="bucket-row-title">Device Works</div>
+                  <div className="bucket-row-sub">Vagal activation confirmed</div>
+                  <div className="bucket-row-tags">
+                    <span className="marker">Heart Rate</span>
+                    <span className="marker">HRV</span>
+                  </div>
+                </div>
+                <div className="bucket-row bucket-row-2">
+                  <div className="bucket-row-title">Biology Responds</div>
+                  <div className="bucket-row-sub">Cholinergic pathway active</div>
+                  <div className="bucket-row-tags">
+                    <span className="marker">TNF-α</span>
+                    <span className="marker">IL-6</span>
+                  </div>
+                </div>
+                <div className="bucket-row bucket-row-3">
+                  <div className="bucket-row-title">BRD Relevant</div>
+                  <div className="bucket-row-sub">Disease pathway signal</div>
+                  <div className="bucket-row-tags">
+                    <span className="marker">Haptoglobin</span>
+                    <span className="marker">N:L Ratio</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ S14c — PHASE 2 DETAIL ═══ */
+function S14c_Phase2() {
+  return (
+    <div className="slide" id="slide-14c">
+      <SlideLogo />
+      <div className="slide-inner">
+        <Reveal>
+          <div className="phase-header">
+            <div className="phase-header-pill">PHASE 02</div>
+            <div className="title" style={{ color: 'var(--green)', fontSize: 'clamp(36px, 4.5vw, 52px)', marginBottom: 0 }}>VNS Efficacy Trial</div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="phase-detail-top">
+            <div className="phase-detail-circle">
+              <div className="phase-detail-num">120–150</div>
+              <div className="phase-detail-label">Animals</div>
+            </div>
+            <div className="phase-detail-circle">
+              <div className="phase-detail-num">30d</div>
+              <div className="phase-detail-label">Trial</div>
+            </div>
+            <div className="phase-detail-circle">
+              <div className="phase-detail-num">3</div>
+              <div className="phase-detail-label">Groups</div>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.25}>
+          <div className="phase-bucket-grid">
+            <div className="phase-bucket">
+              <div className="phase-bucket-pill">Group A</div>
+              <div className="phase-bucket-title">Active VNS + SOC</div>
+              <div className="phase-bucket-sub">Active stimulation + standard of care antibiotics</div>
+            </div>
+            <div className="phase-bucket">
+              <div className="phase-bucket-pill">Group B</div>
+              <div className="phase-bucket-title">Sham + SOC</div>
+              <div className="phase-bucket-sub">Sham device + standard of care antibiotics</div>
+            </div>
+            <div className="phase-bucket">
+              <div className="phase-bucket-pill">Group C</div>
+              <div className="phase-bucket-title">SOC Only</div>
+              <div className="phase-bucket-sub">Standard of care baseline</div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ S14d — PHASE 3 / DEVICE ═══ */
+function S14d_Phase3() {
+  return (
+    <div className="slide" id="slide-14d">
+      <SlideLogo />
+      <div className="slide-inner">
+        <Reveal>
+          <div className="phase-header">
+            <div className="phase-header-pill">PHASE 03 · THE DEVICE</div>
+            <div className="title" style={{ color: 'var(--green)', fontSize: 'clamp(36px, 4.5vw, 52px)', marginBottom: 0 }}>Endovascular Stentrode</div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="phase3-stack">
+            <img src="/stentrode.png" alt="Stentrode" className="phase3-image-flat" />
+            <div className="phase3-meta-card">
+              <div className="phase3-meta-item">
+                <div className="phase3-meta-label">Delivery</div>
+                <div className="phase3-meta-value">Endovascular</div>
+              </div>
+              <div className="phase3-meta-divider" />
+              <div className="phase3-meta-item">
+                <div className="phase3-meta-label">Placement</div>
+                <div className="phase3-meta-value">Internal Jugular Vein</div>
+              </div>
+              <div className="phase3-meta-divider" />
+              <div className="phase3-meta-item">
+                <div className="phase3-meta-label">Procedure</div>
+                <div className="phase3-meta-value">8–12 min</div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ TESSMAN 3 KEY POINTS ═══ */
+function S_TessmanPoints() {
+  const points = [
+    {
+      title: 'Treatment Cost',
+      body: <>Current BRD treatment runs about <strong>$50 a head</strong>.</>,
+    },
+    {
+      title: 'No Internal Measurement',
+      body: <>No accurate <strong>internal measurement system</strong> exists in the industry today.</>,
+    },
+    {
+      title: 'The Gap We Fill',
+      body: <>No device on the market can <strong>both sense and stimulate</strong>. That's exactly what we're building.</>,
+      ours: true,
+    },
+  ]
+  return (
+    <div className="slide" id="slide-tessman-pts">
+      <SlideLogo />
+      <div className="slide-inner">
+        <Reveal>
+          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: 3, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: 8 }}>EXPERT VALIDATION</div>
+            <div className="title" style={{ color: 'var(--green)', fontSize: 'clamp(36px, 4.5vw, 52px)', marginBottom: 0 }}>Three things we heard</div>
+          </div>
+        </Reveal>
+        <div className="tessman-points">
+          {points.map((p, i) => (
+            <ScaleIn key={i} delay={0.2 + i * 0.15} className={`tessman-simple-wrap ${p.ours ? 'ours' : ''}`}>
+              {p.ours && <div className="tessman-ours-badge">OUR SOLUTION</div>}
+              <div className="tessman-simple-circle">
+                <div className="tessman-simple-title">{p.title}</div>
+                <div className="tessman-simple-body">{p.body}</div>
+              </div>
+            </ScaleIn>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ TESSMAN LOWER-THIRD ═══ */
+function S_Tessman() {
+  return (
+    <div className="slide" id="slide-tessman" style={{ background: 'transparent', justifyContent: 'flex-end', alignItems: 'center', padding: '0 0 48px' }}>
+      <div className="lt-stack">
+        <div className="lower-third">
+          <div className="lt-header">
+            <div className="lt-avatar">
+              <img src="/tessman.png" alt="Dr. Ronald Tessman" />
+            </div>
+            <div className="lt-name-block">
+              <div className="lt-name">Dr. Ronald Tessman DVM PhD</div>
+              <div className="lt-title">Beef Cattle Technical Consultant · 17 years of experience</div>
+            </div>
+            <div className="lt-logos">
+              <img src="/logos/bayer.svg" alt="Bayer" className="lt-logo-img" />
+              <img src="/logos/merial.svg" alt="Merial" className="lt-logo-img" />
+              <img src="/logos/elanco.svg" alt="Elanco" className="lt-logo-img" />
+            </div>
+          </div>
+        </div>
+        <div className="lt-wtp-card">
+          <div className="lt-wtp-label">Willingness to pay</div>
+          <div className="lt-wtp-values">
+            <div className="lt-wtp-circle">
+              <div className="lt-wtp-num">$30</div>
+              <div className="lt-wtp-sub">today</div>
+            </div>
+            <div className="lt-wtp-arrow">→</div>
+            <div className="lt-wtp-circle highlight">
+              <div className="lt-wtp-num">$60</div>
+              <div className="lt-wtp-sub">with proof</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ FONT PICKER (temporary) ═══ */
+function FontPicker() {
+  const fonts = [
+    // Clean serifs
+    { name: 'Fraunces', family: "'Fraunces', serif", weight: 800, vibe: 'Warm editorial' },
+    { name: 'Recoleta', family: "'Recoleta', serif", weight: 700, vibe: 'Premium rounded' },
+    { name: 'Playfair Display', family: "'Playfair Display', serif", weight: 900, vibe: 'High contrast' },
+    { name: 'DM Serif Display', family: "'DM Serif Display', serif", weight: 400, vibe: 'Elegant hairline' },
+    { name: 'Cormorant', family: "'Cormorant Garamond', serif", weight: 700, vibe: 'Literary classic' },
+    { name: 'Libre Bodoni', family: "'Libre Bodoni', serif", weight: 700, vibe: 'Clean bodoni' },
+    { name: 'Crimson Pro', family: "'Crimson Pro', serif", weight: 700, vibe: 'Book serif' },
+    { name: 'Instrument Serif', family: "'Instrument Serif', serif", weight: 400, vibe: 'Modern editorial' },
+
+    // Clean modern sans
+    { name: 'Clash Display', family: "'Clash Display', sans-serif", weight: 700, vibe: 'Confident brand' },
+    { name: 'Space Grotesk', family: "'Space Grotesk', sans-serif", weight: 700, vibe: 'Techy geometric' },
+    { name: 'General Sans', family: "'General Sans', sans-serif", weight: 600, vibe: 'Neutral SaaS' },
+    { name: 'Manrope', family: "'Manrope', sans-serif", weight: 800, vibe: 'Rounded geometric' },
+    { name: 'Outfit', family: "'Outfit', sans-serif", weight: 800, vibe: 'Modern geometric' },
+    { name: 'Epilogue', family: "'Epilogue', sans-serif", weight: 800, vibe: 'Sharp grotesque' },
+    { name: 'Inter Tight', family: "'Inter Tight', sans-serif", weight: 800, vibe: 'Clean tight' },
+    { name: 'Sora', family: "'Sora', sans-serif", weight: 800, vibe: 'Minimal techy' },
+    { name: 'Bricolage', family: "'Bricolage Grotesque', sans-serif", weight: 800, vibe: 'Soft grotesque' },
+  ]
+  return (
+    <div className="slide" id="slide-font-picker" style={{ background: 'var(--bg-soft)' }}>
+      <SlideLogo />
+      <div className="slide-inner">
+        <Reveal>
+          <div className="title" style={{ marginBottom: 24, color: 'var(--green)', fontSize: 'clamp(32px, 4vw, 48px)', textAlign: 'center' }}>Logo Font Options</div>
+        </Reveal>
+        <div className="font-grid">
+          {fonts.map((f, i) => (
+            <ScaleIn key={f.name} delay={0.1 + i * 0.08}>
+              <div className="font-option">
+                <div
+                  className="font-preview"
+                  style={{
+                    fontFamily: f.family,
+                    fontWeight: f.weight,
+                    fontStyle: f.italic ? 'italic' : 'normal',
+                  }}
+                >
+                  BoVa
+                </div>
+                <div className="font-name">{f.name}</div>
+                <div className="font-vibe">{f.vibe}</div>
+              </div>
+            </ScaleIn>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ S15 — CLOSE ═══ */
 function S13() {
   return (
-    <div className="slide bg-img bg-clear-close" id="slide-12">
-      <SlideLogo />
-      <Circles config={[
-        { size: 500, top: '-20%', left: '-12%', type: 'ring' },
-        { size: 300, bottom: '-10%', right: '-8%', type: 'ring' },
-      ]} />
+    <div className="slide close-black" id="slide-14">
       <div className="slide-inner">
         <div className="close-wrap">
           <Reveal>
-            <img src="/logo.png" alt="BoVa" className="logo-close" />
+            <img src="/logo.png" alt="BoVa" className="logo-close-big" />
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="close-brand">BoVa</div>
+            <div className="close-brand-big">BoVa</div>
           </Reveal>
           <Reveal delay={0.4}>
-            <div className="close-motto">Healthier cattle, one moo at a time.</div>
+            <div className="close-motto-big">Healthier cattle, one moo at a time.</div>
           </Reveal>
         </div>
       </div>
@@ -591,6 +1110,16 @@ const NOTES = [
   },
   {
     slide: 'SLIDE 13',
+    title: 'UNIT ECONOMICS TABLE',
+    body: `<span class="cue">"Phase 1: 40 head nerve cuff, $1,150 to $2,200 per head, $50 to 90k total — research cost, generates the dataset. Phase 2: 120-150 head VNS efficacy trial, active vs sham vs SOC, $70 to 165 per head, $200 to 400k total. Phase 3: 100 thousand units, 48 to 83 dollars per head. Breakeven to plus $12 per head at scale."</span>`,
+  },
+  {
+    slide: 'SLIDE 14',
+    title: 'ROADMAP — PHASE TIMELINE',
+    body: `<span class="cue">"Phase 1: nerve cuff validation, months 1 to 24, 40 head pen trial. Efficacy data, safety profile, parameter optimisation. Phase 2: stent prototype testing, months 24 to 36, 40 head pen trial. CVM pre-submission, device iteration, pilot feedlot partner. Phase 3: stent at scale, year 3 to 5, 100 thousand units. Disposable stent plus reusable wireless collar subscription."</span>`,
+  },
+  {
+    slide: 'SLIDE 15',
     title: 'CLOSE',
     body: `<span class="cue">"$1.3 billion in losses. Zero competitors. $1 million to proof of concept. The science is FDA-validated. We are the team to close the gap."</span>
 
@@ -657,7 +1186,7 @@ export default function App() {
           <button key={i} className={`nav-dot ${i === cur ? 'active' : ''}`} onClick={() => document.getElementById(`slide-${i}`)?.scrollIntoView({ behavior: 'smooth' })} aria-label={`Slide ${i + 1}`} />
         ))}
       </nav>
-      <S1 /><S2 /><S3 /><S4 /><S5 /><S6 /><S7 /><S8 /><S9 /><S10 /><S11 /><S12 /><S13 />
+      <S1 /><S2 /><S3 /><S4 /><S5 /><S6 /><S7 /><S8 /><S9 /><S10 /><S11 /><S11b_Licensing /><S12 /><S13_Roadmap /><S14_Roadmap /><S14b_Phase1 /><S14c_Phase2 /><S14d_Phase3 /><S_Tessman /><S_TessmanPoints /><FontPicker /><S13 />
       <NotesPanel currentSlide={cur} open={notesOpen} onToggle={() => setNotesOpen(p => !p)} />
     </>
   )

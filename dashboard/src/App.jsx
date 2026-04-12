@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, AreaChart, Area } from 'recharts'
-import { Calculator, Activity, FlaskConical, DollarSign } from 'lucide-react'
+import { Calculator, Activity, FlaskConical, DollarSign, LineChart as LineChartIcon, Heart, Beaker, TrendingDown, Zap } from 'lucide-react'
 import './App.css'
 
 const GREEN = '#2DA87A'
@@ -14,11 +14,12 @@ const COLORS = [GREEN, LIGHT, AMBER, '#A8DBCA']
    ════════════════════════════════════════ */
 const APPROACHES = {
   cuff: {
-    name: 'Nerve Cuff (Pilot)',
-    surgeryTime: '15 min',
+    name: 'Phase 1 — Nerve Cuff (Pilot)',
+    surgeryTime: '30-60 min',
+    description: 'Research-grade surgical pilot for mechanism validation',
     sections: [
-      { title: 'Device Components', items: [
-        { name: 'Pt-Ir nerve cuff electrode (biocompatible)', cost: 80 },
+      { title: 'Device Components (pilot batch)', items: [
+        { name: 'Pt-Ir nerve cuff electrode (pilot fab)', cost: 80 },
         { name: 'MintNeuro stimulation ASIC', cost: 25 },
         { name: 'Analog front-end + ADC (neural recording)', cost: 40 },
         { name: 'Microcontroller (nRF52840)', cost: 3 },
@@ -29,13 +30,13 @@ const APPROACHES = {
         { name: 'Lead wires (Pt-Ir, silicone insulated)', cost: 8 },
       ]},
       { title: 'Monitoring Hardware', items: [
-        { name: 'Heart rate monitor (equine-type belt)', cost: 100, adjustable: true },
+        { name: 'Heart rate monitor (equine belt, Polar-type)', cost: 100, adjustable: true },
         { name: 'Base station receiver (per 50 head, amortised)', cost: 10 },
         { name: 'Cloud data gateway (cellular, amortised)', cost: 5 },
       ]},
       { title: 'Procedure — Veterinary', items: [
-        { name: 'Veterinarian time (15 min @ $200/hr)', cost: 50 },
-        { name: 'Vet tech / assistant (15 min)', cost: 12 },
+        { name: 'Veterinarian surgical time (45 min @ $200/hr)', cost: 150 },
+        { name: 'Vet tech / assistant (45 min)', cost: 35 },
         { name: 'Sedation (xylazine 0.05mg/kg IV)', cost: 8 },
         { name: 'Local anaesthesia (lidocaine 2%)', cost: 3 },
         { name: 'Reversal agent (tolazoline)', cost: 5 },
@@ -43,7 +44,6 @@ const APPROACHES = {
       { title: 'Procedure — Imaging', items: [
         { name: 'Portable ultrasound (amortised per head)', cost: 15 },
         { name: 'Ultrasound gel + probe covers', cost: 2 },
-        { name: 'Nerve localisation (US-guided)', cost: 0, note: 'Included in vet time' },
       ]},
       { title: 'Procedure — Consumables', items: [
         { name: 'Sterile surgical drape + field', cost: 5 },
@@ -56,51 +56,39 @@ const APPROACHES = {
         { name: 'Wound dressing / spray bandage', cost: 3 },
       ]},
       { title: 'Post-Procedure', items: [
-        { name: 'Post-op antibiotics (single dose, prophylactic)', cost: 4 },
+        { name: 'Post-op antibiotics (single dose)', cost: 4 },
         { name: 'Anti-inflammatory (meloxicam / flunixin)', cost: 3 },
         { name: 'Follow-up check (day 3, 5 min vet time)', cost: 8 },
         { name: 'Wound complication contingency (5% rate)', cost: 5 },
       ]},
     ],
   },
-  stent: {
-    name: 'Endovascular Stent',
-    surgeryTime: '5 min',
+  stentResearch: {
+    name: 'Phase 2 — Endovascular Stent (Research)',
+    surgeryTime: '15-20 min',
+    description: 'Peer-reviewed in pig and sheep. Research-grade components.',
     sections: [
-      { title: 'Device Components', items: [
-        { name: 'Stent electrode (Nitinol + Pt contacts)', cost: 200 },
-        { name: 'Delivery catheter (single-use)', cost: 50 },
-        { name: 'MintNeuro stimulation ASIC', cost: 25 },
-        { name: 'Analog front-end + ADC', cost: 40 },
-        { name: 'Microcontroller (nRF52840)', cost: 3 },
-        { name: 'Primary lithium battery + PMIC', cost: 15 },
-        { name: 'Biocompatible encapsulation', cost: 25 },
-        { name: 'PCB fabrication + assembly', cost: 15 },
-        { name: 'Lead wires + subcutaneous routing', cost: 10 },
-      ]},
-      { title: 'Monitoring Hardware', items: [
-        { name: 'Heart rate monitor (equine-type belt)', cost: 100, adjustable: true },
-        { name: 'Base station receiver (amortised)', cost: 10 },
-        { name: 'Cloud data gateway (amortised)', cost: 5 },
+      { title: 'Device Components (research grade)', items: [
+        { name: 'Custom stent electrode array (academic fab)', cost: 3000 },
+        { name: 'Clinical delivery catheter (over-the-wire)', cost: 250 },
+        { name: 'Introducer sheath + guidewire', cost: 150 },
+        { name: 'External stimulator / recorder (amortised)', cost: 80 },
       ]},
       { title: 'Procedure — Veterinary', items: [
-        { name: 'Veterinarian time (5 min @ $200/hr)', cost: 17 },
-        { name: 'Vet tech / assistant (5 min)', cost: 4 },
+        { name: 'Veterinarian (20 min @ $200/hr)', cost: 67 },
+        { name: 'Vet tech / assistant (20 min)', cost: 15 },
         { name: 'Sedation (xylazine IV)', cost: 8 },
         { name: 'Local anaesthesia (lidocaine)', cost: 3 },
       ]},
       { title: 'Procedure — Imaging', items: [
-        { name: 'Fluoroscopy / portable C-arm (amortised)', cost: 25 },
-        { name: 'Contrast agent (iohexol)', cost: 8 },
-        { name: 'Ultrasound confirmation (amortised)', cost: 10 },
+        { name: 'Fluoroscopy / portable C-arm (amortised)', cost: 60 },
+        { name: 'Iohexol contrast agent', cost: 12 },
+        { name: 'Ultrasound vein confirmation', cost: 10 },
       ]},
       { title: 'Procedure — Consumables', items: [
-        { name: 'Jugular venipuncture kit', cost: 5 },
-        { name: 'Introducer sheath (single-use)', cost: 15 },
-        { name: 'Guidewire', cost: 10 },
         { name: 'Sterile drape + field', cost: 5 },
         { name: 'Heparinised saline flush', cost: 2 },
-        { name: 'Sterile gloves + prep', cost: 3 },
+        { name: 'Sterile gloves + venipuncture prep', cost: 5 },
         { name: 'Pressure bandage (post-puncture)', cost: 2 },
       ]},
       { title: 'Post-Procedure', items: [
@@ -111,45 +99,32 @@ const APPROACHES = {
       ]},
     ],
   },
-  inject: {
-    name: 'Injectrode',
-    surgeryTime: '30 sec',
+  stentCommercial: {
+    name: 'Phase 3 — Stent at Scale (Optimised)',
+    surgeryTime: '8-12 min',
+    description: 'Duty-cycled stimulation + integrated thin-film ASIC printed on stent struts (EPFL approach)',
     sections: [
-      { title: 'Device Components', items: [
-        { name: 'Injectrode polymer (silicone + Ag nanoparticles)', cost: 30 },
-        { name: 'Pre-loaded injection syringe', cost: 15 },
-        { name: 'MintNeuro stimulation ASIC', cost: 25 },
-        { name: 'Analog front-end + ADC', cost: 40 },
-        { name: 'Microcontroller (nRF52840)', cost: 3 },
-        { name: 'Primary lithium battery + PMIC', cost: 15 },
-        { name: 'Biocompatible encapsulation', cost: 20 },
-        { name: 'PCB fabrication + assembly', cost: 15 },
-        { name: 'Subcutaneous lead wire', cost: 6 },
+      { title: 'Device BOM @ 100k units', items: [
+        { name: 'Integrated stent + thin-film ASIC (EPFL-style)', cost: 28 },
+        { name: 'Solid-state battery (duty-cycled, SetPoint protocol)', cost: 12 },
+        { name: 'Delivery catheter (single-use, simple)', cost: 8 },
+        { name: 'Assembly, test, sterile packaging', cost: 12 },
       ]},
-      { title: 'Monitoring Hardware', items: [
-        { name: 'Heart rate monitor (equine-type belt)', cost: 100, adjustable: true },
-        { name: 'Base station receiver (amortised)', cost: 10 },
-        { name: 'Cloud data gateway (amortised)', cost: 5 },
+      { title: 'Reusable Infrastructure (subscription)', items: [
+        { name: 'Base station + cloud gateway (amortised)', cost: 8 },
       ]},
-      { title: 'Procedure — Veterinary', items: [
-        { name: 'Trained technician time (30 sec)', cost: 5 },
-        { name: 'Ultrasound-guided placement (tech time)', cost: 15 },
-        { name: 'Sedation (light, xylazine low dose)', cost: 5 },
-      ]},
-      { title: 'Procedure — Imaging', items: [
-        { name: 'Portable ultrasound (amortised per head)', cost: 12 },
-        { name: 'Ultrasound gel + probe covers', cost: 2 },
+      { title: 'Procedure — Technician', items: [
+        { name: 'Trained technician (10 min, chute-side)', cost: 15 },
+        { name: 'Chute-mounted ultrasound (amortised)', cost: 8 },
       ]},
       { title: 'Procedure — Consumables', items: [
-        { name: 'Injection needle (18G, single-use)', cost: 1 },
-        { name: 'Skin prep (chlorhex swab)', cost: 1 },
-        { name: 'Sterile gloves', cost: 1 },
-        { name: 'Adhesive bandage', cost: 1 },
+        { name: 'Jugular venipuncture kit', cost: 3 },
+        { name: 'Heparin flush', cost: 1 },
+        { name: 'Sterile gloves + prep', cost: 2 },
       ]},
       { title: 'Post-Procedure', items: [
-        { name: 'Anti-inflammatory (meloxicam)', cost: 3 },
-        { name: 'Follow-up check (day 3)', cost: 5 },
-        { name: 'Complication contingency (2% rate)', cost: 3 },
+        { name: 'Anti-thrombotic + anti-inflammatory', cost: 5 },
+        { name: 'Complication contingency (1.5% rate)', cost: 4 },
       ]},
     ],
   },
@@ -435,6 +410,26 @@ const MOCK_COWS = [
   { id: 'BV-018', tag: '#4438', hr: 68, temp: 38.4, activity: 'Normal', status: 'healthy', vagalTone: 0.87, daysIn: 40, x: 48, y: 65 },
   { id: 'BV-019', tag: '#4439', hr: 91, temp: 39.6, activity: 'Very Low', status: 'alert', vagalTone: 0.48, daysIn: 4, x: 72, y: 80 },
   { id: 'BV-020', tag: '#4440', hr: 65, temp: 38.2, activity: 'High', status: 'healthy', vagalTone: 0.93, daysIn: 50, x: 22, y: 82 },
+  { id: 'BV-021', tag: '#4441', hr: 71, temp: 38.5, activity: 'Normal', status: 'healthy', vagalTone: 0.85, daysIn: 11, x: 18, y: 38 },
+  { id: 'BV-022', tag: '#4442', hr: 73, temp: 38.6, activity: 'Normal', status: 'healthy', vagalTone: 0.82, daysIn: 17, x: 52, y: 28 },
+  { id: 'BV-023', tag: '#4443', hr: 68, temp: 38.4, activity: 'Normal', status: 'healthy', vagalTone: 0.88, daysIn: 23, x: 68, y: 45 },
+  { id: 'BV-024', tag: '#4444', hr: 80, temp: 39.0, activity: 'Moderate', status: 'alert', vagalTone: 0.64, daysIn: 7, x: 82, y: 22 },
+  { id: 'BV-025', tag: '#4445', hr: 72, temp: 38.5, activity: 'Normal', status: 'healthy', vagalTone: 0.84, daysIn: 27, x: 38, y: 42 },
+  { id: 'BV-026', tag: '#4446', hr: 74, temp: 38.7, activity: 'Normal', status: 'healthy', vagalTone: 0.80, daysIn: 13, x: 72, y: 62 },
+  { id: 'BV-027', tag: '#4447', hr: 69, temp: 38.4, activity: 'High', status: 'healthy', vagalTone: 0.89, daysIn: 33, x: 42, y: 72 },
+  { id: 'BV-028', tag: '#4448', hr: 77, temp: 38.9, activity: 'Normal', status: 'healthy', vagalTone: 0.76, daysIn: 19, x: 15, y: 58 },
+  { id: 'BV-029', tag: '#4449', hr: 67, temp: 38.3, activity: 'Normal', status: 'healthy', vagalTone: 0.90, daysIn: 38, x: 58, y: 20 },
+  { id: 'BV-030', tag: '#4450', hr: 70, temp: 38.5, activity: 'Normal', status: 'healthy', vagalTone: 0.87, daysIn: 24, x: 78, y: 78 },
+  { id: 'BV-031', tag: '#4451', hr: 72, temp: 38.6, activity: 'Normal', status: 'healthy', vagalTone: 0.83, daysIn: 16, x: 32, y: 24 },
+  { id: 'BV-032', tag: '#4452', hr: 75, temp: 38.8, activity: 'Normal', status: 'healthy', vagalTone: 0.79, daysIn: 11, x: 62, y: 50 },
+  { id: 'BV-033', tag: '#4453', hr: 68, temp: 38.4, activity: 'High', status: 'healthy', vagalTone: 0.89, daysIn: 29, x: 25, y: 68 },
+  { id: 'BV-034', tag: '#4454', hr: 86, temp: 39.3, activity: 'Low', status: 'alert', vagalTone: 0.59, daysIn: 5, x: 85, y: 38 },
+  { id: 'BV-035', tag: '#4455', hr: 71, temp: 38.5, activity: 'Normal', status: 'healthy', vagalTone: 0.85, daysIn: 21, x: 48, y: 80 },
+  { id: 'BV-036', tag: '#4456', hr: 69, temp: 38.4, activity: 'Normal', status: 'healthy', vagalTone: 0.86, daysIn: 35, x: 12, y: 48 },
+  { id: 'BV-037', tag: '#4457', hr: 73, temp: 38.6, activity: 'Normal', status: 'healthy', vagalTone: 0.82, daysIn: 12, x: 82, y: 55 },
+  { id: 'BV-038', tag: '#4458', hr: 70, temp: 38.5, activity: 'Normal', status: 'healthy', vagalTone: 0.85, daysIn: 26, x: 38, y: 58 },
+  { id: 'BV-039', tag: '#4459', hr: 67, temp: 38.3, activity: 'Normal', status: 'healthy', vagalTone: 0.91, daysIn: 42, x: 55, y: 82 },
+  { id: 'BV-040', tag: '#4460', hr: 72, temp: 38.6, activity: 'Normal', status: 'healthy', vagalTone: 0.84, daysIn: 15, x: 28, y: 15 },
 ]
 
 const MOCK_HR_TREND = Array.from({ length: 24 }, (_, i) => ({
@@ -516,7 +511,7 @@ function HerdPage() {
   return (
     <>
       <div className="page-title">Herd Monitor</div>
-      <div className="pilot-badge"><FlaskConical size={14} /> Pilot Program — 20 Head Trial</div>
+      <div className="pilot-badge"><FlaskConical size={14} /> Phase 1 Pilot — 40 Head Trial</div>
 
       <div className="card-grid">
         <div className="card"><div className="card-label">Total monitored</div><div className="card-value">{MOCK_COWS.length}</div></div>
@@ -617,6 +612,177 @@ function HerdPage() {
           </div>
         )}
       </div>
+
+      {/* Per-cow dose response — only visible when a cow is selected */}
+      {selectedCow && <CowDoseResponse cow={selectedCow} />}
+    </>
+  )
+}
+
+/* ════════════════════════════════════════
+   PER-COW DOSE RESPONSE SECTION
+   ════════════════════════════════════════ */
+function CowDoseResponse({ cow }) {
+  const [freq, setFreq] = useState(20)
+  const [pulseWidth, setPulseWidth] = useState(250)
+  const [amplitude, setAmplitude] = useState(1.5)
+
+  const doseResponse = useMemo(() => {
+    const points = []
+    for (let a = 0; a <= 5; a += 0.1) {
+      const tnfSuppression = 80 * Math.pow(a, 2) / (Math.pow(1.8, 2) + Math.pow(a, 2))
+      const cardiacRisk = a > 2 ? 100 * Math.pow(a - 2, 1.5) / (Math.pow(1, 1.5) + Math.pow(a - 2, 1.5)) : 0
+      const rumenStasis = a > 2.5 ? 100 * Math.pow(a - 2.5, 2) / (Math.pow(0.8, 2) + Math.pow(a - 2.5, 2)) : 0
+      points.push({
+        amp: parseFloat(a.toFixed(1)),
+        tnf: Math.min(100, tnfSuppression),
+        cardiac: Math.min(100, cardiacRisk),
+        rumen: Math.min(100, rumenStasis),
+      })
+    }
+    return points
+  }, [])
+
+  const currentPoint = doseResponse.find(p => Math.abs(p.amp - amplitude) < 0.05) || doseResponse[0]
+  const safetyMargin = currentPoint ? Math.max(0, currentPoint.tnf - Math.max(currentPoint.cardiac, currentPoint.rumen)) : 0
+
+  const cortisolTimeseries = useMemo(() => Array.from({ length: 30 }, (_, i) => {
+    const baseline = 8
+    const treatmentEffect = Math.max(0, 4 * (1 - Math.exp(-i / 14)))
+    return {
+      day: i + 1,
+      treatment: Math.max(2, baseline - treatmentEffect + (Math.random() - 0.5) * 1.5),
+      sham: baseline + (Math.random() - 0.5) * 1.5,
+    }
+  }), [cow.id])
+
+  const hrvTrace = useMemo(() => Array.from({ length: 60 }, (_, i) => ({
+    t: i,
+    rmssd: 42 + Math.sin(i / 8) * 8 + (Math.random() - 0.5) * 4,
+  })), [cow.id])
+
+  return (
+    <>
+      <div className="dose-section-header">
+        <Zap size={16} />
+        <span>Dose Response — {cow.id} {cow.tag}</span>
+      </div>
+
+      {/* Three-column input/safety/efficacy panels */}
+      <div className="dr-grid">
+        <div className="dr-col">
+          <div className="dr-col-label input">
+            <span className="dr-dot" style={{ background: '#8B5CF6' }} />
+            INPUT — STIMULATION
+          </div>
+          <div className="dr-item">
+            <div className="dr-item-title">Pulse parameters</div>
+            <div className="dr-item-desc">Frequency, amplitude, pulse width swept across animals. Building the dose-response curve that doesn't exist yet.</div>
+          </div>
+          <div className="slider-section" style={{ marginTop: 12, padding: 16 }}>
+            <Slider label="Frequency" value={freq} set={setFreq} min={1} max={50} suffix=" Hz" />
+            <div style={{ height: 10 }} />
+            <Slider label="Pulse width" value={pulseWidth} set={setPulseWidth} min={50} max={1000} step={10} suffix=" µs" />
+            <div style={{ height: 10 }} />
+            <Slider label="Amplitude" value={amplitude} set={setAmplitude} min={0.1} max={5} step={0.1} suffix=" mA" />
+          </div>
+        </div>
+
+        <div className="dr-col">
+          <div className="dr-col-label">
+            <span className="dr-dot" style={{ background: GREEN }} />
+            SAFETY READOUT
+          </div>
+          <div className="dr-item">
+            <div className="dr-item-title"><Heart size={14} style={{ display: 'inline', marginRight: 6, color: GREEN }} /> HRV <span className="dr-arrow up">↑</span></div>
+            <div className="dr-item-desc">Real-time. Confirms vagal efferent activation. Drops if cardiac branch over-stimulated — immediate safety interlock.</div>
+          </div>
+          <div className="dr-item">
+            <div className="dr-item-title"><Activity size={14} style={{ display: 'inline', marginRight: 6, color: GREEN }} /> Rumen contractions <span className="dr-arrow up">↑</span></div>
+            <div className="dr-item-desc">Confirms GI efferents active. Loss of contractions = bloat risk. Continuous bolus monitor.</div>
+          </div>
+        </div>
+
+        <div className="dr-col">
+          <div className="dr-col-label">
+            <span className="dr-dot" style={{ background: RED }} />
+            EFFICACY READOUT
+          </div>
+          <div className="dr-item">
+            <div className="dr-item-title"><Beaker size={14} style={{ display: 'inline', marginRight: 6, color: RED }} /> TNF-α <span className="dr-arrow down">↓</span></div>
+            <div className="dr-item-desc">Gold standard. Borovikova 2000 showed 75–80% suppression in rodents. Weekly blood draw. This is the BRD inflammation signal.</div>
+          </div>
+          <div className="dr-item">
+            <div className="dr-item-title"><TrendingDown size={14} style={{ display: 'inline', marginRight: 6, color: RED }} /> Cortisol <span className="dr-arrow down">↓</span></div>
+            <div className="dr-item-desc">Salivary — no restraint. Tracks the stress-immune axis over 30 days. Expected nadir at day 14.</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Live readouts */}
+      <div className="card-grid">
+        <div className="card">
+          <div className="card-label">TNF-α suppression</div>
+          <div className="card-value">{currentPoint?.tnf.toFixed(0)}%</div>
+          <div className="card-sub">At {amplitude} mA</div>
+        </div>
+        <div className="card">
+          <div className="card-label">Cardiac risk</div>
+          <div className="card-value" style={{ color: currentPoint?.cardiac > 20 ? RED : GREEN }}>{currentPoint?.cardiac.toFixed(0)}%</div>
+          <div className="card-sub">Bradycardia threshold</div>
+        </div>
+        <div className="card">
+          <div className="card-label">Rumen stasis risk</div>
+          <div className="card-value" style={{ color: currentPoint?.rumen > 20 ? RED : GREEN }}>{currentPoint?.rumen.toFixed(0)}%</div>
+          <div className="card-sub">Bloat / Hoflund</div>
+        </div>
+        <div className="card">
+          <div className="card-label">Safety margin</div>
+          <div className="card-value" style={{ color: safetyMargin > 40 ? GREEN : safetyMargin > 20 ? AMBER : RED }}>{safetyMargin.toFixed(0)}%</div>
+          <div className="card-sub">Therapeutic window</div>
+        </div>
+      </div>
+
+      <div className="chart-card">
+        <div className="chart-title">Dose–Response Curve — Efficacy vs Safety</div>
+        <ResponsiveContainer width="100%" height={280}>
+          <LineChart data={doseResponse}>
+            <XAxis dataKey="amp" label={{ value: 'Stimulation amplitude (mA)', position: 'insideBottom', offset: -5, fontSize: 11 }} tick={{ fontSize: 11 }} />
+            <YAxis label={{ value: 'Response (%)', angle: -90, position: 'insideLeft', fontSize: 11 }} tick={{ fontSize: 11 }} />
+            <Tooltip formatter={(v, name) => [`${v.toFixed(1)}%`, name]} />
+            <Line type="monotone" dataKey="tnf" stroke={GREEN} strokeWidth={3} dot={false} name="TNF-α suppression" />
+            <Line type="monotone" dataKey="cardiac" stroke={AMBER} strokeWidth={2} dot={false} name="Cardiac risk" strokeDasharray="5 3" />
+            <Line type="monotone" dataKey="rumen" stroke={RED} strokeWidth={2} dot={false} name="Rumen stasis risk" strokeDasharray="5 3" />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="two-col">
+        <div className="chart-card">
+          <div className="chart-title">Cortisol — 30-day trend (treatment vs sham)</div>
+          <ResponsiveContainer width="100%" height={220}>
+            <LineChart data={cortisolTimeseries}>
+              <XAxis dataKey="day" tick={{ fontSize: 10 }} />
+              <YAxis tick={{ fontSize: 10 }} />
+              <Tooltip />
+              <Line type="monotone" dataKey="treatment" stroke={GREEN} strokeWidth={2} dot={false} name="Treatment" />
+              <Line type="monotone" dataKey="sham" stroke={RED} strokeWidth={2} dot={false} name="Sham" strokeDasharray="4 3" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="chart-card">
+          <div className="chart-title">HRV (RMSSD) — real-time trace</div>
+          <ResponsiveContainer width="100%" height={220}>
+            <AreaChart data={hrvTrace}>
+              <XAxis dataKey="t" tick={{ fontSize: 10 }} />
+              <YAxis tick={{ fontSize: 10 }} />
+              <Tooltip />
+              <Area type="monotone" dataKey="rmssd" fill={GREEN} fillOpacity={0.15} stroke={GREEN} strokeWidth={2} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
     </>
   )
 }
@@ -633,6 +799,201 @@ function Slider({ label, value, set, min, max, step = 1, prefix = '', suffix = '
       </div>
       <input type="range" min={min} max={max} step={step} value={value} onChange={e => set(Number(e.target.value))} />
     </div>
+  )
+}
+
+/* ════════════════════════════════════════
+   DOSE RESPONSE PAGE
+   ════════════════════════════════════════ */
+function DoseResponsePage() {
+  const [freq, setFreq] = useState(20)
+  const [pulseWidth, setPulseWidth] = useState(250)
+  const [amplitude, setAmplitude] = useState(1.5)
+
+  // Hill equation for dose-response
+  const doseResponse = useMemo(() => {
+    const points = []
+    for (let a = 0; a <= 5; a += 0.1) {
+      const tnfSuppression = 80 * Math.pow(a, 2) / (Math.pow(1.8, 2) + Math.pow(a, 2))
+      const cardiacRisk = a > 2 ? 100 * Math.pow(a - 2, 1.5) / (Math.pow(1, 1.5) + Math.pow(a - 2, 1.5)) : 0
+      const rumenStasis = a > 2.5 ? 100 * Math.pow(a - 2.5, 2) / (Math.pow(0.8, 2) + Math.pow(a - 2.5, 2)) : 0
+      points.push({
+        amp: parseFloat(a.toFixed(1)),
+        tnf: Math.min(100, tnfSuppression),
+        cardiac: Math.min(100, cardiacRisk),
+        rumen: Math.min(100, rumenStasis),
+      })
+    }
+    return points
+  }, [])
+
+  const currentPoint = doseResponse.find(p => Math.abs(p.amp - amplitude) < 0.05) || doseResponse[0]
+  const safeWindow = amplitude <= 2 && amplitude >= 1
+  const safetyMargin = currentPoint ? Math.max(0, currentPoint.tnf - Math.max(currentPoint.cardiac, currentPoint.rumen)) : 0
+
+  // 30-day cortisol timeseries (simulated)
+  const cortisolTimeseries = useMemo(() => {
+    return Array.from({ length: 30 }, (_, i) => {
+      const baseline = 8
+      const treatmentEffect = Math.max(0, 4 * (1 - Math.exp(-i / 14)))
+      return {
+        day: i + 1,
+        treatment: Math.max(2, baseline - treatmentEffect + (Math.random() - 0.5) * 1.5),
+        sham: baseline + (Math.random() - 0.5) * 1.5,
+      }
+    })
+  }, [])
+
+  // HRV real-time (simulated)
+  const hrvTrace = useMemo(() => Array.from({ length: 60 }, (_, i) => ({
+    t: i,
+    rmssd: 42 + Math.sin(i / 8) * 8 + (Math.random() - 0.5) * 4,
+  })), [])
+
+  return (
+    <>
+      <div className="page-title">Dose Response & Safety Window</div>
+      <div className="pilot-badge"><FlaskConical size={14} /> Deliverable: safety & efficacy dashboard for regulatory + investor audiences</div>
+
+      {/* Three column layout: Input / Safety / Efficacy */}
+      <div className="dr-grid">
+        {/* INPUT */}
+        <div className="dr-col">
+          <div className="dr-col-label input">
+            <span className="dr-dot" style={{ background: '#8B5CF6' }} />
+            INPUT — STIMULATION
+          </div>
+          <div className="dr-item">
+            <div className="dr-item-title">Pulse parameters</div>
+            <div className="dr-item-desc">Frequency, amplitude, pulse width swept across animals. Building the dose-response curve that doesn't exist yet.</div>
+          </div>
+          <div className="slider-section" style={{ marginTop: 12, padding: 16 }}>
+            <Slider label="Frequency" value={freq} set={setFreq} min={1} max={50} suffix=" Hz" />
+            <div style={{ height: 10 }} />
+            <Slider label="Pulse width" value={pulseWidth} set={setPulseWidth} min={50} max={1000} step={10} suffix=" µs" />
+            <div style={{ height: 10 }} />
+            <Slider label="Amplitude" value={amplitude} set={setAmplitude} min={0.1} max={5} step={0.1} suffix=" mA" />
+          </div>
+        </div>
+
+        {/* SAFETY */}
+        <div className="dr-col">
+          <div className="dr-col-label">
+            <span className="dr-dot" style={{ background: GREEN }} />
+            SAFETY READOUT
+          </div>
+          <div className="dr-item">
+            <div className="dr-item-title"><Heart size={14} style={{ display: 'inline', marginRight: 6, color: GREEN }} /> HRV <span className="dr-arrow up">↑</span></div>
+            <div className="dr-item-desc">Real-time. Confirms vagal efferent activation. Drops if cardiac branch over-stimulated — immediate safety interlock.</div>
+          </div>
+          <div className="dr-item">
+            <div className="dr-item-title"><Activity size={14} style={{ display: 'inline', marginRight: 6, color: GREEN }} /> Rumen contractions <span className="dr-arrow up">↑</span></div>
+            <div className="dr-item-desc">Confirms GI efferents active. Loss of contractions = bloat risk. Continuous bolus monitor.</div>
+          </div>
+        </div>
+
+        {/* EFFICACY */}
+        <div className="dr-col">
+          <div className="dr-col-label">
+            <span className="dr-dot" style={{ background: RED }} />
+            EFFICACY READOUT
+          </div>
+          <div className="dr-item">
+            <div className="dr-item-title"><Beaker size={14} style={{ display: 'inline', marginRight: 6, color: RED }} /> TNF-α <span className="dr-arrow down">↓</span></div>
+            <div className="dr-item-desc">Gold standard. Borovikova 2000 showed 75–80% suppression in rodents. Weekly blood draw. This is the BRD inflammation signal.</div>
+          </div>
+          <div className="dr-item">
+            <div className="dr-item-title"><TrendingDown size={14} style={{ display: 'inline', marginRight: 6, color: RED }} /> Cortisol <span className="dr-arrow down">↓</span></div>
+            <div className="dr-item-desc">Salivary — no restraint. Tracks the stress-immune axis over 30 days. Expected nadir at day 14.</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Live readouts row */}
+      <div className="card-grid">
+        <div className="card">
+          <div className="card-label">TNF-α suppression</div>
+          <div className="card-value">{currentPoint?.tnf.toFixed(0)}%</div>
+          <div className="card-sub">At {amplitude} mA</div>
+        </div>
+        <div className="card">
+          <div className="card-label">Cardiac risk</div>
+          <div className="card-value" style={{ color: currentPoint?.cardiac > 20 ? RED : GREEN }}>{currentPoint?.cardiac.toFixed(0)}%</div>
+          <div className="card-sub">Bradycardia threshold</div>
+        </div>
+        <div className="card">
+          <div className="card-label">Rumen stasis risk</div>
+          <div className="card-value" style={{ color: currentPoint?.rumen > 20 ? RED : GREEN }}>{currentPoint?.rumen.toFixed(0)}%</div>
+          <div className="card-sub">Bloat / Hoflund</div>
+        </div>
+        <div className="card">
+          <div className="card-label">Safety margin</div>
+          <div className="card-value" style={{ color: safetyMargin > 40 ? GREEN : safetyMargin > 20 ? AMBER : RED }}>{safetyMargin.toFixed(0)}%</div>
+          <div className="card-sub">{safeWindow ? 'Within therapeutic window' : 'Outside window'}</div>
+        </div>
+      </div>
+
+      {/* Dose response curve */}
+      <div className="chart-card">
+        <div className="chart-title">Dose–Response Curve — Efficacy vs Safety</div>
+        <ResponsiveContainer width="100%" height={320}>
+          <LineChart data={doseResponse}>
+            <XAxis dataKey="amp" label={{ value: 'Stimulation amplitude (mA)', position: 'insideBottom', offset: -5, fontSize: 11 }} tick={{ fontSize: 11 }} />
+            <YAxis label={{ value: 'Response (%)', angle: -90, position: 'insideLeft', fontSize: 11 }} tick={{ fontSize: 11 }} />
+            <Tooltip formatter={(v, name) => [`${v.toFixed(1)}%`, name]} />
+            <Line type="monotone" dataKey="tnf" stroke={GREEN} strokeWidth={3} dot={false} name="TNF-α suppression" />
+            <Line type="monotone" dataKey="cardiac" stroke={AMBER} strokeWidth={2} dot={false} name="Cardiac risk" strokeDasharray="5 3" />
+            <Line type="monotone" dataKey="rumen" stroke={RED} strokeWidth={2} dot={false} name="Rumen stasis risk" strokeDasharray="5 3" />
+          </LineChart>
+        </ResponsiveContainer>
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginTop: 12, fontSize: 11, color: 'var(--text-muted)' }}>
+          <div><span style={{ display: 'inline-block', width: 12, height: 3, background: GREEN, marginRight: 6, verticalAlign: 'middle' }} />TNF-α suppression (efficacy)</div>
+          <div><span style={{ display: 'inline-block', width: 12, height: 3, background: AMBER, marginRight: 6, verticalAlign: 'middle' }} />Cardiac (safety)</div>
+          <div><span style={{ display: 'inline-block', width: 12, height: 3, background: RED, marginRight: 6, verticalAlign: 'middle' }} />Rumen (safety)</div>
+        </div>
+      </div>
+
+      {/* Cortisol + HRV */}
+      <div className="two-col">
+        <div className="chart-card">
+          <div className="chart-title">Cortisol — 30-day trend (treatment vs sham)</div>
+          <ResponsiveContainer width="100%" height={220}>
+            <LineChart data={cortisolTimeseries}>
+              <XAxis dataKey="day" label={{ value: 'Day', position: 'insideBottom', offset: -5, fontSize: 10 }} tick={{ fontSize: 10 }} />
+              <YAxis label={{ value: 'ng/mL', angle: -90, position: 'insideLeft', fontSize: 10 }} tick={{ fontSize: 10 }} />
+              <Tooltip />
+              <Line type="monotone" dataKey="treatment" stroke={GREEN} strokeWidth={2} dot={false} name="Treatment" />
+              <Line type="monotone" dataKey="sham" stroke={RED} strokeWidth={2} dot={false} name="Sham" strokeDasharray="4 3" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="chart-card">
+          <div className="chart-title">HRV (RMSSD) — real-time trace</div>
+          <ResponsiveContainer width="100%" height={220}>
+            <AreaChart data={hrvTrace}>
+              <XAxis dataKey="t" label={{ value: 'seconds', position: 'insideBottom', offset: -5, fontSize: 10 }} tick={{ fontSize: 10 }} />
+              <YAxis label={{ value: 'ms', angle: -90, position: 'insideLeft', fontSize: 10 }} tick={{ fontSize: 10 }} />
+              <Tooltip />
+              <Area type="monotone" dataKey="rmssd" fill={GREEN} fillOpacity={0.15} stroke={GREEN} strokeWidth={2} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Deliverable section */}
+      <div className="deliverable-card">
+        <div className="deliverable-label">
+          <span>DELIVERABLE</span>
+          <div className="deliverable-title">Safety & efficacy dashboard for regulatory and investor audiences</div>
+        </div>
+        <ul className="deliverable-list">
+          <li>Dose-response curve: TNF-α suppression vs cardiac and rumen safety margin at each parameter set</li>
+          <li>First published bovine VNS stimulation parameters — the dataset that defines the field</li>
+          <li>FDA-CVM submission package foundation: safety biomarkers, efficacy signal, n=20 powered pilot</li>
+        </ul>
+      </div>
+    </>
   )
 }
 
@@ -659,7 +1020,8 @@ export default function App() {
         </nav>
       </div>
       <main className="main">
-        {page === 'economics' ? <EconomicsPage /> : <HerdPage />}
+        {page === 'economics' && <EconomicsPage />}
+        {page === 'herd' && <HerdPage />}
       </main>
     </div>
   )

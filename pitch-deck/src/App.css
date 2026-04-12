@@ -195,7 +195,7 @@
 
 .hero-circle-outer { width: 280px; height: 280px; border-radius: 50%; background: linear-gradient(135deg, var(--bg-sage), var(--bg-sage-mid)); display: flex; align-items: center; justify-content: center; }
 .hero-circle-inner { width: 200px; height: 200px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; flex-direction: column; color: white; box-shadow: 0 20px 60px rgba(45,168,122,0.25); }
-.hero-number { font-size: 48px; font-weight: 800; letter-spacing: -2px; }
+.hero-number { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 48px; font-weight: 800; letter-spacing: -2px; }
 .hero-number-label { font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; margin-top: 4px; }
 .hero-tagline { font-size: clamp(24px, 3vw, 38px); font-weight: 800; color: var(--text); margin-top: 24px; line-height: 1.2; }
 .hero-tagline-sub { font-size: 18px; color: var(--text-sec); margin-top: 8px; font-weight: 500; }
@@ -229,7 +229,7 @@
 .stat-circle-ring.red { border-color: var(--red-soft); }
 .stat-circle-ring.green { border-color: var(--green-light); }
 
-.stat-num { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); }
+.stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); }
 .stat-num.red { color: var(--red); }
 .stat-num.green { color: var(--green); }
 
@@ -331,7 +331,7 @@
 .flywheel-circle { width: 160px; height: 160px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; }
 .flywheel-circle.input { background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); }
 .flywheel-circle.output { background: var(--green); color: white; box-shadow: 0 12px 40px rgba(45,168,122,0.25); }
-.flywheel-num { font-size: 32px; font-weight: 800; letter-spacing: -1px; }
+.flywheel-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -1px; }
 .flywheel-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; max-width: 110px; }
 .flywheel-arrow { font-size: 28px; color: rgba(255,255,255,0.4); }
 
@@ -357,7 +357,7 @@
 /* ══════════════════════════════════════
    CLOSE
    ══════════════════════════════════════ */
-.close-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.close-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; }
 .close-headline { font-size: clamp(24px, 3.5vw, 40px); font-weight: 800; color: var(--text); letter-spacing: -0.5px; line-height: 1.2; }
 .close-circles { display: flex; gap: 28px; margin: 28px 0; flex-wrap: wrap; justify-content: center; }
 .close-circle { width: 130px; height: 130px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; }
@@ -368,6 +368,124 @@
 .close-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; opacity: 0.8; max-width: 90px; }
 .close-brand { font-size: clamp(40px, 7vw, 72px); font-weight: 800; color: var(--green); letter-spacing: -3px; }
 .close-email { margin-top: 8px; font-size: 14px; color: var(--text-muted); letter-spacing: 0.5px; }
+
+/* Big close slide — uses hero image background, large brand + motto */
+.logo-close-big {
+  height: 340px;
+  width: auto;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 24px rgba(0,0,0,0.4));
+}
+
+.close-brand-big {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(80px, 14vw, 180px);
+  font-weight: 800;
+  color: #2C9F72;
+  letter-spacing: -4px;
+  line-height: 0.9;
+}
+
+.close-motto-big {
+  font-family: 'RL Madena', 'Plus Jakarta Sans', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  color: white;
+  font-style: italic;
+  margin-top: 24px;
+  letter-spacing: -0.5px;
+}
+
+/* Black close slide */
+.slide.close-black {
+  background: #000;
+  color: white;
+}
+
+.slide.close-black .slide-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.slide.close-black .close-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.slide.close-black .logo-close-big {
+  height: 280px;
+  margin: 0 auto 0;
+  filter: drop-shadow(0 0 30px rgba(44,159,114,0.3));
+}
+
+.slide.close-black .close-brand-big {
+  color: #2C9F72;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.slide.close-black .close-motto-big {
+  color: rgba(255,255,255,0.95);
+  margin: 16px auto 0;
+  text-align: center;
+  width: 100%;
+}
+
+.slide.close-black .slide-logo { filter: brightness(10); opacity: 0.6; }
+
+/* ══════════════════════════════════════
+   FONT PICKER GRID (temporary)
+   ══════════════════════════════════════ */
+.font-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  max-height: 78vh;
+  overflow-y: auto;
+}
+
+.font-option {
+  background: white;
+  border: 2px solid var(--outline);
+  border-radius: 12px;
+  padding: 16px 12px 12px;
+  text-align: center;
+}
+
+.font-preview {
+  font-size: 44px;
+  line-height: 1;
+  color: var(--green);
+  letter-spacing: -1.5px;
+  margin-bottom: 8px;
+}
+
+.font-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+
+.font-vibe {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
 
 /* ══════════════════════════════════════
    COW PRINT TEXT
@@ -385,6 +503,1546 @@
   display: inline;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+}
+
+/* ══════════════════════════════════════
+   ECONOMICS CIRCLES (Slide 13)
+   ══════════════════════════════════════ */
+.econ-circles {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .econ-circles { flex-direction: column; gap: 32px; }
+}
+
+.econ-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.econ-phase-pill { display: none; }
+
+.econ-circle-ring {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 4px solid var(--outline);
+  background: var(--bg-sage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.econ-circle.tier-1 .econ-circle-ring {
+  background: var(--bg-sage);
+}
+.econ-circle.tier-2 .econ-circle-ring {
+  background: var(--bg-sage-mid);
+  width: 240px;
+  height: 240px;
+}
+.econ-circle.tier-3 .econ-circle-ring {
+  background: var(--green);
+  border-color: var(--green-darker);
+  border-width: 4px;
+  width: 280px;
+  height: 280px;
+}
+
+.econ-circle-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 20px;
+}
+
+.econ-circle-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: var(--green-dark);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.econ-circle.tier-3 .econ-circle-num { color: rgba(255,255,255,0.85); }
+
+.econ-circle-total {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.econ-circle.tier-2 .econ-circle-total { font-size: 28px; }
+
+.econ-circle.tier-3 .econ-circle-total {
+  font-size: 38px;
+  color: white;
+}
+
+.econ-circle-total-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.econ-circle.tier-3 .econ-circle-total-label { color: rgba(255,255,255,0.75); }
+
+.econ-circle-caption {
+  margin-top: 20px;
+  width: 260px;
+  background: var(--bg-sage);
+  border: 3px solid var(--outline);
+  border-radius: 14px;
+  padding: 16px 20px;
+}
+
+.econ-circle.tier-2 .econ-circle-caption {
+  background: var(--bg-sage-mid);
+}
+
+.econ-circle.tier-3 .econ-circle-caption {
+  background: var(--green-pale);
+  border-color: var(--green-darker);
+}
+
+.econ-circle-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.econ-circle-stats {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sec);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.econ-circle-stats strong {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.econ-circle-stats .dot {
+  color: var(--text-muted);
+}
+
+/* ══════════════════════════════════════
+   UNIFIED PHASE LAYOUT (Unit Economics + Roadmap)
+   ══════════════════════════════════════ */
+.phase-layout {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .phase-layout { grid-template-columns: 1fr; }
+}
+
+.phase-labels {
+  display: flex;
+  flex-direction: column;
+  padding-top: 150px;
+  gap: 0;
+  justify-content: flex-start;
+}
+
+.phase-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green-dark);
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 12px;
+  border-right: 2px solid var(--bg-sage-mid);
+}
+
+.phase-label:last-child {
+  border-right: 2px solid var(--bg-sage-mid);
+}
+
+.phase-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  position: relative;
+}
+
+.phase-arrow-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50px;
+  width: 100%;
+  height: 80px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.phase-card-v2 {
+  background: var(--bg-soft);
+  border: 2px solid var(--outline);
+  border-radius: 16px;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Progressive color intensity across phases */
+.phase-card-v2.tier-1 {
+  background: var(--bg-soft);
+}
+
+.phase-card-v2.tier-2 {
+  background: var(--bg-sage);
+}
+
+.phase-card-v2.tier-3 {
+  background: var(--green-bg);
+  border-color: var(--green);
+}
+
+.phase-card-v2.highlight {
+  background: var(--green-bg);
+  border-color: var(--green);
+}
+
+/* Phase 3 values visually heaviest */
+.phase-card-v2.tier-3 .phase-card-value {
+  font-size: clamp(18px, 1.9vw, 24px);
+  color: var(--green-darker);
+}
+
+.phase-card-v2.tier-3 .phase-card-title {
+  font-size: clamp(15px, 1.6vw, 19px);
+}
+
+.phase-card-num {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--bg-sage-mid);
+  color: var(--green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+  border: 2px solid var(--green);
+}
+
+.phase-card-v2.highlight .phase-card-num {
+  background: var(--green);
+  color: white;
+}
+
+.phase-card-title {
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  min-height: 2.4em;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.phase-card-rows {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.phase-card-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(15px, 1.6vw, 20px);
+  font-weight: 800;
+  color: var(--text);
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  line-height: 1.3;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+.phase-card-v2.highlight .phase-card-value {
+  color: var(--green-dark);
+}
+
+/* ══════════════════════════════════════
+   LICENSING LOGOS (Slide 11b)
+   ══════════════════════════════════════ */
+.licensing-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.licensing-logo-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px 40px;
+  min-width: 260px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.licensing-logo-card img {
+  max-width: 100%;
+  max-height: 76px;
+  width: auto;
+  height: auto;
+}
+
+.licensing-logo-card img.invert-logo {
+  filter: invert(1) brightness(0);
+}
+
+@media (max-width: 900px) {
+  .licensing-logo-card { min-width: 200px; padding: 20px 28px; height: 100px; }
+}
+
+/* ══════════════════════════════════════
+   TESSMAN 3 KEY POINTS — simple circles
+   ══════════════════════════════════════ */
+.tessman-points {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.tessman-simple-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tessman-ours-badge {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--green);
+  color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 8px 22px;
+  border-radius: 100px;
+  border: 3px solid var(--green-darker);
+  box-shadow: 0 0 0 6px var(--bg);
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.tessman-simple-circle {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: var(--bg-sage);
+  border: 4px solid var(--outline);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 30px;
+  text-align: center;
+}
+
+.tessman-simple-wrap.ours .tessman-simple-circle {
+  background: var(--green);
+  border-color: var(--green-darker);
+  box-shadow: 0 0 0 4px var(--green-pale);
+}
+
+.tessman-simple-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--green-dark);
+  letter-spacing: -0.3px;
+  margin-bottom: 14px;
+  line-height: 1.1;
+}
+
+.tessman-simple-wrap.ours .tessman-simple-title {
+  color: white;
+}
+
+.tessman-simple-body {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-sec);
+  line-height: 1.4;
+}
+
+.tessman-simple-wrap.ours .tessman-simple-body {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tessman-simple-body strong {
+  font-weight: 800;
+  color: var(--text);
+}
+
+.tessman-simple-wrap.ours .tessman-simple-body strong {
+  color: white;
+}
+
+/* ══════════════════════════════════════
+   LOWER-THIRD TESSMAN CITATION CARD
+   ══════════════════════════════════════ */
+.lt-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.lower-third {
+  width: calc(100% - 120px);
+  max-width: 920px;
+  padding: 28px 40px;
+  background: rgba(18, 18, 18, 0.96);
+  border: 2px solid var(--green);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.lt-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.lt-name-block {
+  flex: 1;
+  min-width: 0;
+}
+
+.lt-avatar {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--green);
+}
+
+.lt-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lt-name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lt-name {
+  font-size: 30px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+}
+
+.lt-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.2px;
+  margin-top: 6px;
+}
+
+.lt-logos {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  background: white;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.lt-logo-img {
+  height: 32px;
+  width: auto;
+}
+
+.lt-sep {
+  color: var(--green);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.lt-wtp-card {
+  background: rgba(18, 18, 18, 0.96);
+  border: 2px solid var(--green);
+  border-radius: 20px;
+  padding: 28px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.lt-wtp-label {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.lt-wtp-values {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.lt-wtp-circle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 3px solid var(--green);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.lt-wtp-circle.highlight {
+  background: var(--green);
+  border-color: var(--green-darker);
+}
+
+.lt-wtp-num {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--green);
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+.lt-wtp-circle.highlight .lt-wtp-num {
+  color: white;
+}
+
+.lt-wtp-sub {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+}
+
+.lt-wtp-circle.highlight .lt-wtp-sub {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.lt-wtp-arrow {
+  font-size: 28px;
+  color: var(--green);
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .lower-third { padding: 20px 24px; width: calc(100% - 40px); }
+  .lt-name { font-size: 17px; }
+  .lt-logo-img { height: 24px; }
+  .lt-logos { gap: 14px; }
+  .lt-wtp-amber { font-size: 14px; }
+}
+
+/* ══════════════════════════════════════
+   PHASE 1 — STATS + STUDY CYCLE + BUCKETS LAYOUT
+   ══════════════════════════════════════ */
+.phase1-layout-v2 {
+  display: grid;
+  grid-template-columns: 160px 1.6fr 0.9fr;
+  gap: 24px;
+  margin-top: 24px;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .phase1-layout-v2 { grid-template-columns: 1fr; gap: 20px; }
+}
+
+.phase1-stats-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .phase1-stats-col { flex-direction: row; justify-content: center; }
+}
+
+.phase1-stats-col .phase-detail-circle {
+  width: 140px;
+  height: 140px;
+}
+
+.phase1-stats-col .phase-detail-num {
+  font-size: 32px;
+}
+
+.phase1-stats-col .phase-detail-label {
+  font-size: 12px;
+}
+
+.cycle-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.phase1-cycle {
+  background: var(--bg-sage);
+  border: 3px solid var(--outline);
+  border-radius: 20px;
+  padding: 24px 28px 32px;
+}
+
+.cycle-diagram {
+  position: relative;
+  width: 100%;
+  height: 340px;
+}
+
+.cycle-arrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.cycle-node {
+  position: absolute;
+  background: white;
+  border: 3px solid var(--outline);
+  border-radius: 14px;
+  padding: 18px 24px;
+  text-align: center;
+  min-width: 170px;
+  z-index: 2;
+}
+
+.stim-node {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-color: var(--green);
+  background: var(--green-pale);
+}
+
+.measure-node {
+  bottom: 30px;
+  left: 0;
+  border-color: var(--green-dark);
+  background: rgba(80, 140, 90, 0.08);
+}
+
+.analyse-node {
+  bottom: 30px;
+  right: 0;
+  border-color: #C9953D;
+  background: rgba(201, 149, 61, 0.12);
+}
+
+.cycle-node-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+
+.cycle-node-sub {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-sec);
+  margin-top: 6px;
+}
+
+/* ══ Biomarker buckets (stacked right side) ══ */
+.phase1-buckets {
+  background: var(--bg-sage);
+  border: 3px solid var(--outline);
+  border-radius: 20px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bucket-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.bucket-row {
+  background: white;
+  border: 3px solid var(--outline);
+  border-radius: 14px;
+  padding: 14px 18px;
+  text-align: center;
+}
+
+.bucket-row-1 { background: var(--green-pale); border-color: var(--green); }
+.bucket-row-2 { background: rgba(80, 140, 90, 0.1); border-color: var(--green-dark); }
+.bucket-row-3 { background: rgba(201, 149, 61, 0.12); border-color: #C9953D; }
+
+.bucket-row-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 2px;
+  letter-spacing: -0.3px;
+}
+
+.bucket-row-sub {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sec);
+  margin-bottom: 6px;
+}
+
+.bucket-row-markers {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--green-dark);
+  letter-spacing: 0.3px;
+}
+
+.bucket-row-tags {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.bucket-row-tags .marker {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.85);
+  color: var(--green-darker);
+  border-radius: 100px;
+  border: 1.5px solid var(--outline);
+  letter-spacing: 0.3px;
+}
+
+/* ══ Bottom stat pills ══ */
+.phase1-bottom-stats {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.phase1-stat-pill {
+  background: var(--bg-sage);
+  border: 3px solid var(--outline);
+  border-radius: 100px;
+  padding: 10px 24px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-sec);
+  letter-spacing: 0.3px;
+}
+
+.phase1-stat-pill strong {
+  font-weight: 800;
+  color: var(--green-dark);
+  font-size: 18px;
+  margin-right: 4px;
+}
+
+/* ══════════════════════════════════════
+   PHASE DETAIL SLIDES (14b / 14c)
+   ══════════════════════════════════════ */
+.phase-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.phase-header-pill {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--green-dark);
+  background: var(--bg-sage);
+  border: 3px solid var(--outline);
+  border-radius: 100px;
+  padding: 8px 20px;
+}
+
+.phase-detail-top {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.phase-detail-circle {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: var(--bg-sage);
+  border: 4px solid var(--outline);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+}
+
+.phase-detail-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--green-dark);
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+.phase-detail-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+.phase-bucket-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding-top: 42px;
+}
+
+.phase-bucket {
+  background: var(--bg-sage);
+  border: 4px solid var(--outline);
+  border-radius: 20px;
+  padding: 52px 24px 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.phase-bucket-pill {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--green);
+  color: white;
+  border: 4px solid var(--green-darker);
+  border-radius: 100px;
+  padding: 10px 28px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 0 8px var(--bg);
+  white-space: nowrap;
+}
+
+.phase-bucket-num {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  border: 4px solid var(--green-darker);
+  position: absolute;
+  top: -42px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 8px var(--bg);
+}
+
+.phase-bucket-group-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green-dark);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.phase-bucket-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 2px;
+  letter-spacing: -0.3px;
+  text-align: center;
+}
+
+.phase-bucket-sub {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-sec);
+  margin-bottom: 10px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.phase-bucket-markers {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.marker {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 6px 14px;
+  letter-spacing: 0.3px;
+}
+
+.marker {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 5px 12px;
+  background: var(--green-pale);
+  color: var(--green-darker);
+  border-radius: 100px;
+  border: 1.5px solid var(--green-dark);
+  letter-spacing: 0.3px;
+}
+
+/* ══════════════════════════════════════
+   PHASE 3 / DEVICE DETAIL (Slide 14d)
+   ══════════════════════════════════════ */
+.phase3-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.phase3-image-flat {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  background: #ffffff;
+  border: 4px solid var(--outline);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.phase3-meta-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: var(--bg-sage);
+  border: 3px solid var(--outline);
+  border-radius: 16px;
+  padding: 20px 36px;
+  max-width: 900px;
+}
+
+.phase3-meta-item {
+  text-align: center;
+  flex: 1;
+}
+
+.phase3-meta-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green-dark);
+  margin-bottom: 4px;
+}
+
+.phase3-meta-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.phase3-meta-divider {
+  width: 2px;
+  height: 44px;
+  background: var(--outline);
+  opacity: 0.3;
+}
+
+@media (max-width: 900px) {
+  .phase3-meta-card { flex-direction: column; gap: 14px; }
+  .phase3-meta-divider { width: 60%; height: 2px; }
+}
+
+/* ══════════════════════════════════════
+   ROADMAP WAVY PATH (Slide 14)
+   ══════════════════════════════════════ */
+.roadmap-wavy {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 230px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.roadmap-wavy-path {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 220px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+.roadmap-item-v2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.roadmap-circle-v2 {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--bg-sage);
+  border: 4px solid var(--outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--green-dark);
+  letter-spacing: -1.5px;
+  box-shadow: 0 0 0 6px var(--bg);
+  position: absolute;
+  z-index: 2;
+}
+
+/* Follow the wavy path — circles dip and rise along the curve */
+.roadmap-item-v2:nth-child(2) .roadmap-circle-v2 { top: -130px; }
+.roadmap-item-v2:nth-child(3) .roadmap-circle-v2 { top: -170px; }
+.roadmap-item-v2:nth-child(4) .roadmap-circle-v2 { top: -210px; }
+
+.roadmap-item-v2 { padding-top: 0; }
+
+.roadmap-item-v2.highlight .roadmap-circle-v2 {
+  background: var(--green);
+  color: white;
+  border-color: var(--green-darker);
+}
+
+.roadmap-card-v2 {
+  background: var(--bg-sage);
+  border: 3px solid var(--outline);
+  border-radius: 14px;
+  padding: 24px 22px;
+  width: 100%;
+  text-align: center;
+}
+
+.roadmap-item-v2.highlight .roadmap-card-v2 {
+  background: var(--green-pale);
+  border-color: var(--green-darker);
+}
+
+.roadmap-card-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.roadmap-card-timeline {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--green-dark);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+.roadmap-card-meta {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.roadmap-card-output {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-sec);
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .roadmap-wavy { grid-template-columns: 1fr; }
+  .roadmap-wavy-path { display: none; }
+}
+
+/* ══════════════════════════════════════
+   ROADMAP CURVE (legacy)
+   ══════════════════════════════════════ */
+.roadmap-curve {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: 420px;
+  margin: 0 auto;
+}
+
+.roadmap-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.roadmap-stop {
+  position: absolute;
+  width: 260px;
+  background: var(--bg-soft);
+  border: 2px solid var(--outline);
+  border-radius: 18px;
+  padding: 18px 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(90, 62, 18, 0.08);
+}
+
+.roadmap-stop.highlight {
+  background: var(--green-bg);
+  border-color: var(--green);
+}
+
+.roadmap-stop.stop-1 { left: 0; top: 55%; }
+.roadmap-stop.stop-2 { left: 50%; top: 8%; transform: translateX(-50%); }
+.roadmap-stop.stop-3 { right: 0; top: 55%; }
+
+.roadmap-stop-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-sage-mid);
+  color: var(--green-dark);
+  border: 2px solid var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  margin: -42px auto 10px;
+  letter-spacing: -1px;
+}
+
+.roadmap-stop.highlight .roadmap-stop-num {
+  background: var(--green);
+  color: white;
+}
+
+.roadmap-stop-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.roadmap-stop-meta {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+}
+
+.roadmap-stop-output {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-sec);
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .roadmap-curve { height: auto; }
+  .roadmap-path { display: none; }
+  .roadmap-stop { position: relative; width: 100%; left: auto !important; right: auto !important; top: auto !important; transform: none !important; margin-bottom: 40px; }
+}
+
+/* ══════════════════════════════════════
+   LEGACY PHASE TABLE (unused but kept for safety)
+   ══════════════════════════════════════ */
+.phase-table {
+  display: grid;
+  grid-template-columns: 130px 1fr 1fr 1fr;
+  gap: 0 10px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pt-header-row { display: contents; }
+.pt-row { display: contents; }
+
+.pt-label-col {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--outline);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  padding: 16px 4px 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.pt-header {
+  background: #fff;
+  border: 2px solid var(--outline);
+  padding: 14px 16px 12px;
+  border-radius: 10px 10px 0 0;
+  border-bottom: none;
+  text-align: center;
+}
+
+.pt-header.highlight {
+  background: var(--green-bg);
+  border-color: var(--outline);
+}
+
+.pt-header-num {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--outline);
+  margin-bottom: 4px;
+}
+
+.pt-header.highlight .pt-header-num { color: var(--green); }
+
+.pt-header-name {
+  font-size: clamp(14px, 1.5vw, 18px);
+  font-weight: 800;
+  color: var(--outline);
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.pt-cell {
+  background: #fff;
+  border-left: 2px solid var(--outline);
+  border-right: 2px solid var(--outline);
+  padding: 16px 16px;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: clamp(15px, 1.7vw, 20px);
+  font-weight: 800;
+  color: var(--outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.pt-row:last-of-type .pt-cell {
+  border-bottom: 2px solid var(--outline);
+  border-radius: 0 0 12px 12px;
+}
+
+.pt-cell.highlight {
+  background: var(--green-bg);
+  border-left-color: var(--outline);
+  border-right-color: var(--outline);
+  color: var(--green-dark);
+}
+
+.pt-row:last-of-type .pt-cell.highlight {
+  border-bottom: 2px solid var(--outline);
+}
+
+/* Outcome pill at the bottom */
+/* ══════════════════════════════════════
+   PHASE CIRCLES (Slide 14 — Roadmap)
+   ══════════════════════════════════════ */
+.phase-circles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .phase-circles { grid-template-columns: 1fr; }
+}
+
+.phase-circle-wrap {
+  background: var(--bg-soft);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.phase-circle-wrap.highlight {
+  background: var(--green-bg);
+  border-color: var(--green);
+}
+
+.phase-circle-num {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--bg-sage-mid);
+  color: var(--green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  border: 2px solid var(--green);
+}
+
+.phase-circle-wrap.highlight .phase-circle-num {
+  background: var(--green);
+  color: white;
+}
+
+.phase-circle-title {
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  min-height: 2.4em;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.phase-circle-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.pcb-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pcb-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.pcb-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.phase-circle-wrap.highlight .pcb-value {
+  color: var(--green-dark);
+}
+
+.phase-outcome {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.phase-outcome-pill {
+  background: var(--green);
+  color: white;
+  border: 2px solid var(--outline);
+  border-radius: 16px;
+  padding: 16px 36px;
+  text-align: center;
+}
+
+.po-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.po-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+@media (max-width: 900px) {
+  .phase-table { grid-template-columns: 90px 1fr 1fr 1fr; gap: 0 6px; }
+  .pt-cell, .pt-header { padding: 10px 12px; font-size: 13px; }
+  .pt-header-name { font-size: 13px; }
 }
 
 /* ══════════════════════════════════════
