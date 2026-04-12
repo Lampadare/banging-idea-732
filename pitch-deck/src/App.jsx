@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion'
 import { ShieldOff, FlaskConical, Thermometer, Pill, Users, ShieldCheck, DollarSign, Beaker, Cpu, Activity } from 'lucide-react'
 import './App.css'
 
-const TOTAL = 18
+const TOTAL = 17
 
 function Reveal({ children, delay = 0, y = 20 }) {
   const ref = useRef(null)
@@ -38,7 +38,9 @@ function Circles({ config }) {
 /* ═══ S1 — HOOK ═══ */
 function S1() {
   return (
-    <div className="slide bg-img bg-clear" id="slide-0">
+    <div className="slide bg-img bg-clear hook-video-bg" id="slide-0">
+      <video className="hook-video" src="/cow-closeup.mp4" autoPlay loop muted playsInline />
+      <div className="hook-video-overlay" />
       <SlideLogo />
       <Circles config={[
         { size: 500, top: '-15%', right: '-10%', type: 'ring' },
@@ -976,13 +978,22 @@ function S_VagusControls() {
     { title: 'Immune Function', body: 'Splenic nerve macrophage signalling' },
   ]
   return (
-    <div className="slide sage" id="slide-vagus-fns">
+    <div className="slide vagus-video-bg" id="slide-vagus-fns">
+      <video
+        className="vagus-video"
+        src="/vagusnerve.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+      <div className="vagus-video-overlay" />
       <SlideLogo />
-      <div className="slide-inner" style={{ textAlign: 'center' }}>
+      <div className="slide-inner" style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
         <Reveal><div className="label">Across Mammalian Species</div></Reveal>
         <Reveal delay={0.1}>
-          <div className="title" style={{ marginBottom: 40, fontSize: 'clamp(32px, 4.5vw, 52px)' }}>
-            The vagus nerve <span className="hi">controls everything</span>.
+          <div className="title" style={{ marginBottom: 40, fontSize: 'clamp(32px, 4.5vw, 52px)', color: 'white' }}>
+            The vagus nerve <span style={{ color: 'var(--green-light)' }}>controls everything</span>.
           </div>
         </Reveal>
         <div className="vagus-grid">
@@ -1003,7 +1014,10 @@ function S_VNSProven() {
   return (
     <div className="slide" id="slide-vns-proven">
       <SlideLogo />
-      <div className="slide-inner" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      {/* Faded FDA document scans in the background */}
+      <img src="/fda-approval-1.jpeg" alt="" className="fda-bg fda-bg-1" />
+      <img src="/fda-approval-2.jpeg" alt="" className="fda-bg fda-bg-2" />
+      <div className="slide-inner" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 2 }}>
         <Reveal>
           <div className="label">Not New Science</div>
         </Reveal>
@@ -1038,6 +1052,147 @@ function S_VNSProven() {
   )
 }
 
+/* ═══ DEVICE — NERVE CUFF ═══ */
+function S_DeviceCuff() {
+  return (
+    <div className="slide" id="slide-device-cuff">
+      <SlideLogo />
+      <div className="slide-inner">
+        <Reveal>
+          <div className="phase-header">
+            <div className="phase-header-pill">THE DEVICE</div>
+            <div className="title" style={{ color: 'var(--green)', fontSize: 'clamp(36px, 4.5vw, 52px)', marginBottom: 0, textAlign: 'center' }}>BoVa Nerve Cuff</div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="device-spec-row">
+            <div className="device-spec-card">
+              <div className="device-spec-num">8</div>
+              <div className="device-spec-label">Electrode Sites</div>
+              <div className="device-spec-sub">Fascicle-selective stimulation</div>
+            </div>
+            <div className="device-spec-card">
+              <div className="device-spec-num">5 yr</div>
+              <div className="device-spec-label">Implant Life</div>
+              <div className="device-spec-sub">Polymer encapsulated</div>
+            </div>
+            <div className="device-spec-card">
+              <div className="device-spec-num">IPG</div>
+              <div className="device-spec-label">Pulse Generator</div>
+              <div className="device-spec-sub">Implantable, closed-loop</div>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.3}>
+          <div className="device-cuff-tagline">
+            Eight electrodes because that's what our models show is the sweet spot for <span className="hi">fascicle-selective stimulation</span>.
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ PRODUCT DEMOS — exploded view + MEA connector ═══ */
+function S_ProductDemos() {
+  return (
+    <div className="slide sage" id="slide-product-demos">
+      <SlideLogo />
+      <div className="slide-inner">
+        <Reveal>
+          <div className="phase-header">
+            <div className="phase-header-pill">THE BUILD</div>
+            <div className="title" style={{ color: 'var(--green)', fontSize: 'clamp(32px, 4vw, 48px)', marginBottom: 0, textAlign: 'center' }}>Not a render — it's CAD.</div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <div className="demo-grid">
+            <div className="demo-card">
+              <div className="demo-video-wrap">
+                <video src="/exploded-view.mp4" autoPlay loop muted playsInline />
+              </div>
+              <div className="demo-meta">
+                <div className="demo-label">EXPLODED VIEW</div>
+                <div className="demo-title">Full implant stack</div>
+                <div className="demo-body">Cuff, electrode array, ASIC, IPG housing — every layer modelled to spec.</div>
+              </div>
+            </div>
+            <div className="demo-card">
+              <div className="demo-video-wrap">
+                <video src="/mea-connector.mp4" autoPlay loop muted playsInline />
+              </div>
+              <div className="demo-meta">
+                <div className="demo-label">MEA CONNECTOR</div>
+                <div className="demo-title">8-channel electrode interface</div>
+                <div className="demo-body">Fascicle-selective routing — the piece that makes closed-loop stimulation possible.</div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ SIMULATION — FIRST BOVINE VNS FEM ═══ */
+function S_Simulation() {
+  return (
+    <div className="slide sage" id="slide-simulation">
+      <SlideLogo />
+      <div className="slide-inner">
+        <Reveal>
+          <div className="phase-header">
+            <div className="phase-header-pill">THE SIMULATION</div>
+            <div className="title" style={{ color: 'var(--green)', fontSize: 'clamp(32px, 4vw, 48px)', marginBottom: 0, textAlign: 'center' }}>First bovine vagus nerve simulation ever run.</div>
+          </div>
+        </Reveal>
+        <div className="sim-layout">
+          <Reveal delay={0.15}>
+            <div className="sim-problem">
+              <div className="sim-section-label">THE GAP</div>
+              <div className="sim-section-title">Zero published data on the bovine vagus nerve</div>
+              <ul className="sim-bullets">
+                <li>No fibre counts</li>
+                <li>No fascicle maps</li>
+                <li>No chronic recordings</li>
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <div className="sim-solution">
+              <div className="sim-section-label">OUR APPROACH</div>
+              <div className="sim-flow">
+                <div className="sim-step">
+                  <div className="sim-step-num">1</div>
+                  <div className="sim-step-text">Pig vagus morphometry</div>
+                </div>
+                <div className="sim-arrow">→</div>
+                <div className="sim-step">
+                  <div className="sim-step-num">2</div>
+                  <div className="sim-step-text">Bovine geometry adapt</div>
+                </div>
+                <div className="sim-arrow">→</div>
+                <div className="sim-step">
+                  <div className="sim-step-num">3</div>
+                  <div className="sim-step-text">Full FEM simulation</div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+        <Reveal delay={0.5}>
+          <div className="sim-outcome">
+            <div className="sim-outcome-pill">
+              <div className="sim-outcome-label">Therapeutic Window</div>
+              <div className="sim-outcome-value">Anti-inflammatory pathway selected · Cardiac side effects avoided</div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
 /* ═══ CONCLUSION / QR CODE ═══ */
 function S_Conclusion() {
   return (
@@ -1060,7 +1215,7 @@ function S_Conclusion() {
         <Reveal delay={0.3}>
           <div className="conclusion-qr">
             <div className="qr-box">
-              <div className="qr-placeholder">QR</div>
+              <img src="/qrcode.png" alt="Scan for BoVa report" />
             </div>
             <div className="qr-label">Read the full BoVa report</div>
           </div>
@@ -1129,7 +1284,7 @@ function FontPicker() {
 /* ═══ S15 — CLOSE ═══ */
 function S13() {
   return (
-    <div className="slide close-black" id="slide-14">
+    <div className="slide close-black close-hero-bg" id="slide-14">
       <div className="slide-inner">
         <div className="close-wrap">
           <Reveal>
@@ -1139,7 +1294,7 @@ function S13() {
             <div className="close-brand-big">BoVa</div>
           </Reveal>
           <Reveal delay={0.4}>
-            <div className="close-motto-big">Healthier cattle, one moo at a time.</div>
+            <div className="close-motto-big">Neuromodulation for the herd.</div>
           </Reveal>
         </div>
       </div>
@@ -1265,10 +1420,6 @@ export default function App() {
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === 'n' || e.key === 'N') {
-        setNotesOpen(p => !p)
-        return
-      }
       if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'j') {
         e.preventDefault()
         document.getElementById(`slide-${Math.min(cur + 1, TOTAL - 1)}`)?.scrollIntoView({ behavior: 'smooth' })
@@ -1289,30 +1440,29 @@ export default function App() {
           <button key={i} className={`nav-dot ${i === cur ? 'active' : ''}`} onClick={() => document.getElementById(`slide-${i}`)?.scrollIntoView({ behavior: 'smooth' })} aria-label={`Slide ${i + 1}`} />
         ))}
       </nav>
-      {/* ═══ THE PROBLEM — Dameer ═══ */}
-      <S1 />                {/* Hook — $1B, same nerve different animal */}
-      <S3 />                {/* BRD problem */}
-      <S4 />                {/* Dark cutting problem */}
-      <S5 />                {/* Gut motility problem */}
-      <S_VagusControls />   {/* Vagus controls everything */}
-      <S_VNSProven />       {/* VNS FDA-approved since 1997 */}
+      {/* ═══ THE PROBLEM — Dameer (42s) ═══ */}
+      <S1 />                {/* Hook — $1.3B lost, same nerve different animal */}
+      <S_VagusControls />   {/* Vagus controls: inflammation / gut / stress / immune */}
+      <S_VNSProven />       {/* VNS FDA-approved since 1997, never in cattle + 600kg simpler */}
 
-      {/* ═══ THE DEVICE — Martin ═══ */}
-      <S14d_Phase3 />       {/* Stentrode / nerve cuff device */}
-      <S8 />                {/* White space — zero competitors/data */}
+      {/* ═══ THE DEVICE — Martin (~50s) ═══ */}
+      <S_DeviceCuff />      {/* Nerve cuff — 8 electrodes, IPG, 5yr life */}
+      <S_ProductDemos />    {/* CAD exploded view + MEA connector demos */}
+      <S_Simulation />      {/* First bovine VNS FEM simulation ever run */}
 
       {/* ═══ ROADMAP & COMPETITIVE EDGE — Sidney ═══ */}
       <S_Tessman />         {/* Tessman lower-third citation */}
       <S_TessmanPoints />   {/* Tessman 3 key points */}
       <S14_Roadmap />       {/* Commercial roadmap (wavy path) */}
       <S14b_Phase1 />       {/* Phase 1 — Nerve cuff validation */}
-      <S14c_Phase2 />       {/* Phase 2 — VNS efficacy trial */}
+      <S14c_Phase2 />       {/* Phase 2 — VNS efficacy trial (CVM + feedlot) */}
+      <S14d_Phase3 />       {/* Phase 3 — Stentrode, minimally invasive long-term */}
       <S13_Roadmap />       {/* Unit economics circles */}
       <S11 />               {/* Moonshot — 100k cows */}
       <S11b_Licensing />    {/* Licensing to SetPoint/LivaNova/Inspire */}
 
       {/* ═══ CONCLUSION ═══ */}
-      <S_Conclusion />      {/* $5,000 + QR / blog */}
+      <S_Conclusion />      {/* $5,000 first experiment + QR / blog */}
       <S13 />               {/* BoVa logo + motto close */}
       <NotesPanel currentSlide={cur} open={notesOpen} onToggle={() => setNotesOpen(p => !p)} />
     </>
