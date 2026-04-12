@@ -101,15 +101,51 @@ Switching from ILU to hypre BoomerAMG made memory **worse** — AMG builds a mul
 - HXT fails on complex multi-fascicle geometries
 - **Fix**: Force Delaunay (Algorithm3D=1) after NRV's gmsh config
 
+## What Actually Works (Final Proven Config)
+
+### 10-fascicle FEM — SUCCESSFUL
+- **10 fascicles**, P1 elements, ILU solver, Delaunay mesh, CharacteristicLengthMin=30
+- Mesh: 204K elements, 30K nodes, 11 subspaces
+- FEM solve: **531s** (8.9 min), peak ~22GB RAM (Mac M2 Max 64GB)
+- Memory drops to ~7GB after solve during footprint interpolation
+- Amplitude sweep: 20 points with footprint caching, ~30s each
+- **This is the production configuration**
+
+### Why 15+ Fascicles Fail
+- 15 fascicles: PETSc `MatXIJSetPreallocation` error on Mac (block matrix too large)
+- 15 fascicles: OOM at 59GB on DT-2 Linux
+- 20 fascicles: OOM on both machines (11GB Mac, 59GB DT-2)
+- 57 fascicles: OOM everywhere even with BoomerAMG
+- Root cause: NRV mixed-element formulation (Nspace = n_fasc + 1)
+- DT-2 Linux PETSc uses ~5× more RAM than Mac for same problem
+
+### Critical Settings
+```json
+// dolfinx_jit_options.json (in working directory)
+{"timeout": 600, "cffi_extra_compile_args": ["-O0", "-g0"]}
+```
+
+### NRV Patches Required (on both machines)
+```
+# In _NerveMshCreator.py:
+ENT_DOM_offset["Electrode"] = 200  # was 100, allows 95 fascicles
+default_res["Axon"] = 50           # was 10, reduces mesh 5x
+```
+
+### Geometry Requirements
+- Minimum 75μm gap between fascicles (for perineurium + gmsh stability)
+- Force Delaunay mesher (Algorithm3D=1), NOT HXT (Algorithm3D=10)
+- HXT fails on complex multi-fascicle geometries
+
 ## Recommendations for Next Steps
 
-### Immediate (to get results today)
-1. Close memory-hungry apps (Arc, Spotify, Claude desktop) and rerun 20-fascicle ILU locally
-2. Or run 15 fascicles (estimated ~6-8GB, safe margin)
-3. Or run on a cloud VPS with 256GB RAM (~$1/hour on Hetzner)
+### Immediate
+1. Plot 10-fascicle FEM results (activation maps + recruitment curves)
+2. Extrapolate to 57 fascicles using voltage field interpolation
+3. Run 2-3 electrode configurations (monopolar, bipolar, steered)
 
 ### For the Pitch
-- 20 representative fascicles is scientifically defensible (VaStim used 9)
+- 10 representative fascicles is scientifically defensible (VaStim used 9)
 - Frame as: "representative-subset FEM model with extrapolation to full cross-section"
 - The selectivity story holds at N≥10 fascicles (confirmed by literature review)
 
@@ -118,6 +154,7 @@ Switching from ILU to hypre BoomerAMG made memory **worse** — AMG builds a mul
 - This reduces Nspace from N+1 to 1 regardless of fascicle count
 - Used by ASCENT/COMSOL pipeline — scientifically equivalent
 - Would enable 57+ fascicles trivially
+- Or: rent 256GB VPS (~$1/hr on Hetzner) and brute-force 57 fascicles
 
 ## Files
 
