@@ -20,7 +20,7 @@ def load_geometry(path="data/bovine_geometry.json"):
 
 
 def load_grid(path):
-    d = np.load(path)
+    d = np.load(path, allow_pickle=True)
     return d["y"], d["z"], d["v"], float(d["semi_major"]), float(d["semi_minor"])
 
 
@@ -80,7 +80,7 @@ def plot_activation_maps(results, geom, save_prefix="outputs/figures/bovine"):
 
     fig = make_subplots(
         rows=1, cols=3,
-        subplot_titles=[f"<b>{a} μA ({a/1000:.1f} mA)</b>" for a in pick_amps],
+        subplot_titles=[f"<b>{a} μA (~{a/1000:.1f} mA)</b>" for a in pick_amps],
         horizontal_spacing=0.07,
     )
 
@@ -165,13 +165,23 @@ def plot_recruitment(results, geom, save_prefix="outputs/figures/bovine"):
         horizontal_spacing=0.08)
 
     # Panel 1
+    diams = [fi[i]["d"] for i in range(n_f) if fi[i].get("source") != "missing"]
+    d_min, d_max = min(diams), max(diams)
     for i in range(n_f):
+        if fi[i].get("source") == "missing":
+            continue
         pcts = [amps[str(a)]["f"][str(i)]["vm_r"] / max(amps[str(a)]["f"][str(i)]["vm_t"], 1) * 100
                 for a in amp_keys]
-        fig.add_trace(go.Scatter(x=amps_mA, y=pcts, mode="lines+markers",
-            line=dict(color=FASCICLE_COLORS[i % len(FASCICLE_COLORS)], width=2.5),
-            marker=dict(size=5),
-            name=f"F{fi[i]['orig_id']} ({fi[i]['d']}μm)",
+        is_first = (i == 0)
+        # Rainbow color based on position in the set
+        hue = int(i * 360 / max(n_f, 1))
+        fig.add_trace(go.Scatter(x=amps_mA, y=pcts, mode="lines",
+            line=dict(color=f"hsl({hue},80%,65%)", width=2),
+            name=f"Individual fascicles ({d_min}–{d_max} μm, n={len(diams)})" if is_first else None,
+            showlegend=is_first,
+            legendgroup="fascicles",
+            hovertext=f"F{fi[i]['orig_id']} ({fi[i]['d']}μm)",
+            hoverinfo="text+y",
             legend="legend"), row=1, col=1)
 
     # Panel 2
@@ -193,12 +203,18 @@ def plot_recruitment(results, geom, save_prefix="outputs/figures/bovine"):
         name="Vagal unmyelinated (C)", legend="legend2"), row=1, col=2)
     fig.add_trace(go.Scatter(x=amps_mA, y=s_pct, mode="lines+markers",
         line=dict(color=COLORS["s"], width=3.5), marker=dict(size=6),
-        name="Sympathetic (C)", legend="legend2"), row=1, col=2)
+        name="Sympathetic (unmyelinated)", legend="legend2"), row=1, col=2)
 
     for j in range(len(amp_keys) - 1):
         if vm_pct[j] > 50 and s_pct[j] < 20:
             fig.add_vrect(x0=amps_mA[j], x1=amps_mA[j+1],
                 fillcolor=COLORS["vm"], opacity=0.08, line_width=0, row=1, col=2)
+
+    # Annotation: explain flat C-fiber lines
+    fig.add_annotation(x=0.95, y=0.35, xref="x2 domain", yref="y2 domain",
+        text="Unmyelinated fibers have<br>significantly higher activation<br>thresholds (typically >2 mA)",
+        showarrow=False, font=dict(size=9, color="rgba(255,255,255,0.45)"),
+        xanchor="right", yanchor="middle")
 
     # Panel 3
     si = [vm_pct[j]/100 - max(s_pct[j]/100, vu_pct[j]/100) for j in range(len(amp_keys))]
@@ -227,20 +243,119 @@ def plot_recruitment(results, geom, save_prefix="outputs/figures/bovine"):
                    x=0.5, y=0.97),
         height=580, width=1500,
         # Two-column legend under panel 1
-        legend=dict(orientation="v", yanchor="top", y=-0.13,
+        legend=dict(orientation="h", yanchor="top", y=-0.13,
             xanchor="left", x=0.0,
-            font=dict(size=9), bgcolor="rgba(0,0,0,0.3)",
-            bordercolor="rgba(255,255,255,0.1)", borderwidth=1,
-            title=dict(text="Fascicles")),
-        legend2=dict(orientation="v", yanchor="top", y=-0.13,
-            xanchor="left", x=0.38,
             font=dict(size=10), bgcolor="rgba(0,0,0,0.3)",
-            bordercolor="rgba(255,255,255,0.1)", borderwidth=1,
-            title=dict(text="Fiber types")),
-        margin=dict(t=100, b=220, l=60, r=40))
+            bordercolor="rgba(255,255,255,0.1)", borderwidth=1),
+        legend2=dict(orientation="h", yanchor="top", y=-0.13,
+            xanchor="right", x=0.65,
+            font=dict(size=10), bgcolor="rgba(0,0,0,0.3)",
+            bordercolor="rgba(255,255,255,0.1)", borderwidth=1),
+        margin=dict(t=100, b=130, l=60, r=40))
     fig.write_html(f"{save_prefix}_recruitment.html")
     fig.write_image(f"{save_prefix}_recruitment.png", scale=3)
     print(f"Saved: {save_prefix}_recruitment.html + .png")
+
+
+# ============================================================
+# RECRUITMENT — individual standalone panels
+# ============================================================
+def plot_recruitment_panels(results, geom, save_prefix="outputs/figures/bovine"):
+    fi = results["fi"]
+    amps = results["amps"]
+    amp_keys = sorted([int(k) for k in amps.keys()])
+    amps_mA = [a / 1000 for a in amp_keys]
+    n_f = len(fi)
+
+    diams = [fi[i]["d"] for i in range(n_f) if fi[i].get("source") != "missing"]
+    d_min, d_max = min(diams), max(diams)
+
+    vm_pct, vu_pct, s_pct = [], [], []
+    for a in amp_keys:
+        sd = amps[str(a)]["sum"]
+        vm_n, vm_d = map(int, sd["vm"].split("/"))
+        vu_n, vu_d = map(int, sd["vu"].split("/"))
+        s_n, s_d = map(int, sd["s"].split("/"))
+        vm_pct.append(vm_n / max(vm_d, 1) * 100)
+        vu_pct.append(vu_n / max(vu_d, 1) * 100)
+        s_pct.append(s_n / max(s_d, 1) * 100)
+
+    # Panel 1: Per-fascicle myelinated
+    fig1 = go.Figure()
+    for i in range(n_f):
+        if fi[i].get("source") == "missing":
+            continue
+        pcts = [amps[str(a)]["f"][str(i)]["vm_r"] / max(amps[str(a)]["f"][str(i)]["vm_t"], 1) * 100
+                for a in amp_keys]
+        hue = int(i * 360 / max(n_f, 1))
+        is_first = (i == 0)
+        fig1.add_trace(go.Scatter(x=amps_mA, y=pcts, mode="lines",
+            line=dict(color=f"hsl({hue},80%,65%)", width=2),
+            name=f"Individual fascicles ({d_min}–{d_max} μm, n={len(diams)})" if is_first else None,
+            showlegend=is_first, legendgroup="fascicles",
+            hovertext=f"F{fi[i]['orig_id']} ({fi[i]['d']}μm)", hoverinfo="text+y"))
+    fig1.update_layout(template=TEMPLATE,
+        title=dict(text="<b>Vagal Myelinated Recruitment (per fascicle)</b>", x=0.5),
+        xaxis=dict(title="Current (mA)"),
+        yaxis=dict(title="% Recruited", range=[-5, 105]),
+        legend=dict(orientation="h", y=-0.15, x=0.5, xanchor="center", font=dict(size=10)),
+        height=500, width=650, margin=dict(t=60, b=90, l=60, r=30))
+    fig1.write_html(f"{save_prefix}_recruitment_fascicles.html")
+    fig1.write_image(f"{save_prefix}_recruitment_fascicles.png", scale=3)
+    print(f"Saved: {save_prefix}_recruitment_fascicles.html + .png")
+
+    # Panel 2: Fiber-type selectivity
+    fig2 = go.Figure()
+    fig2.add_trace(go.Scatter(x=amps_mA, y=vm_pct, mode="lines+markers",
+        line=dict(color=COLORS["vm"], width=3.5), marker=dict(size=6),
+        name="Vagal myelinated (A/B)"))
+    fig2.add_trace(go.Scatter(x=amps_mA, y=vu_pct, mode="lines+markers",
+        line=dict(color=COLORS["vu"], width=3.5), marker=dict(size=6),
+        name="Vagal unmyelinated (C)"))
+    fig2.add_trace(go.Scatter(x=amps_mA, y=s_pct, mode="lines+markers",
+        line=dict(color=COLORS["s"], width=3.5), marker=dict(size=6),
+        name="Sympathetic (unmyelinated)"))
+    for j in range(len(amp_keys) - 1):
+        if vm_pct[j] > 50 and s_pct[j] < 20:
+            fig2.add_vrect(x0=amps_mA[j], x1=amps_mA[j+1],
+                fillcolor=COLORS["vm"], opacity=0.08, line_width=0)
+    fig2.add_annotation(x=0.95, y=0.35, xref="paper", yref="paper",
+        text="Unmyelinated fibers have<br>significantly higher activation<br>thresholds (typically >2 mA)",
+        showarrow=False, font=dict(size=9, color="rgba(255,255,255,0.45)"),
+        xanchor="right", yanchor="middle")
+    fig2.update_layout(template=TEMPLATE,
+        title=dict(text="<b>Fiber-Type Selectivity</b>", x=0.5),
+        xaxis=dict(title="Current (mA)"),
+        yaxis=dict(title="% Recruited", range=[-5, 105]),
+        legend=dict(orientation="h", y=-0.15, x=0.5, xanchor="center", font=dict(size=10)),
+        height=500, width=650, margin=dict(t=60, b=90, l=60, r=30))
+    fig2.write_html(f"{save_prefix}_recruitment_selectivity.html")
+    fig2.write_image(f"{save_prefix}_recruitment_selectivity.png", scale=3)
+    print(f"Saved: {save_prefix}_recruitment_selectivity.html + .png")
+
+    # Panel 3: Selectivity index
+    fig3 = go.Figure()
+    si = [vm_pct[j]/100 - max(s_pct[j]/100, vu_pct[j]/100) for j in range(len(amp_keys))]
+    fig3.add_trace(go.Scatter(x=amps_mA, y=si, mode="lines+markers",
+        line=dict(color=COLORS["si"], width=3.5), marker=dict(size=6),
+        name="Selectivity Index"))
+    fig3.add_hline(y=0, line_dash="dash", line_color="rgba(255,255,255,0.2)")
+    best = int(np.argmax(si))
+    fig3.add_annotation(x=0.95, y=0.15, xref="paper", yref="paper",
+        text=f"<b>Best SI = {si[best]:.2f}</b><br>at ~{amps_mA[best]:.2f} mA",
+        showarrow=False, font=dict(color=COLORS["si"], size=12),
+        bgcolor="rgba(0,0,0,0.7)", borderpad=6,
+        bordercolor=COLORS["si"], borderwidth=1,
+        xanchor="right", yanchor="bottom")
+    fig3.update_layout(template=TEMPLATE,
+        title=dict(text="<b>Selectivity Index</b>", x=0.5),
+        xaxis=dict(title="Current (mA)"),
+        yaxis=dict(title="SI = (vagal myel %) − max(unmyel %, symp %)", range=[-0.5, 1.1]),
+        height=500, width=650, margin=dict(t=60, b=60, l=60, r=30),
+        showlegend=False)
+    fig3.write_html(f"{save_prefix}_recruitment_si.html")
+    fig3.write_image(f"{save_prefix}_recruitment_si.png", scale=3)
+    print(f"Saved: {save_prefix}_recruitment_si.html + .png")
 
 
 # ============================================================
@@ -299,7 +414,10 @@ def plot_heatmap(grid_path, geom, results=None, save_prefix="outputs/figures/bov
         xaxis=dict(title="y (μm)", scaleanchor="y", showgrid=False,
                    range=[-sa*1.15, sa*1.15]),
         yaxis=dict(title="z (μm)", showgrid=False, range=[-sb*1.15, sb*1.15]),
-        height=700, width=850, margin=dict(t=100, b=60, l=60, r=100))
+        height=700, width=850, margin=dict(t=100, b=60, l=60, r=100),
+        legend=dict(x=0.01, y=0.01, yanchor="bottom", xanchor="left",
+            font=dict(size=10), bgcolor="rgba(0,0,0,0.5)",
+            bordercolor="rgba(255,255,255,0.2)", borderwidth=1))
     fig.write_html(f"{save_prefix}_heatmap.html")
     fig.write_image(f"{save_prefix}_heatmap.png", scale=3)
     print(f"Saved: {save_prefix}_heatmap.html + .png")
@@ -333,23 +451,20 @@ def plot_3d_nerve(results, geom, amp_idx=None, save_prefix="outputs/figures/bovi
             mode="lines", line=dict(color="rgba(255,255,255,0.2)", width=2),
             showlegend=False, hoverinfo="skip"))
 
-    # Cuff electrode rings (bipolar — two contacts)
-    cuff_z1 = nerve_len / 2 - 500  # contact 1
-    cuff_z2 = nerve_len / 2 + 500  # contact 2
+    # Cuff electrode ring (single contact, distant ground model)
+    cuff_z = nerve_len / 2
     cuff_r = max(sa, sb) * 1.15
-    for cz, label, col in [(cuff_z1, "Cathode", "#FF5252"), (cuff_z2, "Anode", "#2196F3")]:
-        fig.add_trace(go.Scatter3d(
-            x=cuff_r*np.cos(theta), y=cuff_r*np.sin(theta)*sb/sa,
-            z=np.full(100, cz),
-            mode="lines", line=dict(color=col, width=5),
-            name=label, showlegend=True,
-            hovertext=label, hoverinfo="text"))
-        # Thicker ring effect
-        fig.add_trace(go.Scatter3d(
-            x=cuff_r*1.02*np.cos(theta), y=cuff_r*1.02*np.sin(theta)*sb/sa,
-            z=np.full(100, cz),
-            mode="lines", line=dict(color=col, width=2, dash="dot"),
-            showlegend=False, hoverinfo="skip"))
+    fig.add_trace(go.Scatter3d(
+        x=cuff_r*np.cos(theta), y=cuff_r*np.sin(theta)*sb/sa,
+        z=np.full(100, cuff_z),
+        mode="lines", line=dict(color="#FF5252", width=5),
+        name="Cathode (distant ground)", showlegend=True,
+        hovertext="Cathode ring", hoverinfo="text"))
+    fig.add_trace(go.Scatter3d(
+        x=cuff_r*1.02*np.cos(theta), y=cuff_r*1.02*np.sin(theta)*sb/sa,
+        z=np.full(100, cuff_z),
+        mode="lines", line=dict(color="#FF5252", width=2, dash="dot"),
+        showlegend=False, hoverinfo="skip"))
 
     # Un-modeled fascicles
     for fg in all_fascs:
@@ -407,7 +522,7 @@ def plot_3d_nerve(results, geom, amp_idx=None, save_prefix="outputs/figures/bovi
 
     fig.update_layout(template=TEMPLATE,
         title=dict(text=f"<b>Bovine Vagosympathetic Trunk — 3D View</b><br>"
-                        f"<sub>{n_f} fascicles, {amp} μA ({amp/1000:.1f} mA), bipolar cuff</sub>",
+                        f"<sub>{n_f} fascicles, {amp} μA (~{amp/1000:.1f} mA), cuff electrode, distant ground</sub>",
                    x=0.5, y=0.95),
         scene=dict(
             xaxis=dict(title="y (μm)", showgrid=False, showbackground=False,
@@ -442,10 +557,13 @@ if __name__ == "__main__":
 
     plot_activation_maps(results, geom, save_prefix=prefix)
     plot_recruitment(results, geom, save_prefix=prefix)
+    plot_recruitment_panels(results, geom, save_prefix=prefix)
     plot_3d_nerve(results, geom, save_prefix=prefix)
 
+    results_dir = str(Path(results_path).parent)
     grid_candidates = [
-        results_path.replace("_results.json", "_grid.npz"),
+        results_path.replace("results.json", "grid.npz"),
+        f"{results_dir}/grid.npz",
         "bovine_6_pure_grid.npz",
         "bovine_6_mixed_grid.npz",
     ]

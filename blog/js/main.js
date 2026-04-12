@@ -76,6 +76,32 @@ if (canvas) {
   window.addEventListener('resize', () => { resize(); createParticles(); });
 }
 
+// Mesh carousel
+const carousel = document.getElementById('mesh-carousel');
+if (carousel) {
+  const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+  const label = document.getElementById('mesh-carousel-label');
+  const prevBtn = carousel.querySelector('.carousel-prev');
+  const nextBtn = carousel.querySelector('.carousel-next');
+  const batchRanges = {
+    '0': '0\u20135', '1': '6\u201311', '2': '12\u201317', '3': '18\u201323',
+    '4': '24\u201329', '5': '30\u201335', '6': '36\u201341', '7': '42\u201347',
+    '8': '48\u201353', '9': '54\u201356',
+  };
+  let idx = 0;
+
+  function showSlide(i) {
+    slides[idx].classList.remove('active');
+    idx = ((i % slides.length) + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    const b = slides[idx].dataset.batch;
+    if (label) label.textContent = 'Batch ' + b + ' \u2014 Fascicles ' + (batchRanges[b] || b);
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); showSlide(idx - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); showSlide(idx + 1); });
+}
+
 // Nav scroll behavior
 let lastScroll = 0;
 const nav = document.getElementById('nav');

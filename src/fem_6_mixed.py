@@ -172,9 +172,12 @@ if __name__ == "__main__":
     # --batch N mode: index directly into all 57 fascicles
     # Batch 0=[0-5], 1=[6-11], ..., 9=[54-56]
     BATCH = None
-    for a in sys.argv:
+    RAW_INDICES = None
+    for i, a in enumerate(sys.argv):
         if a.startswith("--batch"):
-            BATCH = int(a.split("=")[1] if "=" in a else sys.argv[sys.argv.index(a) + 1])
+            BATCH = int(a.split("=")[1] if "=" in a else sys.argv[i + 1])
+        elif a == "--indices":
+            RAW_INDICES = [int(x) for x in sys.argv[i + 1].split(",")]
 
     nrv.backend.parameters.set_nmod_ncore(NMOD_CORES)
     nrv.backend.parameters.set_gmsh_ncore(GMSH_CORES)
@@ -184,7 +187,11 @@ if __name__ == "__main__":
 
     all_fascs = geom["vagal_fascicles"]
 
-    if BATCH is not None:
+    if RAW_INDICES is not None:
+        indices = RAW_INDICES
+        TAG = f"custom_{indices[0]}_{indices[-1]}"
+        N_FASC = len(indices)
+    elif BATCH is not None:
         indices = list(range(BATCH * 6, min((BATCH + 1) * 6, len(all_fascs))))
         TAG = f"batch{BATCH}"
         N_FASC = len(indices)

@@ -29,7 +29,7 @@ import gmsh
 import threading
 import resource
 from pathlib import Path
-from itertools import product
+from itertools import product  # noqa: F401 — used in potential future refinement
 
 IS_MAC = sys.platform == "darwin"
 N_CPU = os.cpu_count() or 4
@@ -541,6 +541,7 @@ if __name__ == "__main__":
             self_m.compute_domains()
             self_m.compute_res()
             gmsh.option.setNumber("Mesh.Algorithm3D", 1)
+            log("  gmsh: Delaunay forced")
             self_m.generate()
         nerve.extra_stim.model.mesh.compute_mesh = types.MethodType(
             pcm, nerve.extra_stim.model.mesh
@@ -548,10 +549,35 @@ if __name__ == "__main__":
 
         # FEM solve — NRV automatically does one solve per electrode
         log(f"FEM solving ({n_elec} basis fields)...")
+        log(f"  Expected: {n_elec} sequential solves, ~3 min each")
+
+        # Heartbeat thread
+        _t0_fem = time.time()
+        _hb_stop = threading.Event()
+        def _hb():
+            while not _hb_stop.wait(60):
+                el = time.time() - _t0_fem
+                n_done = len(nerve.extra_stim.model.sim_res) if hasattr(nerve.extra_stim.model, 'sim_res') else 0
+                try:
+                    rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+                    rss_gb = rss / (1024**3) if IS_MAC else rss / (1024**2)
+                except:
+                    rss_gb = 0
+                log(f"  HEARTBEAT: {el:.0f}s, {n_done}/{n_elec} solves done, peak_rss={rss_gb:.1f}GB")
+        threading.Thread(target=_hb, daemon=True).start()
+
         t0 = time.time()
         nerve.extra_stim.run_model()
+        _hb_stop.set()
         t_fem = time.time() - t0
-        log(f"FEM done: {t_fem:.1f}s ({t_fem/60:.1f} min), {len(nerve.extra_stim.model.sim_res)} fields")
+
+        n_fields = len(nerve.extra_stim.model.sim_res)
+        log(f"FEM done: {t_fem:.1f}s ({t_fem/60:.1f} min), {n_fields} fields")
+
+        # Verify we got the expected number of fields
+        if n_fields != n_elec:
+            log(f"  WARNING: expected {n_elec} fields, got {n_fields}")
+            n_elec = n_fields  # adjust downstream
 
         # Sample basis fields
         log("Sampling basis fields...")
@@ -569,7 +595,8 @@ if __name__ == "__main__":
                 save_dict[f"e{e}_f{fid}"] = varr
             save_dict[f"e{e}_grid"] = basis_grids[e]
         np.savez_compressed(f"{out_dir}/basis_fields.npz", **save_dict)
-        log(f"Saved: {out_dir}/basis_fields.npz")
+        log(f"CHECKPOINT: {out_dir}/basis_fields.npz ({n_elec} fields × {len(all_fascs)} centroids)")
+        log(f"  If search crashes, basis fields are saved — restart search only")
 
         # Search for best steering (skip for bipolar — just combine cathode+anode)
         if config_name == "bipolar":
@@ -620,6 +647,8 @@ if __name__ == "__main__":
 
         log(f"Saved: {out_dir}/results.json, search_results.json, grid.npz")
         log(f"Best: SI={best['si']:.3f}, vm={best['vm_pct']}%, s={best['s_pct']}%")
+        log(f"CONFIG {config_name} COMPLETE in {time.time() - t0:.0f}s")
+        log(f"Plot: python src/plot_plotly.py {out_dir}/results.json")
 
     log("=" * 60)
     log("ALL CONFIGS DONE")
