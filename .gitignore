@@ -1,6 +1,22 @@
+# Python
 __pycache__/
 *.pyc
 .venv/
 *.pt
-*.txt
+
+# macOS / editor
 .DS_Store
+.claude/
+
+# Node / Vite build artifacts
+node_modules/
+dist/
+.vite/
+*.log
+
+# Environment
+.env
+.env.local
+
+# Misc
+*.txt
