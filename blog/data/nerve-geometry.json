@@ -6,724 +6,459 @@
   "fascicles": [
     {
       "id": 1,
-      "y": -974.4,
-      "z": -565.0,
-      "r": 179.15,
-      "type": "vagal"
+      "y": -946.3,
+      "z": -667.7,
+      "r": 179.2,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 2,
-      "y": -271.3,
-      "z": 366.9,
+      "y": -253.8,
+      "z": 443.8,
       "r": 165.4,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 3,
-      "y": 520.6,
-      "z": 177.1,
+      "y": 587.9,
+      "z": 187.0,
       "r": 160.0,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 4,
-      "y": 859.8,
-      "z": 416.6,
-      "r": 158.65,
-      "type": "vagal"
+      "y": 892.0,
+      "z": 482.4,
+      "r": 158.7,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 5,
-      "y": 1195.4,
-      "z": -506.0,
-      "r": 154.75,
-      "type": "vagal"
+      "y": 1164.8,
+      "z": -511.0,
+      "r": 154.8,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 6,
-      "y": 767.1,
-      "z": -455.4,
-      "r": 153.95,
-      "type": "vagal"
+      "y": 782.2,
+      "z": -482.7,
+      "r": 153.9,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 7,
-      "y": -703.3,
-      "z": 521.5,
-      "r": 153.35,
-      "type": "vagal"
+      "y": -673.7,
+      "z": 627.7,
+      "r": 153.3,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 8,
-      "y": -570.8,
-      "z": 213.5,
-      "r": 149.55,
-      "type": "vagal"
+      "y": -587.7,
+      "z": 242.3,
+      "r": 149.6,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 9,
-      "y": -1373.9,
-      "z": 213.1,
-      "r": 148.05,
-      "type": "vagal"
+      "y": -1368.6,
+      "z": 288.0,
+      "r": 148.1,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 10,
-      "y": -1132.8,
-      "z": 1.0,
+      "y": -1146.7,
+      "z": -39.6,
       "r": 147.6,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 11,
-      "y": 218.8,
-      "z": 275.1,
+      "y": 208.0,
+      "z": 268.9,
       "r": 147.4,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 12,
-      "y": -1942.1,
-      "z": -21.4,
+      "y": -2024.2,
+      "z": 54.0,
       "r": 147.4,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 13,
-      "y": 1979.1,
-      "z": -151.9,
-      "r": 145.85,
-      "type": "vagal"
+      "y": 1999.7,
+      "z": -147.2,
+      "r": 145.8,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 14,
-      "y": -509.0,
-      "z": -74.3,
+      "y": -497.0,
+      "z": -105.4,
       "r": 134.8,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 15,
-      "y": 594.0,
-      "z": 560.7,
-      "r": 133.75,
-      "type": "vagal"
+      "y": 545.4,
+      "z": 604.4,
+      "r": 133.8,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 16,
-      "y": 1035.1,
-      "z": 167.2,
-      "r": 132.65,
-      "type": "vagal"
+      "y": 993.7,
+      "z": 130.5,
+      "r": 132.7,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 17,
-      "y": -246.6,
-      "z": 64.1,
-      "r": 128.45,
-      "type": "vagal"
+      "y": -212.4,
+      "z": 77.3,
+      "r": 128.4,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 18,
-      "y": 1991.1,
-      "z": 198.9,
+      "y": 2094.1,
+      "z": 199.4,
       "r": 124.3,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 19,
-      "y": 195.6,
-      "z": -584.1,
-      "r": 121.55,
-      "type": "vagal"
+      "y": 180.5,
+      "z": -614.8,
+      "r": 121.5,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 20,
-      "y": 1642.7,
-      "z": -197.1,
+      "y": 1677.0,
+      "z": -263.1,
       "r": 121.3,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 21,
-      "y": 1201.3,
-      "z": 367.9,
-      "r": 117.95,
-      "type": "vagal"
+      "y": 1232.0,
+      "z": 392.8,
+      "r": 118.0,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 22,
-      "y": 305.6,
-      "z": -360.3,
+      "y": 320.3,
+      "z": -333.1,
       "r": 117.9,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 23,
-      "y": 153.9,
-      "z": 542.6,
-      "r": 117.85,
-      "type": "vagal"
+      "y": 218.9,
+      "z": 609.0,
+      "r": 117.8,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 24,
-      "y": 1707.7,
-      "z": -435.5,
-      "r": 115.75,
-      "type": "vagal"
+      "y": 1744.2,
+      "z": -567.9,
+      "r": 115.8,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 25,
-      "y": -1867.0,
-      "z": -324.3,
-      "r": 115.75,
-      "type": "vagal"
+      "y": -1915.0,
+      "z": -415.1,
+      "r": 115.8,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 26,
-      "y": 1436.3,
-      "z": 115.5,
+      "y": 1430.4,
+      "z": 159.8,
       "r": 113.1,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 27,
-      "y": 1400.5,
-      "z": -185.9,
-      "r": 111.15,
-      "type": "vagal"
+      "y": 1370.5,
+      "z": -239.1,
+      "r": 111.2,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 28,
-      "y": -81.2,
-      "z": -320.9,
-      "r": 107.55,
-      "type": "vagal"
+      "y": -78.9,
+      "z": -319.4,
+      "r": 107.5,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 29,
-      "y": 49.1,
-      "z": 27.5,
+      "y": 75.8,
+      "z": -39.3,
       "r": 107.4,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 30,
-      "y": -317.4,
-      "z": -476.5,
-      "r": 105.75,
-      "type": "vagal"
+      "y": -248.9,
+      "z": -618.3,
+      "r": 105.8,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 31,
-      "y": -988.1,
-      "z": 219.9,
+      "y": -1041.2,
+      "z": 270.3,
       "r": 104.8,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 32,
-      "y": 339.4,
-      "z": -23.6,
-      "r": 95.65,
-      "type": "vagal"
+      "y": 353.8,
+      "z": -46.5,
+      "r": 95.7,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 33,
-      "y": -994.6,
-      "z": -210.0,
-      "r": 94.65,
-      "type": "vagal"
+      "y": -985.6,
+      "z": -312.9,
+      "r": 94.7,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 34,
-      "y": 1690.4,
-      "z": 23.5,
+      "y": 1680.0,
+      "z": 27.6,
       "r": 94.4,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 35,
-      "y": -1388.2,
-      "z": -167.5,
-      "r": 93.65,
-      "type": "vagal"
+      "y": -1366.4,
+      "z": -267.1,
+      "r": 93.7,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 36,
-      "y": 857.3,
-      "z": -102.2,
-      "r": 92.05,
-      "type": "vagal"
+      "y": 839.5,
+      "z": -126.5,
+      "r": 92.0,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 37,
-      "y": -727.6,
-      "z": -164.4,
-      "r": 91.65,
-      "type": "vagal"
+      "y": -797.3,
+      "z": -131.7,
+      "r": 91.7,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 38,
-      "y": -405.0,
-      "z": -290.1,
+      "y": -382.8,
+      "z": -382.8,
       "r": 90.2,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 39,
-      "y": 1773.2,
-      "z": 192.4,
+      "y": 1814.3,
+      "z": 242.1,
       "r": 83.7,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 40,
-      "y": 1647.7,
-      "z": 317.7,
-      "r": 83.65,
-      "type": "vagal"
+      "y": 1605.1,
+      "z": 368.1,
+      "r": 83.7,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 41,
-      "y": -1026.0,
-      "z": 431.4,
+      "y": -1041.9,
+      "z": 533.9,
       "r": 83.6,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 42,
-      "y": -1741.2,
-      "z": -153.5,
+      "y": -1809.0,
+      "z": -162.7,
       "r": 83.0,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 43,
-      "y": -1582.8,
-      "z": -328.8,
+      "y": -1594.7,
+      "z": -368.5,
       "r": 81.2,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 44,
-      "y": 1150.9,
-      "z": -155.0,
+      "y": 1093.3,
+      "z": -196.4,
       "r": 79.6,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 45,
-      "y": -1259.2,
-      "z": -353.2,
+      "y": -1195.5,
+      "z": -446.4,
       "r": 79.1,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 46,
-      "y": -1566.1,
-      "z": -131.4,
-      "r": 77.85,
-      "type": "vagal"
+      "y": -1574.8,
+      "z": -135.3,
+      "r": 77.8,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 47,
-      "y": 1207.3,
-      "z": 3.7,
-      "r": 74.75,
-      "type": "vagal"
+      "y": 1235.1,
+      "z": -16.1,
+      "r": 74.8,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 48,
-      "y": 1439.8,
-      "z": -515.7,
-      "r": 70.65,
-      "type": "vagal"
+      "y": 1467.0,
+      "z": -517.7,
+      "r": 70.7,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 49,
-      "y": -1585.2,
-      "z": 81.7,
+      "y": -1594.1,
+      "z": 86.1,
       "r": 69.4,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 50,
-      "y": -1700.2,
-      "z": 181.5,
-      "r": 68.75,
-      "type": "vagal"
+      "y": -1775.0,
+      "z": 204.7,
+      "r": 68.8,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 51,
-      "y": -36.6,
-      "z": 548.7,
-      "r": 62.65,
-      "type": "vagal"
+      "y": -33.1,
+      "z": 651.5,
+      "r": 62.6,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 52,
-      "y": -768.5,
-      "z": 308.2,
-      "r": 59.65,
-      "type": "vagal"
+      "y": -832.2,
+      "z": 387.2,
+      "r": 59.6,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 53,
-      "y": -852.0,
-      "z": 128.2,
+      "y": -826.8,
+      "z": 109.0,
       "r": 49.3,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 54,
-      "y": 644.0,
-      "z": -284.9,
+      "y": 624.1,
+      "z": -257.3,
       "r": 46.3,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 55,
-      "y": 1794.6,
-      "z": 354.6,
+      "y": 1794.5,
+      "z": 445.7,
       "r": 45.9,
-      "type": "vagal"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 56,
-      "y": -1579.9,
-      "z": 290.4,
-      "r": 30.45,
-      "type": "vagal"
+      "y": -1606.6,
+      "z": 384.0,
+      "r": 30.4,
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     },
     {
       "id": 57,
-      "y": -1607.4,
-      "z": 227.5,
+      "y": -1614.0,
+      "z": 254.0,
       "r": 24.7,
-      "type": "vagal"
-    },
-    {
-      "id": 58,
-      "y": -174.5,
-      "z": 588.2,
-      "r": 57.3,
-      "type": "sympathetic"
-    },
-    {
-      "id": 59,
-      "y": 1653.3,
-      "z": 494.6,
-      "r": 62.8,
-      "type": "sympathetic"
-    },
-    {
-      "id": 60,
-      "y": 591.4,
-      "z": -642.4,
-      "r": 62.95,
-      "type": "sympathetic"
-    },
-    {
-      "id": 61,
-      "y": 1001.0,
-      "z": -617.2,
-      "r": 39.25,
-      "type": "sympathetic"
-    },
-    {
-      "id": 62,
-      "y": -1007.8,
-      "z": -808.1,
-      "r": 37.35,
-      "type": "sympathetic"
-    },
-    {
-      "id": 63,
-      "y": 458.2,
-      "z": -534.1,
-      "r": 66.75,
-      "type": "sympathetic"
-    },
-    {
-      "id": 64,
-      "y": -576.6,
-      "z": -319.5,
-      "r": 61.9,
-      "type": "sympathetic"
-    },
-    {
-      "id": 65,
-      "y": -1182.4,
-      "z": 252.8,
-      "r": 36.95,
-      "type": "sympathetic"
-    },
-    {
-      "id": 66,
-      "y": 584.6,
-      "z": 759.2,
-      "r": 49.85,
-      "type": "sympathetic"
-    },
-    {
-      "id": 67,
-      "y": -2131.1,
-      "z": 71.5,
-      "r": 30.15,
-      "type": "sympathetic"
-    },
-    {
-      "id": 68,
-      "y": -1155.5,
-      "z": -742.8,
-      "r": 45.85,
-      "type": "sympathetic"
-    },
-    {
-      "id": 69,
-      "y": -12.5,
-      "z": 206.2,
-      "r": 54.4,
-      "type": "sympathetic"
-    },
-    {
-      "id": 70,
-      "y": -1465.3,
-      "z": -0.6,
-      "r": 42.15,
-      "type": "sympathetic"
-    },
-    {
-      "id": 71,
-      "y": -903.4,
-      "z": 624.5,
-      "r": 56.2,
-      "type": "sympathetic"
-    },
-    {
-      "id": 72,
-      "y": -264.2,
-      "z": -263.0,
-      "r": 36.05,
-      "type": "sympathetic"
-    },
-    {
-      "id": 73,
-      "y": 2108.0,
-      "z": 53.6,
-      "r": 52.35,
-      "type": "sympathetic"
-    },
-    {
-      "id": 74,
-      "y": 138.4,
-      "z": 751.5,
-      "r": 44.4,
-      "type": "sympathetic"
-    },
-    {
-      "id": 75,
-      "y": 791.3,
-      "z": 663.0,
-      "r": 57.5,
-      "type": "sympathetic"
-    },
-    {
-      "id": 76,
-      "y": -806.5,
-      "z": 713.4,
-      "r": 39.75,
-      "type": "sympathetic"
-    },
-    {
-      "id": 77,
-      "y": 1930.1,
-      "z": 409.0,
-      "r": 54.5,
-      "type": "sympathetic"
-    },
-    {
-      "id": 78,
-      "y": 638.7,
-      "z": 385.9,
-      "r": 36.1,
-      "type": "sympathetic"
-    },
-    {
-      "id": 79,
-      "y": 1074.0,
-      "z": -696.4,
-      "r": 40.9,
-      "type": "sympathetic"
-    },
-    {
-      "id": 80,
-      "y": 729.2,
-      "z": -693.7,
-      "r": 39.15,
-      "type": "sympathetic"
-    },
-    {
-      "id": 81,
-      "y": -46.4,
-      "z": 652.6,
-      "r": 31.35,
-      "type": "sympathetic"
-    },
-    {
-      "id": 82,
-      "y": 61.9,
-      "z": -127.6,
-      "r": 34.7,
-      "type": "sympathetic"
-    },
-    {
-      "id": 83,
-      "y": 1863.6,
-      "z": -316.6,
-      "r": 39.6,
-      "type": "sympathetic"
-    },
-    {
-      "id": 84,
-      "y": -297.2,
-      "z": 578.8,
-      "r": 32.65,
-      "type": "sympathetic"
-    },
-    {
-      "id": 85,
-      "y": 1326.0,
-      "z": -680.3,
-      "r": 42.4,
-      "type": "sympathetic"
-    },
-    {
-      "id": 86,
-      "y": -710.9,
-      "z": -588.6,
-      "r": 46.35,
-      "type": "sympathetic"
-    },
-    {
-      "id": 87,
-      "y": 1239.7,
-      "z": 139.8,
-      "r": 48.65,
-      "type": "sympathetic"
-    },
-    {
-      "id": 88,
-      "y": 225.7,
-      "z": -780.0,
-      "r": 34.3,
-      "type": "sympathetic"
-    },
-    {
-      "id": 89,
-      "y": 534.6,
-      "z": -390.3,
-      "r": 68.15,
-      "type": "sympathetic"
-    },
-    {
-      "id": 90,
-      "y": -469.0,
-      "z": 648.9,
-      "r": 65.55,
-      "type": "sympathetic"
-    },
-    {
-      "id": 91,
-      "y": 1381.9,
-      "z": -410.4,
-      "r": 34.0,
-      "type": "sympathetic"
-    },
-    {
-      "id": 92,
-      "y": 1875.5,
-      "z": -559.5,
-      "r": 65.15,
-      "type": "sympathetic"
-    },
-    {
-      "id": 93,
-      "y": -2060.8,
-      "z": -246.8,
-      "r": 54.45,
-      "type": "sympathetic"
-    },
-    {
-      "id": 94,
-      "y": 1509.2,
-      "z": 375.8,
-      "r": 41.75,
-      "type": "sympathetic"
-    },
-    {
-      "id": 95,
-      "y": 983.0,
-      "z": -233.5,
-      "r": 69.1,
-      "type": "sympathetic"
-    },
-    {
-      "id": 96,
-      "y": 1249.5,
-      "z": -280.3,
-      "r": 36.55,
-      "type": "sympathetic"
-    },
-    {
-      "id": 97,
-      "y": 807.3,
-      "z": -248.4,
-      "r": 33.5,
-      "type": "sympathetic"
-    },
-    {
-      "id": 98,
-      "y": -691.2,
-      "z": -30.8,
-      "r": 32.05,
-      "type": "sympathetic"
-    },
-    {
-      "id": 99,
-      "y": -171.4,
-      "z": -155.0,
-      "r": 59.6,
-      "type": "sympathetic"
-    },
-    {
-      "id": 100,
-      "y": 2203.5,
-      "z": -227.0,
-      "r": 55.8,
-      "type": "sympathetic"
-    },
-    {
-      "id": 101,
-      "y": 1481.2,
-      "z": -687.0,
-      "r": 60.7,
-      "type": "sympathetic"
-    },
-    {
-      "id": 102,
-      "y": 104.3,
-      "z": -284.2,
-      "r": 33.65,
-      "type": "sympathetic"
-    },
-    {
-      "id": 103,
-      "y": 4.7,
-      "z": 339.7,
-      "r": 36.4,
-      "type": "sympathetic"
+      "type": "mixed",
+      "sympathetic_fraction": 0.15
     }
   ],
   "electrodes": [
@@ -773,5 +508,13 @@
     "B": 1.5,
     "C": 17.0
   },
-  "tissue_resistivity": 3.0
+  "tissue_resistivity": 3.0,
+  "population_model": {
+    "vagal_fraction": 0.85,
+    "sympathetic_fraction": 0.15,
+    "fibers_per_fascicle": 50,
+    "vagal_myelinated_pct": 30,
+    "vagal_unmyelinated_pct": 70,
+    "note": "Each fascicle contains mixed vagal + sympathetic fibers, not segregated"
+  }
 }

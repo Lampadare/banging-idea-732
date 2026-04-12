@@ -1200,6 +1200,17 @@ tbody tr:last-child td {
   color: #c0c8c0;
 }
 
+.team-list a {
+  color: #c0c8c0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.team-list a:hover {
+  color: var(--accent-light);
+  text-decoration: underline;
+}
+
 .footer-meta p {
   font-size: 0.85rem;
   color: #6a7a6a;
@@ -1219,17 +1230,17 @@ tbody tr:last-child td {
   color: var(--bg-dark);
 }
 
-.carousel {
+.carousel-wrap {
   position: relative;
+}
+
+.carousel-track {
+  width: 100%;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: #111;
   box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-}
-
-.carousel-track {
-  width: 100%;
 }
 
 .carousel-slide {
@@ -1416,9 +1427,11 @@ tbody tr:last-child td {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
 }
 
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }

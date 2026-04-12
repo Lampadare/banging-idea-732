@@ -22,6 +22,7 @@
         <a href="#anatomy">Anatomy</a>
         <a href="#viewer">3D Model</a>
         <a href="#results">Results</a>
+        <a href="#electrodes">Electrodes</a>
         <a href="#references">Refs</a>
       </div>
     </div>
@@ -31,7 +32,7 @@
   <section class="hero" id="hero">
     <canvas id="hero-canvas"></canvas>
     <div class="hero-content">
-      <p class="hero-eyebrow">SF Neurotech Hackathon 2026</p>
+      <p class="hero-eyebrow">Global Neurotech Hackathon 2026</p>
       <h1 class="hero-title">Bo<span class="accent">va</span></h1>
       <p class="hero-subtitle">Selective Vagus Nerve Stimulation for Cattle</p>
       <p class="hero-tagline">One nerve. Five systems. A billion-dollar problem.</p>
@@ -247,18 +248,18 @@
       <div class="carousel-section reveal" style="margin-top: 3rem;">
         <h3>FEM Mesh Anatomy &mdash; Per Batch</h3>
         <p class="result-detail" style="margin-bottom: 1rem;">Each batch models 6 fascicles (green) with perineurium boundaries, embedded in the nerve mesh with cuff electrode (red). Navigate between batches to see different fascicle groups.</p>
-        <div class="carousel" id="mesh-carousel">
+        <div class="carousel-wrap" id="mesh-carousel">
           <button class="carousel-btn carousel-prev" aria-label="Previous">&lsaquo;</button>
           <div class="carousel-track">
-            <div class="carousel-slide active" data-batch="0"><img src="assets/figures/batch_mesh/batch0.png" alt="Batch 0 mesh: fascicles 0-5" loading="lazy"></div>
-            <div class="carousel-slide" data-batch="1"><img src="assets/figures/batch_mesh/batch1.png" alt="Batch 1 mesh: fascicles 6-11" loading="lazy"></div>
-            <div class="carousel-slide" data-batch="2"><img src="assets/figures/batch_mesh/batch2.png" alt="Batch 2 mesh: fascicles 12-17" loading="lazy"></div>
-            <div class="carousel-slide" data-batch="3"><img src="assets/figures/batch_mesh/batch3.png" alt="Batch 3 mesh: fascicles 18-23" loading="lazy"></div>
-            <div class="carousel-slide" data-batch="4"><img src="assets/figures/batch_mesh/batch4.png" alt="Batch 4 mesh: fascicles 24-29" loading="lazy"></div>
-            <div class="carousel-slide" data-batch="5"><img src="assets/figures/batch_mesh/batch5.png" alt="Batch 5 mesh: fascicles 30-35" loading="lazy"></div>
-            <div class="carousel-slide" data-batch="6"><img src="assets/figures/batch_mesh/batch6.png" alt="Batch 6 mesh: fascicles 36-41" loading="lazy"></div>
-            <div class="carousel-slide" data-batch="7"><img src="assets/figures/batch_mesh/batch7.png" alt="Batch 7 mesh: fascicles 42-47" loading="lazy"></div>
-            <div class="carousel-slide" data-batch="9"><img src="assets/figures/batch_mesh/batch9.png" alt="Batch 9 mesh: fascicles 54-56" loading="lazy"></div>
+            <div class="carousel-slide active" data-batch="0"><img src="assets/figures/batch_mesh/batch0.png" alt="Batch 0 mesh: fascicles 0-5"></div>
+            <div class="carousel-slide" data-batch="1"><img src="assets/figures/batch_mesh/batch1.png" alt="Batch 1 mesh: fascicles 6-11"></div>
+            <div class="carousel-slide" data-batch="2"><img src="assets/figures/batch_mesh/batch2.png" alt="Batch 2 mesh: fascicles 12-17"></div>
+            <div class="carousel-slide" data-batch="3"><img src="assets/figures/batch_mesh/batch3.png" alt="Batch 3 mesh: fascicles 18-23"></div>
+            <div class="carousel-slide" data-batch="4"><img src="assets/figures/batch_mesh/batch4.png" alt="Batch 4 mesh: fascicles 24-29"></div>
+            <div class="carousel-slide" data-batch="5"><img src="assets/figures/batch_mesh/batch5.png" alt="Batch 5 mesh: fascicles 30-35"></div>
+            <div class="carousel-slide" data-batch="6"><img src="assets/figures/batch_mesh/batch6.png" alt="Batch 6 mesh: fascicles 36-41"></div>
+            <div class="carousel-slide" data-batch="7"><img src="assets/figures/batch_mesh/batch7.png" alt="Batch 7 mesh: fascicles 42-47"></div>
+            <div class="carousel-slide" data-batch="9"><img src="assets/figures/batch_mesh/batch9.png" alt="Batch 9 mesh: fascicles 54-56"></div>
           </div>
           <button class="carousel-btn carousel-next" aria-label="Next">&rsaquo;</button>
         </div>
@@ -330,7 +331,7 @@
   <section class="section" id="viewer">
     <div class="container">
       <h2 class="section-title reveal">Interactive Nerve Model</h2>
-      <p class="section-lead reveal">Interactive model of the 103-fascicle bovine vagosympathetic trunk using analytical point-source field approximations. This is for exploring electrode physics concepts &mdash; real FEM recruitment results from our batched pipeline will be embedded as interactive Plotly charts when batch collection completes.</p>
+      <p class="section-lead reveal">Interactive model of the 57-fascicle bovine vagosympathetic trunk. Each fascicle contains mixed vagal (85%) and sympathetic (15%) fibers &mdash; the orange core represents the sympathetic fraction. Field and recruitment use analytical point-source approximations; real FEM results are shown in the sections below.</p>
       <div class="viewer-container reveal">
         <canvas id="nerve-canvas"></canvas>
         <div class="viewer-info" id="viewer-info">
@@ -339,16 +340,16 @@
       </div>
       <div class="viewer-legend reveal">
         <div class="legend-item">
-          <span class="legend-color" style="background: #4a9eff"></span> Vagal fascicles (n=57)
+          <span class="legend-color" style="background: #2a5a8a"></span> Vagal fibers (85% per fascicle)
         </div>
         <div class="legend-item">
-          <span class="legend-color" style="background: #ff6b35"></span> Sympathetic fascicles (n=46)
+          <span class="legend-color" style="background: #c4742e"></span> Sympathetic fibers (15% inner core)
         </div>
         <div class="legend-item">
-          <span class="legend-color" style="background: #50dd60"></span> Recruited (above threshold)
+          <span class="legend-color" style="background: #80ddff"></span> Recruited (gradient intensity)
         </div>
         <div class="legend-item">
-          <span class="legend-color" style="background: #c4742e"></span> Cuff electrodes (n=8)
+          <span class="legend-color" style="background: #c4742e; border: 2px solid #ff4444"></span> Cuff electrodes (n=8)
         </div>
       </div>
     </div>
@@ -419,6 +420,108 @@
         <p class="result-detail" style="margin-bottom: 1rem;">57 fascicles rendered as cylinders along the nerve length, colored by myelinated recruitment at 0.4 mA. Cuff electrode ring shown in red. Drag to rotate, scroll to zoom.</p>
         <div class="plotly-embed">
           <iframe src="assets/figures/results_3d.html" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELECTRODE COMPARISON -->
+  <section class="section section-dark" id="electrodes">
+    <div class="container">
+      <h2 class="section-title reveal">Electrode Configuration Comparison</h2>
+      <p class="section-lead reveal">Current steering with multi-contact cuffs achieves <strong>5&times; lower activation thresholds</strong> and spatial selectivity &eta; = 0.85 compared to &eta; = 0.62 for standard bipolar. We compared bipolar (2 rings), 4-contact, 8-contact, and 16-contact steered configurations using per-contact FEM basis fields with linear superposition.</p>
+
+      <div class="fiber-table reveal" style="margin-bottom: 3rem;">
+        <h3>Configuration Summary</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Configuration</th>
+                <th>Contacts</th>
+                <th>50% Threshold</th>
+                <th>&eta;<sub>max</sub></th>
+                <th>&eta; Best Amplitude</th>
+                <th>Efficiency</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bipolar (2 rings)</td>
+                <td>2</td>
+                <td>~0.95 mA</td>
+                <td>0.62</td>
+                <td>~1.00 mA</td>
+                <td>baseline</td>
+              </tr>
+              <tr>
+                <td>4-contact steered</td>
+                <td>4</td>
+                <td>~0.19 mA</td>
+                <td>0.83</td>
+                <td>~0.15 mA</td>
+                <td>5&times;</td>
+              </tr>
+              <tr>
+                <td>8-contact steered</td>
+                <td>8</td>
+                <td>~0.19 mA</td>
+                <td>0.85</td>
+                <td>~0.19 mA</td>
+                <td>5&times;</td>
+              </tr>
+              <tr>
+                <td>16-contact steered</td>
+                <td>16</td>
+                <td>~0.24 mA</td>
+                <td>0.85</td>
+                <td>~0.15 mA</td>
+                <td>4&times;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="scaling-note">&eta; = spatial selectivity (target 6 fascicles vs remaining 51). Efficiency = bipolar threshold / steered threshold.</p>
+      </div>
+
+      <div class="result-block reveal">
+        <div class="result-figure result-figure-wide">
+          <img src="assets/figures/electrode_comparison/comparison_heatmaps.png" alt="Voltage field comparison across bipolar, 4-contact, 8-contact, and 16-contact steered configurations" loading="lazy">
+        </div>
+        <div class="result-text">
+          <h3>Voltage Field Steering</h3>
+          <p>Cross-section voltage fields at cuff center (1 mA total, optimized contact weights). Bipolar spreads current uniformly; multi-contact steering concentrates the field on target fascicles. The 8-contact configuration achieves the best spatial focusing with practical contact counts.</p>
+        </div>
+      </div>
+
+      <div class="result-block result-block-reverse reveal">
+        <div class="result-figure result-figure-wide">
+          <img src="assets/figures/electrode_comparison/comparison_recruitment.png" alt="Recruitment curves and current efficiency comparison showing 5x improvement with steering" loading="lazy">
+        </div>
+        <div class="result-text">
+          <h3>Current Efficiency</h3>
+          <p>Left: mean myelinated recruitment vs. current (legend shows &eta;<sub>max</sub> per config). Steered configurations reach 50% recruitment at ~0.19 mA compared to ~0.95 mA for bipolar &mdash; a <strong>5&times; reduction</strong> in required current. Right: current for 50% recruitment across all configs.</p>
+          <p class="result-detail">Lower current means longer battery life, less tissue heating, and reduced off-target activation. All configurations use the same total current &mdash; steering just focuses it where needed.</p>
+        </div>
+      </div>
+
+      <div class="result-block reveal">
+        <div class="result-figure">
+          <img src="assets/figures/electrode_comparison/comparison_eta_curves.png" alt="Spatial selectivity η vs stimulus amplitude for all electrode configurations" loading="lazy">
+        </div>
+        <div class="result-text">
+          <h3>&eta; vs. Amplitude</h3>
+          <p>Spatial selectivity drops as amplitude increases &mdash; at high currents, all fascicles recruit regardless of steering. The steered configurations maintain &eta; &gt; 0.6 up to ~0.4 mA, while bipolar only reaches peak &eta; at 1 mA when most fascicles are already saturated. The optimal operating point is the starred peak of each curve.</p>
+        </div>
+      </div>
+
+      <div class="result-block result-block-reverse reveal">
+        <div class="result-figure">
+          <img src="assets/figures/electrode_comparison/comparison_eta_targets.png" alt="Optimal target regions showing per-fascicle recruitment at best η for each electrode configuration" loading="lazy">
+        </div>
+        <div class="result-text">
+          <h3>Optimal Target Regions</h3>
+          <p>Per-fascicle recruitment at each configuration&rsquo;s best &eta; operating point. Green outlines mark the 6 target fascicles; red dashed outlines are off-target. Fill color (viridis) shows myelinated recruitment fraction. Bipolar activates broadly with poor contrast; steered configs achieve sharp on/off targeting of specific fascicle groups.</p>
         </div>
       </div>
     </div>
@@ -574,14 +677,14 @@
       <div class="footer-team">
         <h4>Team</h4>
         <div class="team-list">
-          <span>Martin</span>
-          <span>Sidney</span>
-          <span>Natalie</span>
-          <span>Dameer</span>
+          <a href="https://www.linkedin.com/in/martin-lombard/" target="_blank" rel="noopener">Martin</a>
+          <a href="https://www.linkedin.com/in/sidneyshah/" target="_blank" rel="noopener">Sidney</a>
+          <a href="https://www.linkedin.com/in/nataliefwc/" target="_blank" rel="noopener">Natalie</a>
+          <a href="https://www.linkedin.com/in/dameer-ahmed/" target="_blank" rel="noopener">Dameer</a>
         </div>
       </div>
       <div class="footer-meta">
-        <p>Built at SF Neurotech Hackathon &middot; April 2026</p>
+        <p>Built at Global Neurotech Hackathon &middot; April 2026</p>
         <p class="footer-small">Simulation powered by NRV + NEURON &middot; Visualization with Three.js</p>
       </div>
     </div>

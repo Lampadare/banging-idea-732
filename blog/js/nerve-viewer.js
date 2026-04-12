@@ -362,34 +362,41 @@ function computeStreamlines() {
 }
 
 // --- Fascicle materials ---
-// Separate materials: base (dim) and recruited (bright), never mutated
+// Each fascicle is a single mixed unit (85% vagal, 15% sympathetic).
+// Base material is blue; recruited material lerps from dim → bright with recruitment fraction.
 const fascicleObjects = [];
-const matDefs = {
-  vagal:       { base: { color: 0x2a5a8a, emissive: 0x000000, emissiveIntensity: 0, opacity: 0.6 },
-                 recruited: { color: 0x80ddff, emissive: 0x40aaff, emissiveIntensity: 0.7, opacity: 1.0 } },
-  sympathetic: { base: { color: 0x8a4a20, emissive: 0x000000, emissiveIntensity: 0, opacity: 0.6 },
-                 recruited: { color: 0xffcc44, emissive: 0xff8800, emissiveIntensity: 0.7, opacity: 1.0 } },
-};
 
-function makeFascMat(def) {
+function makeFascMat(opts) {
   return new THREE.MeshPhysicalMaterial({
-    color: def.color, roughness: 0.4, metalness: 0.1, clearcoat: 0.3,
-    emissive: new THREE.Color(def.emissive), emissiveIntensity: def.emissiveIntensity,
-    transparent: true, opacity: def.opacity,
+    color: opts.color, roughness: 0.4, metalness: 0.1, clearcoat: 0.3,
+    emissive: new THREE.Color(opts.emissive || 0x000000),
+    emissiveIntensity: opts.emissiveIntensity || 0,
+    transparent: true, opacity: opts.opacity || 0.6,
   });
 }
 
 for (const f of data.fascicles) {
   const r = Math.max(f.r * S, 0.03);
+
+  // Outer cylinder: vagal (blue)
   const geom = new THREE.CylinderGeometry(r, r, NERVE_DEPTH, 16);
-  const defs = matDefs[f.type];
-  const baseMat = makeFascMat(defs.base);
-  const recruitedMat = makeFascMat(defs.recruited);
+  const baseMat = makeFascMat({ color: 0x2a5a8a, opacity: 0.55 });
   const mesh = new THREE.Mesh(geom, baseMat);
   mesh.position.set(f.y * S, 0, f.z * S);
+
+  // Inner core: sympathetic fraction (orange, ~30% radius = ~15% area)
+  const coreR = r * 0.30;
+  const coreGeom = new THREE.CylinderGeometry(coreR, coreR, NERVE_DEPTH + 0.002, 12);
+  const coreMat = makeFascMat({ color: 0xc4742e, opacity: 0.7 });
+  const coreMesh = new THREE.Mesh(coreGeom, coreMat);
+  mesh.add(coreMesh);
+
   mesh.userData = {
-    type: 'fascicle', fascicleType: f.type, id: f.id,
-    radius: f.r, y: f.y, z: f.z, baseMat, recruitedMat, recruited: false,
+    type: 'fascicle', id: f.id,
+    radius: f.r, y: f.y, z: f.z,
+    baseMat, coreMat,
+    recruitmentFrac: 0,
+    sympatheticFrac: f.sympathetic_fraction || 0.15,
   };
   nerveGroup.add(mesh);
   fascicleObjects.push(mesh);
@@ -437,30 +444,40 @@ nerveGroup.add(new THREE.Line(
   new THREE.LineBasicMaterial({ color: 0xc4742e, transparent: true, opacity: 0.2 })
 ));
 
-// --- Recruitment (|E|-based approximation — will be replaced with real NRV data) ---
-// Biphasic stimulation: both phases activate, so recruitment is symmetric.
-// Use |E| (field magnitude) as proxy for activating function.
-// Threshold |E| = field strength at nominal distance for threshold current.
+// --- Recruitment (|E|-based approximation) ---
+// Gradient recruitment: fraction of myelinated fibers recruited scales with |E|.
+// At threshold: 0% recruited. At 2× threshold: ~100% recruited.
+// Unmyelinated/sympathetic remain at 0% in the 0-1mA range (threshold >2mA).
 function computeRecruitment() {
   const activeList = [...activeElectrodes.entries()];
   const threshold = data.fiber_thresholds_mA[fiberTypes[fiberTypeIdx]];
-  // |E| from a point source at distance r: |E| = ρ·I / (4π·r²)
   const nominalDist = 2.5e-3; // m
   const E_threshold = (RHO * threshold * 1e-3) / (4 * Math.PI * nominalDist * nominalDist);
 
   for (const mesh of fascicleObjects) {
     const d = mesh.userData;
-    let recruited = false;
+    let frac = 0;
 
     if (activeList.length > 0) {
-      // Compute |E| at fascicle center from all electrodes
       const [Ey, Ez] = eField(d.y, d.z, activeList);
       const eMag = Math.sqrt(Ey * Ey + Ez * Ez);
-      recruited = eMag >= E_threshold;
+      // Smooth recruitment curve: 0 at threshold, 1 at 2× threshold
+      frac = Math.max(0, Math.min((eMag / E_threshold - 1), 1));
     }
 
-    d.recruited = recruited;
-    mesh.material = recruited ? d.recruitedMat : d.baseMat;
+    d.recruitmentFrac = frac;
+
+    // Lerp material: dim blue → bright cyan with recruitment
+    const baseColor = 0x2a5a8a;
+    const recruitColor = 0x80ddff;
+    const emitColor = 0x40aaff;
+    d.baseMat.color.lerpColors(new THREE.Color(baseColor), new THREE.Color(recruitColor), frac);
+    d.baseMat.emissive.set(emitColor);
+    d.baseMat.emissiveIntensity = frac * 0.7;
+    d.baseMat.opacity = 0.55 + frac * 0.45;
+
+    // Core (sympathetic) stays orange, dims slightly when outer is bright
+    d.coreMat.opacity = 0.7 - frac * 0.3;
   }
 }
 
@@ -551,14 +568,16 @@ function updateStats() {
     return;
   }
   statsEl.style.display = 'flex';
-  const total = fascicleObjects.filter(m => m.userData.recruited).length;
-  const vagal = fascicleObjects.filter(m => m.userData.recruited && m.userData.fascicleType === 'vagal').length;
-  const symp = fascicleObjects.filter(m => m.userData.recruited && m.userData.fascicleType === 'sympathetic').length;
+  const fracs = fascicleObjects.map(m => m.userData.recruitmentFrac);
+  const active = fracs.filter(f => f > 0.01).length;
+  const avgFrac = fracs.reduce((a, b) => a + b, 0) / fracs.length;
+  const myelPct = Math.round(avgFrac * 100);
+  // Sympathetic (unmyelinated C-fibers) have threshold >2mA — always 0% in our range
   statsEl.innerHTML = `
-    <div class="vs-stat"><span class="vs-num">${total}</span><span class="vs-label">recruited</span></div>
+    <div class="vs-stat"><span class="vs-num">${active}</span><span class="vs-label">fascicles</span></div>
     <div class="vs-divider"></div>
-    <div class="vs-stat"><span class="vs-num vs-vagal">${vagal}</span><span class="vs-label">vagal</span></div>
-    <div class="vs-stat"><span class="vs-num vs-symp">${symp}</span><span class="vs-label">sympathetic</span></div>
+    <div class="vs-stat"><span class="vs-num vs-vagal">${myelPct}%</span><span class="vs-label">myel. recruited</span></div>
+    <div class="vs-stat"><span class="vs-num vs-symp">0%</span><span class="vs-label">symp. recruited</span></div>
   `;
 }
 
@@ -582,7 +601,7 @@ function createControls() {
   overlay.innerHTML = `
     <div class="onboard-content">
       <h3>Interactive Nerve Model</h3>
-      <p>103 fascicles from real pig SPARC morphometry, scaled to bovine</p>
+      <p>57 fascicles with mixed vagal/sympathetic fibers, from pig SPARC morphometry scaled to bovine</p>
       <div class="onboard-steps">
         <div><span class="onboard-num">1</span> Pick an electrode configuration</div>
         <div><span class="onboard-num">2</span> Drag the current slider</div>
@@ -738,10 +757,10 @@ function animate() {
 
   // Hover — track previous hover target to avoid mutating all materials each frame
   raycaster.setFromCamera(mouse, camera);
-  const hits = raycaster.intersectObjects([...fascicleObjects, ...electrodeObjects]);
+  const hits = raycaster.intersectObjects([...fascicleObjects, ...electrodeObjects], true);
 
   // Clear previous hover highlight
-  if (hoveredFascicle && !hoveredFascicle.userData.recruited) {
+  if (hoveredFascicle && hoveredFascicle.userData.recruitmentFrac < 0.01) {
     hoveredFascicle.userData.baseMat.emissive.setHex(0x000000);
     hoveredFascicle.userData.baseMat.emissiveIntensity = 0;
     hoveredFascicle = null;
@@ -749,16 +768,20 @@ function animate() {
 
   if (hits.length > 0) {
     const obj = hits[0].object;
-    const d = obj.userData;
-    if (d.type === 'fascicle') {
-      if (!d.recruited) {
-        d.baseMat.emissive.setHex(d.fascicleType === 'vagal' ? 0x4a9eff : 0xff6b35);
+    // If we hit the sympathetic core, use the parent fascicle
+    const fascicle = obj.userData.type === 'fascicle' ? obj : obj.parent;
+    const d = fascicle?.userData;
+    if (d && d.type === 'fascicle') {
+      if (d.recruitmentFrac < 0.01) {
+        d.baseMat.emissive.setHex(0x4a9eff);
         d.baseMat.emissiveIntensity = 0.5;
-        hoveredFascicle = obj;
+        hoveredFascicle = fascicle;
       }
-      const status = d.recruited ? ' — recruited' : '';
-      infoEl.innerHTML = `<strong>${d.fascicleType} #${d.id}</strong> — diameter: ${(d.radius * 2).toFixed(0)}μm${status}`;
-    } else if (d.type === 'electrode') {
+      const pct = Math.round(d.recruitmentFrac * 100);
+      const status = pct > 0 ? ` — ${pct}% myel. recruited` : '';
+      infoEl.innerHTML = `<strong>Fascicle #${d.id}</strong> — d: ${(d.radius * 2).toFixed(0)}μm · 85% vagal / 15% symp${status}`;
+    } else if (obj.userData.type === 'electrode') {
+      const d = obj.userData;
       const w = activeElectrodes.get(d.id);
       const state = w === 1 ? 'cathode (+)' : w === -1 ? 'anode (−)' : currentPreset === 'custom' ? 'tap to activate' : 'inactive';
       infoEl.innerHTML = `<strong>E${d.id}</strong> — ${state}`;
