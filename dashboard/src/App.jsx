@@ -14,117 +14,86 @@ const COLORS = [GREEN, LIGHT, AMBER, '#A8DBCA']
    ════════════════════════════════════════ */
 const APPROACHES = {
   cuff: {
-    name: 'Phase 1 — Nerve Cuff (Pilot)',
+    name: 'Phase 1 — Nerve Cuff (Research)',
     surgeryTime: '30-60 min',
-    description: 'Research-grade surgical pilot for mechanism validation',
+    description: 'Research-grade surgical pilot for mechanism validation. Not a product cost.',
     sections: [
-      { title: 'Device Components (pilot batch)', items: [
-        { name: 'Pt-Ir nerve cuff electrode (pilot fab)', cost: 80 },
-        { name: 'MintNeuro stimulation ASIC', cost: 25 },
-        { name: 'Analog front-end + ADC (neural recording)', cost: 40 },
-        { name: 'Microcontroller (nRF52840)', cost: 3 },
-        { name: 'Primary lithium battery + PMIC', cost: 15 },
-        { name: 'Biocompatible encapsulation (silicone/parylene)', cost: 20 },
-        { name: 'PCB fabrication + assembly', cost: 15 },
-        { name: 'BLE antenna + connector', cost: 5 },
-        { name: 'Lead wires (Pt-Ir, silicone insulated)', cost: 8 },
+      { title: 'Device Components (research grade)', items: [
+        { name: 'Pt-Ir nerve cuff electrode (pilot fab)', lo: 600, hi: 1200 },
+        { name: 'Stimulation + recording ASIC', lo: 100, hi: 200 },
+        { name: 'Analog front-end + ADC', lo: 80, hi: 150 },
+        { name: 'Microcontroller', lo: 6, hi: 12 },
+        { name: 'Primary lithium battery + PMIC', lo: 30, hi: 55 },
+        { name: 'Biocompatible encapsulation (silicone/parylene)', lo: 50, hi: 100 },
+        { name: 'PCB fabrication + assembly (low volume)', lo: 50, hi: 90 },
+        { name: 'Lead wires (Pt-Ir, silicone insulated)', lo: 20, hi: 40 },
       ]},
-      { title: 'Monitoring Hardware', items: [
-        { name: 'Heart rate monitor (equine belt, Polar-type)', cost: 100, adjustable: true },
-        { name: 'Base station receiver (per 50 head, amortised)', cost: 10 },
-        { name: 'Cloud data gateway (cellular, amortised)', cost: 5 },
-      ]},
-      { title: 'Procedure — Veterinary', items: [
-        { name: 'Veterinarian surgical time (45 min @ $200/hr)', cost: 150 },
-        { name: 'Vet tech / assistant (45 min)', cost: 35 },
-        { name: 'Sedation (xylazine 0.05mg/kg IV)', cost: 8 },
-        { name: 'Local anaesthesia (lidocaine 2%)', cost: 3 },
-        { name: 'Reversal agent (tolazoline)', cost: 5 },
+      { title: 'Procedure — Veterinary Surgery', items: [
+        { name: 'Veterinarian surgical time (45 min @ $200/hr)', lo: 140, hi: 220 },
+        { name: 'Vet tech / assistant (45 min)', lo: 30, hi: 50 },
+        { name: 'Sedation (xylazine 0.05mg/kg IV)', lo: 6, hi: 12 },
+        { name: 'Local anaesthesia (lidocaine 2%)', lo: 2, hi: 5 },
       ]},
       { title: 'Procedure — Imaging', items: [
-        { name: 'Portable ultrasound (amortised per head)', cost: 15 },
-        { name: 'Ultrasound gel + probe covers', cost: 2 },
+        { name: 'Portable ultrasound (amortised per head)', lo: 10, hi: 20 },
       ]},
       { title: 'Procedure — Consumables', items: [
-        { name: 'Sterile surgical drape + field', cost: 5 },
-        { name: 'Scalpel blade + handle (disposable)', cost: 3 },
-        { name: 'Haemostats, retractors (amortised)', cost: 2 },
-        { name: 'Suture material (3-0 PDS, skin staples)', cost: 8 },
-        { name: 'Sterile gloves (2 pairs)', cost: 2 },
-        { name: 'Betadine / chlorhex surgical prep', cost: 2 },
-        { name: 'Sterile gauze + swabs', cost: 1 },
-        { name: 'Wound dressing / spray bandage', cost: 3 },
+        { name: 'Sterile surgical drape + field', lo: 4, hi: 8 },
+        { name: 'Scalpel + surgical tools (amortised)', lo: 3, hi: 8 },
+        { name: 'Sterile gloves + prep', lo: 3, hi: 6 },
       ]},
       { title: 'Post-Procedure', items: [
-        { name: 'Post-op antibiotics (single dose)', cost: 4 },
-        { name: 'Anti-inflammatory (meloxicam / flunixin)', cost: 3 },
-        { name: 'Follow-up check (day 3, 5 min vet time)', cost: 8 },
-        { name: 'Wound complication contingency (5% rate)', cost: 5 },
+        { name: 'Anti-inflammatory (meloxicam / flunixin)', lo: 2, hi: 5 },
+        { name: 'Follow-up check (day 3, 5 min vet time)', lo: 6, hi: 12 },
       ]},
     ],
   },
   stentResearch: {
-    name: 'Phase 2 — Endovascular Stent (Research)',
-    surgeryTime: '15-20 min',
-    description: 'Peer-reviewed in pig and sheep. Research-grade components.',
+    name: 'Phase 2 — Stent Prototype (Catheter)',
+    surgeryTime: '8-12 min',
+    description: 'Catheter-only procedure. No surgery, no sedation beyond chute restraint.',
     sections: [
-      { title: 'Device Components (research grade)', items: [
-        { name: 'Custom stent electrode array (academic fab)', cost: 3000 },
-        { name: 'Clinical delivery catheter (over-the-wire)', cost: 250 },
-        { name: 'Introducer sheath + guidewire', cost: 150 },
-        { name: 'External stimulator / recorder (amortised)', cost: 80 },
+      { title: 'Device Components (prototype)', items: [
+        { name: 'Stent electrode array (prototype fab)', lo: 24, hi: 60 },
+        { name: 'Stimulation + recording ASIC', lo: 12, hi: 25 },
+        { name: 'Microcontroller + power management', lo: 3, hi: 8 },
+        { name: 'Primary cell battery (duty cycled)', lo: 4, hi: 8 },
+        { name: 'Polymer encapsulation', lo: 5, hi: 10 },
+        { name: 'Assembly + sterile packaging', lo: 4, hi: 10 },
       ]},
-      { title: 'Procedure — Veterinary', items: [
-        { name: 'Veterinarian (20 min @ $200/hr)', cost: 67 },
-        { name: 'Vet tech / assistant (20 min)', cost: 15 },
-        { name: 'Sedation (xylazine IV)', cost: 8 },
-        { name: 'Local anaesthesia (lidocaine)', cost: 3 },
-      ]},
-      { title: 'Procedure — Imaging', items: [
-        { name: 'Fluoroscopy / portable C-arm (amortised)', cost: 60 },
-        { name: 'Iohexol contrast agent', cost: 12 },
-        { name: 'Ultrasound vein confirmation', cost: 10 },
+      { title: 'Procedure — Technician (catheter)', items: [
+        { name: 'Trained technician (10 min @ $50/hr, chute-side)', lo: 6, hi: 10 },
       ]},
       { title: 'Procedure — Consumables', items: [
-        { name: 'Sterile drape + field', cost: 5 },
-        { name: 'Heparinised saline flush', cost: 2 },
-        { name: 'Sterile gloves + venipuncture prep', cost: 5 },
-        { name: 'Pressure bandage (post-puncture)', cost: 2 },
-      ]},
-      { title: 'Post-Procedure', items: [
-        { name: 'Anti-thrombotic (single dose heparin)', cost: 5 },
-        { name: 'Anti-inflammatory', cost: 3 },
-        { name: 'Follow-up ultrasound (day 3, stent patency)', cost: 12 },
-        { name: 'Complication contingency (3% rate)', cost: 8 },
+        { name: 'Single-use delivery catheter', lo: 5, hi: 12 },
+        { name: 'Introducer sheath', lo: 4, hi: 10 },
+        { name: 'Heparinised saline flush', lo: 1, hi: 3 },
+        { name: 'Sterile gloves + prep', lo: 2, hi: 4 },
       ]},
     ],
   },
   stentCommercial: {
-    name: 'Phase 3 — Stent at Scale (Optimised)',
+    name: 'Phase 3 — Stent at Scale (100k units)',
     surgeryTime: '8-12 min',
-    description: 'Duty-cycled stimulation + integrated thin-film ASIC printed on stent struts (EPFL approach)',
+    description: 'Commercial BOM at 100k manufacturing volumes. Catheter-only.',
     sections: [
       { title: 'Device BOM @ 100k units', items: [
-        { name: 'Integrated stent + thin-film ASIC (EPFL-style)', cost: 28 },
-        { name: 'Solid-state battery (duty-cycled, SetPoint protocol)', cost: 12 },
-        { name: 'Delivery catheter (single-use, simple)', cost: 8 },
-        { name: 'Assembly, test, sterile packaging', cost: 12 },
+        { name: 'Nitinol stent scaffold', lo: 10, hi: 18 },
+        { name: 'Thin-film electrode array', lo: 8, hi: 15 },
+        { name: 'Stimulation + recording ASIC', lo: 8, hi: 12 },
+        { name: 'MCU', lo: 1, hi: 1 },
+        { name: 'Primary cell battery (duty cycled, 150d)', lo: 3, hi: 5 },
+        { name: 'Power supply passives', lo: 1, hi: 2 },
+        { name: 'Polymer encapsulation', lo: 3, hi: 6 },
+        { name: 'Delivery catheter (single-use)', lo: 5, hi: 10 },
+        { name: 'Assembly + sterile packaging', lo: 3, hi: 5 },
       ]},
-      { title: 'Reusable Infrastructure (subscription)', items: [
-        { name: 'Base station + cloud gateway (amortised)', cost: 8 },
-      ]},
-      { title: 'Procedure — Technician', items: [
-        { name: 'Trained technician (10 min, chute-side)', cost: 15 },
-        { name: 'Chute-mounted ultrasound (amortised)', cost: 8 },
+      { title: 'Procedure — Technician (catheter)', items: [
+        { name: 'Trained technician (10 min @ $50/hr)', lo: 4, hi: 6 },
       ]},
       { title: 'Procedure — Consumables', items: [
-        { name: 'Jugular venipuncture kit', cost: 3 },
-        { name: 'Heparin flush', cost: 1 },
-        { name: 'Sterile gloves + prep', cost: 2 },
-      ]},
-      { title: 'Post-Procedure', items: [
-        { name: 'Anti-thrombotic + anti-inflammatory', cost: 5 },
-        { name: 'Complication contingency (1.5% rate)', cost: 4 },
+        { name: 'Venipuncture kit', lo: 1, hi: 2 },
+        { name: 'Heparin flush + gloves', lo: 1, hi: 1 },
       ]},
     ],
   },
@@ -136,109 +105,81 @@ const APPROACHES = {
 function EconomicsPage() {
   const [approach, setApproach] = useState('cuff')
   const [herdSize, setHerdSize] = useState(200)
-  const [brdRate, setBrdRate] = useState(16)
-  const [brdCost, setBrdCost] = useState(140)
+  const [brdRate, setBrdRate] = useState(16.2)
+  const [brdCost, setBrdCost] = useState(50)
   const [brdReduction, setBrdReduction] = useState(25)
   const [darkCutRate, setDarkCutRate] = useState(1.8)
-  const [darkCutDiscount, setDarkCutDiscount] = useState(39)
+  const [darkCutDiscount, setDarkCutDiscount] = useState(38.75)
   const [darkCutReduction, setDarkCutReduction] = useState(30)
-  const [fcrImprovement, setFcrImprovement] = useState(3)
-  const [feedCostPerHead, setFeedCostPerHead] = useState(800)
-  const [abPremium, setAbPremium] = useState(12)
-  const hrMonitorCost = 100
-  const [scaleUnits, setScaleUnits] = useState(1000)
+  const [scaleUnits, setScaleUnits] = useState(100000)
   const [pilotSize, setPilotSize] = useState(20)
   const [controlPct, setControlPct] = useState(50)
   const [trialDays, setTrialDays] = useState(150)
   const [vetVisitsPerWeek, setVetVisitsPerWeek] = useState(2)
   const [dataAnalysisCost, setDataAnalysisCost] = useState(5000)
-  const [ultrasoundRental, setUltrasoundRental] = useState(3000)
 
   const ap = APPROACHES[approach]
 
   const calc = useMemo(() => {
-    // Apply HR monitor slider to adjustable items
-    const sections = ap.sections.map(sec => ({
-      ...sec,
-      items: sec.items.map(i => i.adjustable ? { ...i, cost: hrMonitorCost } : i),
-    }))
-
-    const sectionTotals = sections.map(sec => ({
+    const sectionTotals = ap.sections.map(sec => ({
       title: sec.title,
       items: sec.items,
-      total: sec.items.reduce((s, i) => s + i.cost, 0),
+      totalLo: sec.items.reduce((s, i) => s + i.lo, 0),
+      totalHi: sec.items.reduce((s, i) => s + i.hi, 0),
+      total: sec.items.reduce((s, i) => s + (i.lo + i.hi) / 2, 0),
     }))
 
-    const totalPerHead = sectionTotals.reduce((s, sec) => s + sec.total, 0)
-    const deviceBOM = sectionTotals.filter(s => s.title.includes('Component') || s.title.includes('Monitor')).reduce((s, sec) => s + sec.total, 0)
+    const totalPerHeadLo = sectionTotals.reduce((s, sec) => s + sec.totalLo, 0)
+    const totalPerHeadHi = sectionTotals.reduce((s, sec) => s + sec.totalHi, 0)
+    const totalPerHead = (totalPerHeadLo + totalPerHeadHi) / 2
+    const deviceBOM = sectionTotals.filter(s => s.title.includes('Component') || s.title.includes('BOM')).reduce((s, sec) => s + sec.total, 0)
     const procedureCost = sectionTotals.filter(s => s.title.includes('Procedure')).reduce((s, sec) => s + sec.total, 0)
     const postCost = sectionTotals.filter(s => s.title.includes('Post')).reduce((s, sec) => s + sec.total, 0)
     const surgeryCost = procedureCost + postCost
 
     const brdSaving = (brdRate / 100) * brdCost * (brdReduction / 100)
-    const darkCutSaving = (darkCutRate / 100) * darkCutDiscount * 8 * (darkCutReduction / 100) // ~8 cwt per carcass
-    const fcrSaving = feedCostPerHead * (fcrImprovement / 100)
-    const abSaving = abPremium
-    const totalValue = brdSaving + darkCutSaving + fcrSaving + abSaving
+    const darkCutSaving = (darkCutRate / 100) * darkCutDiscount * 8 * (darkCutReduction / 100)
+    const totalValue = brdSaving + darkCutSaving
     const margin = totalValue - totalPerHead
     const totalHerdValue = totalValue * herdSize
     const totalHerdCost = totalPerHead * herdSize
     const totalHerdMargin = margin * herdSize
     const roi = totalPerHead > 0 ? ((totalValue / totalPerHead - 1) * 100) : 0
 
-    // Scale economics
-    const scaleDiscount = Math.min(0.4, scaleUnits / 10000 * 0.15)
-    const scaleBOM = deviceBOM * (1 - scaleDiscount)
-    const scaleSurgery = surgeryCost * 0.7 // efficiency at scale
-    const scaleTotal = scaleBOM + scaleSurgery
-    const scaleMargin = totalValue - scaleTotal
-
     // Pilot economics
     const treatmentHead = Math.round(pilotSize * (1 - controlPct / 100))
     const controlHead = pilotSize - treatmentHead
     const pilotDeviceCost = treatmentHead * totalPerHead
     const pilotWeeks = Math.ceil(trialDays / 7)
-    const pilotVetMonitoring = pilotWeeks * vetVisitsPerWeek * 50 // $50 per vet visit
-    const pilotUltrasound = ultrasoundRental
+    const pilotVetMonitoring = pilotWeeks * vetVisitsPerWeek * 50
     const pilotDataAnalysis = dataAnalysisCost
-    const pilotBloodwork = pilotSize * 4 * 25 // 4 blood draws per animal @ $25 each
-    const pilotOverhead = pilotSize * 5 * (trialDays / 30) // $5/head/month for record keeping
-    const pilotTotalFixed = pilotVetMonitoring + pilotUltrasound + pilotDataAnalysis + pilotBloodwork + pilotOverhead
+    const pilotBloodwork = pilotSize * 4 * 25
+    const pilotOverhead = pilotSize * 5 * (trialDays / 30)
+    const pilotTotalFixed = pilotVetMonitoring + pilotDataAnalysis + pilotBloodwork + pilotOverhead
     const pilotTotal = pilotDeviceCost + pilotTotalFixed
 
     return {
       sectionTotals, deviceBOM, surgeryCost, totalPerHead,
-      brdSaving, darkCutSaving, fcrSaving, abSaving,
-      totalValue, margin, totalHerdValue, totalHerdCost, totalHerdMargin, roi,
-      scaleBOM, scaleSurgery, scaleTotal, scaleMargin,
+      totalPerHeadLo, totalPerHeadHi,
+      brdSaving, darkCutSaving, totalValue, margin, roi,
+      totalHerdValue, totalHerdCost, totalHerdMargin,
       treatmentHead, controlHead, pilotDeviceCost, pilotVetMonitoring,
-      pilotUltrasound, pilotDataAnalysis, pilotBloodwork, pilotOverhead,
+      pilotDataAnalysis, pilotBloodwork, pilotOverhead,
       pilotTotalFixed, pilotTotal, pilotWeeks,
     }
-  }, [approach, herdSize, brdRate, brdCost, brdReduction, darkCutRate, darkCutDiscount, darkCutReduction, fcrImprovement, feedCostPerHead, abPremium, hrMonitorCost, scaleUnits])
+  }, [approach, herdSize, brdRate, brdCost, brdReduction, darkCutRate, darkCutDiscount, darkCutReduction, pilotSize, controlPct, trialDays, vetVisitsPerWeek, dataAnalysisCost])
 
   const valueBreakdown = [
-    { name: 'Feed efficiency', value: Math.round(calc.fcrSaving * 100) / 100 },
-    { name: 'Antibiotic premium', value: calc.abSaving },
     { name: 'BRD reduction', value: Math.round(calc.brdSaving * 100) / 100 },
     { name: 'Dark cutting', value: Math.round(calc.darkCutSaving * 100) / 100 },
   ]
 
   const costVsValue = [
-    { name: 'Device BOM', cost: calc.deviceBOM, value: 0 },
-    { name: 'Surgery/Vet', cost: calc.surgeryCost, value: 0 },
+    { name: 'Device', cost: calc.deviceBOM, value: 0 },
+    { name: 'Procedure', cost: calc.surgeryCost, value: 0 },
     { name: 'BRD saving', cost: 0, value: calc.brdSaving },
     { name: 'Dark cutting', cost: 0, value: calc.darkCutSaving },
-    { name: 'Feed efficiency', cost: 0, value: calc.fcrSaving },
-    { name: 'AB premium', cost: 0, value: calc.abSaving },
   ]
-
-  const scaleData = [100, 500, 1000, 5000, 10000, 50000, 100000].map(n => {
-    const disc = Math.min(0.4, n / 10000 * 0.15)
-    const bom = calc.deviceBOM * (1 - disc)
-    const surg = calc.surgeryCost * (n > 1000 ? 0.7 : 1)
-    return { units: n >= 1000 ? `${n/1000}K` : n, margin: Math.round(calc.totalValue - bom - surg), cost: Math.round(bom + surg) }
-  })
 
   return (
     <>
@@ -253,8 +194,8 @@ function EconomicsPage() {
       </div>
 
       <div className="card-grid">
-        <div className="card"><div className="card-label">Value per head</div><div className="card-value">${calc.totalValue.toFixed(0)}</div><div className="card-sub">All mechanisms combined</div></div>
-        <div className="card"><div className="card-label">Cost per head</div><div className="card-value red">${calc.totalPerHead.toFixed(0)}</div><div className="card-sub">Device + surgery ({ap.surgeryTime})</div></div>
+        <div className="card"><div className="card-label">Value per head</div><div className="card-value">${calc.totalValue.toFixed(0)}</div><div className="card-sub">BRD + dark cutting avoided</div></div>
+        <div className="card"><div className="card-label">Cost per head</div><div className="card-value red" style={{ fontSize: 22 }}>${calc.totalPerHeadLo}–{calc.totalPerHeadHi}</div><div className="card-sub">Device + procedure ({ap.surgeryTime})</div></div>
         <div className="card"><div className="card-label">Net margin</div><div className="card-value" style={{ color: calc.margin > 0 ? GREEN : RED }}>${calc.margin.toFixed(0)}</div><div className="card-sub">Per head</div></div>
         <div className="card"><div className="card-label">ROI</div><div className="card-value" style={{ color: calc.roi > 0 ? GREEN : RED }}>{calc.roi.toFixed(0)}%</div><div className="card-sub">Return on device cost</div></div>
       </div>
@@ -265,15 +206,12 @@ function EconomicsPage() {
             <div className="slider-title">Revenue Assumptions</div>
             <div className="slider-grid">
               <Slider label="Herd size" value={herdSize} set={setHerdSize} min={50} max={5000} step={50} suffix=" head" />
-              <Slider label="BRD incidence" value={brdRate} set={setBrdRate} min={5} max={30} suffix="%" />
-              <Slider label="BRD cost per case" value={brdCost} set={setBrdCost} min={50} max={250} prefix="$" />
+              <Slider label="BRD incidence" value={brdRate} set={setBrdRate} min={5} max={30} step={0.1} suffix="%" />
+              <Slider label="BRD cost per case" value={brdCost} set={setBrdCost} min={30} max={250} prefix="$" />
               <Slider label="BRD reduction" value={brdReduction} set={setBrdReduction} min={10} max={50} suffix="%" />
               <Slider label="Dark cut rate" value={darkCutRate} set={setDarkCutRate} min={0.5} max={5} step={0.1} suffix="%" />
-              <Slider label="Dark cut discount" value={darkCutDiscount} set={setDarkCutDiscount} min={20} max={60} prefix="$" suffix="/cwt" />
+              <Slider label="Dark cut discount" value={darkCutDiscount} set={setDarkCutDiscount} min={20} max={60} step={0.25} prefix="$" suffix="/cwt" />
               <Slider label="Dark cut reduction" value={darkCutReduction} set={setDarkCutReduction} min={10} max={60} suffix="%" />
-              <Slider label="Feed cost/head" value={feedCostPerHead} set={setFeedCostPerHead} min={400} max={1200} step={50} prefix="$" />
-              <Slider label="FCR improvement" value={fcrImprovement} set={setFcrImprovement} min={1} max={8} suffix="%" />
-              <Slider label="Antibiotic premium" value={abPremium} set={setAbPremium} min={0} max={30} prefix="$" />
             </div>
           </div>
 
@@ -285,7 +223,6 @@ function EconomicsPage() {
               <Slider label="Trial duration" value={trialDays} set={setTrialDays} min={30} max={180} step={10} suffix=" days" />
               <Slider label="Vet visits / week" value={vetVisitsPerWeek} set={setVetVisitsPerWeek} min={1} max={5} />
               <Slider label="Data analysis budget" value={dataAnalysisCost} set={setDataAnalysisCost} min={1000} max={20000} step={1000} prefix="$" />
-              <Slider label="Ultrasound rental" value={ultrasoundRental} set={setUltrasoundRental} min={500} max={10000} step={500} prefix="$" />
               <Slider label="Scale projection" value={scaleUnits} set={setScaleUnits} min={100} max={100000} step={100} suffix=" units" />
             </div>
           </div>
@@ -307,7 +244,7 @@ function EconomicsPage() {
           <div className="chart-card">
             <div className="chart-title">Cost vs Value per Head</div>
             <ResponsiveContainer width="100%" height={220}>
-              <BarChart data={costVsValue} margin={{ left: 80 }}>
+              <BarChart data={costVsValue} margin={{ left: 20 }}>
                 <XAxis dataKey="name" tick={{ fontSize: 11 }} />
                 <YAxis tickFormatter={v => `$${v}`} />
                 <Tooltip formatter={v => `$${v.toFixed(2)}`} />
@@ -323,32 +260,41 @@ function EconomicsPage() {
         <div className="chart-card">
           <div className="chart-title">Full Cost Breakdown — {ap.name}</div>
           <table className="cost-table">
-            <thead><tr><th>Item</th><th>Cost</th></tr></thead>
+            <thead><tr><th>Item</th><th>Cost range</th></tr></thead>
             <tbody>
               {calc.sectionTotals.map(sec => (
                 <React.Fragment key={sec.title}>
                   <tr><td colSpan={2} style={{ fontWeight: 700, color: 'var(--green)', fontSize: 12, letterSpacing: 1, textTransform: 'uppercase', paddingTop: 16, borderBottom: 'none' }}>{sec.title}</td></tr>
                   {sec.items.map(i => (
-                    <tr key={i.name}><td>{i.name}{i.note ? ` (${i.note})` : ''}</td><td>${i.cost}</td></tr>
+                    <tr key={i.name}><td>{i.name}</td><td>{i.lo === i.hi ? `$${i.lo}` : `$${i.lo}–${i.hi}`}</td></tr>
                   ))}
-                  <tr style={{ borderBottom: '2px solid var(--border)' }}><td style={{ fontWeight: 700 }}>Subtotal</td><td style={{ fontWeight: 700 }}>${sec.total}</td></tr>
+                  <tr style={{ borderBottom: '2px solid var(--border)' }}><td style={{ fontWeight: 700 }}>Subtotal</td><td style={{ fontWeight: 700 }}>${sec.totalLo}–{sec.totalHi}</td></tr>
                 </React.Fragment>
               ))}
-              <tr className="total-row"><td>Total per head</td><td>${calc.totalPerHead}</td></tr>
+              <tr className="total-row"><td>Total per head</td><td>${calc.totalPerHeadLo}–{calc.totalPerHeadHi}</td></tr>
             </tbody>
           </table>
         </div>
 
         <div className="chart-card">
-          <div className="chart-title">Margin at Scale</div>
+          <div className="chart-title">Phase Cost Comparison (log scale, range per head)</div>
           <ResponsiveContainer width="100%" height={280}>
-            <AreaChart data={scaleData}>
-              <XAxis dataKey="units" tick={{ fontSize: 12 }} />
-              <YAxis tickFormatter={v => `$${v}`} />
-              <Tooltip formatter={v => `$${v}`} />
-              <Area type="monotone" dataKey="margin" fill={GREEN} fillOpacity={0.15} stroke={GREEN} strokeWidth={2} name="Margin/head" />
-              <Area type="monotone" dataKey="cost" fill={RED} fillOpacity={0.1} stroke={RED} strokeWidth={2} name="Cost/head" />
-            </AreaChart>
+            <BarChart data={Object.entries(APPROACHES).map(([key, a]) => {
+              const lo = a.sections.reduce((s, sec) => s + sec.items.reduce((ss, i) => ss + i.lo, 0), 0)
+              const hi = a.sections.reduce((s, sec) => s + sec.items.reduce((ss, i) => ss + i.hi, 0), 0)
+              return { name: a.name.split(' — ')[0], low: lo, range: hi - lo, lo, hi, label: `$${lo}–${hi}` }
+            })} margin={{ left: 20, top: 30 }}>
+              <XAxis dataKey="name" tick={{ fontSize: 13, fontWeight: 700 }} />
+              <YAxis scale="log" domain={[1, 3000]} tickFormatter={v => `$${v}`} ticks={[10, 100, 1000, 3000]} />
+              <Tooltip formatter={(v, name, item) => name === 'range' ? `$${item.payload.lo}–${item.payload.hi}` : `$${v}`} />
+              <Bar dataKey="low" stackId="a" fill="transparent" name="min" />
+              <Bar dataKey="range" stackId="a" radius={[6, 6, 0, 0]} name="range"
+                   label={{ position: 'top', formatter: (v, item) => item && item.payload ? item.payload.label : '', fontSize: 11, fontWeight: 700, fill: 'var(--text)' }}>
+                {Object.entries(APPROACHES).map(([key]) => (
+                  <Cell key={key} fill={key === approach ? GREEN : '#C9D5CF'} />
+                ))}
+              </Bar>
+            </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
@@ -367,7 +313,6 @@ function EconomicsPage() {
             <tr><td>Devices ({calc.treatmentHead} head x ${calc.totalPerHead}/head)</td><td>${calc.pilotDeviceCost.toLocaleString()}</td></tr>
             <tr><td>Vet monitoring ({calc.pilotWeeks} weeks x {vetVisitsPerWeek}/week x $50/visit)</td><td>${calc.pilotVetMonitoring.toLocaleString()}</td></tr>
             <tr><td>Bloodwork ({pilotSize} head x 4 draws x $25)</td><td>${calc.pilotBloodwork.toLocaleString()}</td></tr>
-            <tr><td>Ultrasound equipment rental</td><td>${calc.pilotUltrasound.toLocaleString()}</td></tr>
             <tr><td>Data analysis + biostatistics</td><td>${calc.pilotDataAnalysis.toLocaleString()}</td></tr>
             <tr><td>Record keeping + overhead ({pilotSize} head x {Math.round(trialDays/30)} months)</td><td>${calc.pilotOverhead.toLocaleString()}</td></tr>
             <tr className="total-row"><td>Total Pilot Cost</td><td>${calc.pilotTotal.toLocaleString()}</td></tr>
@@ -375,12 +320,11 @@ function EconomicsPage() {
         </table>
       </div>
 
-      {/* Scale projections */}
+      {/* Herd summary */}
       <div className="card-grid" style={{ marginTop: 12 }}>
-        <div className="card"><div className="card-label">Commercial herd value</div><div className="card-value">${(calc.totalHerdValue).toLocaleString(undefined, {maximumFractionDigits: 0})}</div><div className="card-sub">{herdSize} head</div></div>
-        <div className="card"><div className="card-label">Commercial herd cost</div><div className="card-value red">${(calc.totalHerdCost).toLocaleString(undefined, {maximumFractionDigits: 0})}</div><div className="card-sub">Device + procedure</div></div>
+        <div className="card"><div className="card-label">Herd value</div><div className="card-value">${(calc.totalHerdValue).toLocaleString(undefined, {maximumFractionDigits: 0})}</div><div className="card-sub">{herdSize} head</div></div>
+        <div className="card"><div className="card-label">Herd cost</div><div className="card-value red">${(calc.totalHerdCost).toLocaleString(undefined, {maximumFractionDigits: 0})}</div><div className="card-sub">Device + procedure</div></div>
         <div className="card"><div className="card-label">Net margin</div><div className="card-value" style={{ color: calc.totalHerdMargin > 0 ? GREEN : RED }}>${(calc.totalHerdMargin).toLocaleString(undefined, {maximumFractionDigits: 0})}</div></div>
-        <div className="card"><div className="card-label">At scale ({scaleUnits.toLocaleString()} units)</div><div className="card-value">${calc.scaleMargin.toFixed(0)}/head</div><div className="card-sub">After volume discount</div></div>
       </div>
     </>
   )

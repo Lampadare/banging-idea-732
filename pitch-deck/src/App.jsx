@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion'
 import { ShieldOff, FlaskConical, Thermometer, Pill, Users, ShieldCheck, DollarSign, Beaker, Cpu, Activity } from 'lucide-react'
 import './App.css'
 
-const TOTAL = 22
+const TOTAL = 18
 
 function Reveal({ children, delay = 0, y = 20 }) {
   const ref = useRef(null)
@@ -506,7 +506,7 @@ function S12() {
         </Reveal>
         <div className="roadmap-row">
           {[
-            { cost: '$20K', time: 'Mo 1-2', name: 'Anatomy', desc: 'Cadaver dissection, IJV-to-nerve mapping', style: 's1' },
+            { cost: '$20K', time: 'Mo 1-2', name: 'Anatomy', desc: 'Cadaver dissection, common carotid to nerve mapping', style: 's1' },
             { cost: '$75K', time: 'Mo 3-6', name: 'Dose Titration', desc: 'Heart rate NTS activation in calves', style: 's2' },
             { cost: '$200K', time: 'Mo 6-12', name: 'LPS Model', desc: 'Cytokine panel vs sham', style: 's3' },
             { cost: '$750K', time: 'Mo 12-24', name: 'Field Trial', desc: '200 cattle, 150-day finishing', style: 's4' },
@@ -869,7 +869,7 @@ function S14d_Phase3() {
               <div className="phase3-meta-divider" />
               <div className="phase3-meta-item">
                 <div className="phase3-meta-label">Placement</div>
-                <div className="phase3-meta-value">Internal Jugular Vein</div>
+                <div className="phase3-meta-value">Common Carotid Artery</div>
               </div>
               <div className="phase3-meta-divider" />
               <div className="phase3-meta-item">
@@ -962,6 +962,109 @@ function S_Tessman() {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ VAGUS NERVE CONTROLS (Problem section) ═══ */
+function S_VagusControls() {
+  const functions = [
+    { title: 'Inflammation', body: 'Cholinergic anti-inflammatory pathway' },
+    { title: 'Gut Motility', body: 'Rumen + digestive efferents' },
+    { title: 'Stress Response', body: 'Autonomic cortisol regulation' },
+    { title: 'Immune Function', body: 'Splenic nerve macrophage signalling' },
+  ]
+  return (
+    <div className="slide sage" id="slide-vagus-fns">
+      <SlideLogo />
+      <div className="slide-inner" style={{ textAlign: 'center' }}>
+        <Reveal><div className="label">Across Mammalian Species</div></Reveal>
+        <Reveal delay={0.1}>
+          <div className="title" style={{ marginBottom: 40, fontSize: 'clamp(32px, 4.5vw, 52px)' }}>
+            The vagus nerve <span className="hi">controls everything</span>.
+          </div>
+        </Reveal>
+        <div className="vagus-grid">
+          {functions.map((f, i) => (
+            <ScaleIn key={f.title} delay={0.2 + i * 0.12} className="vagus-card">
+              <div className="vagus-card-title">{f.title}</div>
+              <div className="vagus-card-body">{f.body}</div>
+            </ScaleIn>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ VNS IS PROVEN (FDA 1997) ═══ */
+function S_VNSProven() {
+  return (
+    <div className="slide" id="slide-vns-proven">
+      <SlideLogo />
+      <div className="slide-inner" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Reveal>
+          <div className="label">Not New Science</div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="title" style={{ fontSize: 'clamp(36px, 5vw, 60px)', marginBottom: 24 }}>
+            Vagus nerve stimulation has been <span className="hi">FDA-approved since 1997</span>.
+          </div>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <div className="vns-proven-stats">
+            <div className="vnsp-stat">
+              <div className="vnsp-num">1997</div>
+              <div className="vnsp-label">FDA approval for epilepsy</div>
+            </div>
+            <div className="vnsp-stat">
+              <div className="vnsp-num">1M+</div>
+              <div className="vnsp-label">Human implants worldwide</div>
+            </div>
+            <div className="vnsp-stat highlight">
+              <div className="vnsp-num">0</div>
+              <div className="vnsp-label">Attempts in cattle — until now</div>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.5}>
+          <div className="subtitle" style={{ textAlign: 'center', margin: '40px auto 0', maxWidth: 700, fontSize: 'clamp(16px, 1.8vw, 20px)' }}>
+            You'd expect it to be harder in a 600-kilo animal. <strong>It's actually simpler.</strong> The bovine vagus is a single fused cable — larger, more accessible, and the procedure works under standing sedation. No operating theatre required.
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ CONCLUSION / QR CODE ═══ */
+function S_Conclusion() {
+  return (
+    <div className="slide sage" id="slide-conclusion">
+      <SlideLogo />
+      <div className="slide-inner" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Reveal>
+          <div className="label">The Ask</div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="title" style={{ fontSize: 'clamp(36px, 5vw, 60px)', marginBottom: 12 }}>
+            Our first experiment costs <span className="hi">$5,000</span>.
+          </div>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <div className="subtitle" style={{ textAlign: 'center', margin: '0 auto 36px', maxWidth: 640 }}>
+            We've documented everything on our blog — science, economics, simulations, engineering. Scan for the full report.
+          </div>
+        </Reveal>
+        <Reveal delay={0.3}>
+          <div className="conclusion-qr">
+            <div className="qr-box">
+              <div className="qr-placeholder">QR</div>
+            </div>
+            <div className="qr-label">Read the full BoVa report</div>
+          </div>
+        </Reveal>
       </div>
     </div>
   )
@@ -1186,7 +1289,31 @@ export default function App() {
           <button key={i} className={`nav-dot ${i === cur ? 'active' : ''}`} onClick={() => document.getElementById(`slide-${i}`)?.scrollIntoView({ behavior: 'smooth' })} aria-label={`Slide ${i + 1}`} />
         ))}
       </nav>
-      <S1 /><S2 /><S3 /><S4 /><S5 /><S6 /><S7 /><S8 /><S9 /><S10 /><S11 /><S11b_Licensing /><S12 /><S13_Roadmap /><S14_Roadmap /><S14b_Phase1 /><S14c_Phase2 /><S14d_Phase3 /><S_Tessman /><S_TessmanPoints /><FontPicker /><S13 />
+      {/* ═══ THE PROBLEM — Dameer ═══ */}
+      <S1 />                {/* Hook — $1B, same nerve different animal */}
+      <S3 />                {/* BRD problem */}
+      <S4 />                {/* Dark cutting problem */}
+      <S5 />                {/* Gut motility problem */}
+      <S_VagusControls />   {/* Vagus controls everything */}
+      <S_VNSProven />       {/* VNS FDA-approved since 1997 */}
+
+      {/* ═══ THE DEVICE — Martin ═══ */}
+      <S14d_Phase3 />       {/* Stentrode / nerve cuff device */}
+      <S8 />                {/* White space — zero competitors/data */}
+
+      {/* ═══ ROADMAP & COMPETITIVE EDGE — Sidney ═══ */}
+      <S_Tessman />         {/* Tessman lower-third citation */}
+      <S_TessmanPoints />   {/* Tessman 3 key points */}
+      <S14_Roadmap />       {/* Commercial roadmap (wavy path) */}
+      <S14b_Phase1 />       {/* Phase 1 — Nerve cuff validation */}
+      <S14c_Phase2 />       {/* Phase 2 — VNS efficacy trial */}
+      <S13_Roadmap />       {/* Unit economics circles */}
+      <S11 />               {/* Moonshot — 100k cows */}
+      <S11b_Licensing />    {/* Licensing to SetPoint/LivaNova/Inspire */}
+
+      {/* ═══ CONCLUSION ═══ */}
+      <S_Conclusion />      {/* $5,000 + QR / blog */}
+      <S13 />               {/* BoVa logo + motto close */}
       <NotesPanel currentSlide={cur} open={notesOpen} onToggle={() => setNotesOpen(p => !p)} />
     </>
   )
