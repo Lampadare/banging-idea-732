@@ -225,23 +225,26 @@
   <!-- 3D VIEWER -->
   <section class="section" id="viewer">
     <div class="container">
-      <h2 class="section-title reveal">Interactive Nerve Cross-Section</h2>
-      <p class="section-lead reveal">Explore the synthetic bovine vagus nerve geometry. Drag to rotate, scroll to zoom. Click fascicles and electrodes for details.</p>
+      <h2 class="section-title reveal">Interactive Nerve Model</h2>
+      <p class="section-lead reveal">Explore the 103-fascicle bovine vagosympathetic trunk derived from real pig SPARC morphometry. Click electrodes to activate them (left-click = cathode, right-click = anode), drag the current slider, and toggle fiber types to see the therapeutic window in action.</p>
       <div class="viewer-container reveal">
         <canvas id="nerve-canvas"></canvas>
         <div class="viewer-info" id="viewer-info">
-          <p>Hover over structures for details</p>
+          Click electrodes to activate (left=cathode, right=anode). Drag slider to set current.
         </div>
       </div>
       <div class="viewer-legend reveal">
         <div class="legend-item">
-          <span class="legend-color" style="background: #4a9eff"></span> Fascicles (n=12)
+          <span class="legend-color" style="background: #4a9eff"></span> Vagal fascicles (n=57)
         </div>
         <div class="legend-item">
-          <span class="legend-color" style="background: #ff6b35"></span> Cuff Electrodes (n=8)
+          <span class="legend-color" style="background: #ff6b35"></span> Sympathetic fascicles (n=46)
         </div>
         <div class="legend-item">
-          <span class="legend-color" style="background: rgba(255,255,255,0.3)"></span> Nerve Boundary (4&times;3 mm)
+          <span class="legend-color" style="background: #50dd60"></span> Recruited (above threshold)
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background: #c4742e"></span> Cuff electrodes (n=8)
         </div>
       </div>
     </div>

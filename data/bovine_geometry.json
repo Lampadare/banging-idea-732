@@ -465,5 +465,43 @@
     "n_total": 57,
     "n_selected": 20,
     "selection_method": "10 largest by area + 10 spatially distributed (8 angular sectors \u00d7 2 radial bands)"
+  },
+  "representative_subset_15": {
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      15,
+      21,
+      36,
+      47,
+      50,
+      56
+    ],
+    "ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      16,
+      22,
+      37,
+      48,
+      51,
+      57
+    ],
+    "n_selected": 15,
+    "selection_method": "7 largest + 8 spatially distributed (alternating inner/outer, size diversity)"
   }
 }
