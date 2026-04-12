@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,800&family=Space+Grotesk:wght@500;700&family=Instrument+Serif&family=Playfair+Display:wght@700;900&family=DM+Serif+Display&family=Cormorant+Garamond:wght@700&family=Libre+Bodoni:wght@700&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Manrope:wght@700;800&family=Outfit:wght@700;800&family=Epilogue:wght@700;800&family=Inter+Tight:wght@700;800&family=Sora:wght@700;800&family=Bricolage+Grotesque:wght@700;800&display=swap');
+@import url('https://fonts.cdnfonts.com/css/rl-madena');
+@import url('https://fonts.cdnfonts.com/css/recoleta');
+@import url('https://fonts.cdnfonts.com/css/clash-display');
+@import url('https://fonts.cdnfonts.com/css/general-sans');
+
+:root {
+  --bg: #FFFFFF;
+  --bg-soft: #FBF6EC;
+  --bg-sage: #F3E9D0;
+  --bg-sage-mid: #E5D4A4;
+  --bg-sage-deep: #C9AE6A;
+
+  --green: #C9953D;
+  --green-dark: #8A5F1F;
+  --green-darker: #5A3E12;
+  --green-light: #E4B96A;
+  --green-pale: #F2DFAE;
+  --green-bg: rgba(201,149,61,0.08);
+  --outline: #5A3E12;
+
+  --text: #2B1F0A;
+  --text-sec: #5A4A28;
+  --text-muted: #A08A5C;
+
+  --border: #E5D4A4;
+
+  --red: #C45B3C;
+  --red-soft: #E8845F;
+  --red-bg: rgba(196,91,60,0.06);
+
+  --circle-1: rgba(201,149,61,0.06);
+  --circle-2: rgba(201,149,61,0.04);
+  --circle-3: rgba(201,149,61,0.10);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'RL Madena', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root { width: 100%; }
+::selection { background: var(--green); color: white; }

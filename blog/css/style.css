@@ -160,6 +160,12 @@ a:hover {
   margin-bottom: 1rem;
 }
 
+.hero-logo {
+  width: clamp(80px, 15vw, 120px);
+  height: auto;
+  margin: 0 auto 1rem;
+}
+
 .hero-title {
   font-size: clamp(3rem, 12vw, 6rem);
   font-weight: 700;
@@ -1165,6 +1171,13 @@ tbody tr:last-child td {
   background: var(--bg-dark);
   color: #d0d8d0;
   text-align: center;
+}
+
+.footer-logo {
+  width: 60px;
+  height: auto;
+  margin: 0 auto 0.75rem;
+  filter: brightness(1.2);
 }
 
 .footer-brand h2 {
