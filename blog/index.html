@@ -389,8 +389,8 @@
         </div>
         <div class="result-text">
           <h3>Fiber-Type Selectivity</h3>
-          <p>The core result: vagal myelinated fibers (green) recruit rapidly from 0.1&ndash;0.5 mA while vagal unmyelinated C-fibers (blue) and sympathetic fibers (red) remain completely inactive across the entire amplitude range<sup class="cite">[4]</sup>. Unmyelinated thresholds are typically &gt;2 mA &mdash; well above the therapeutic window.</p>
-          <p class="result-detail">This separation is the biophysical basis for selective VNS: the cholinergic anti-inflammatory pathway<sup class="cite">[5]</sup> can be activated without triggering sympathetic side effects or C-fiber pain responses.</p>
+          <p>As expected from biophysics: vagal myelinated fibers (green) recruit rapidly from 0.1&ndash;0.5 mA while unmyelinated C-fibers and sympathetic fibers remain at 0% across the entire amplitude range<sup class="cite">[4]</sup>. Unmyelinated thresholds are &gt;2 mA &mdash; fiber-type selectivity is guaranteed by the diameter/myelination gap, not electrode design.</p>
+          <p class="result-detail">This confirms the therapeutic window exists. The real engineering challenge is <em>spatial</em> selectivity &mdash; targeting specific fascicle groups within the nerve. See <a href="#electrodes">Electrode Comparison</a> for the &eta; metric that quantifies this.</p>
         </div>
       </div>
 
@@ -411,8 +411,8 @@
         </div>
         <div class="result-text">
           <h3>Selectivity Index</h3>
-          <p>SI = (vagal myelinated %) &minus; max(unmyelinated %, sympathetic %). Peaks at <strong>SI = 1.00</strong> at ~0.91 mA &mdash; meaning 100% myelinated recruitment with 0% off-target activation. The therapeutic window spans roughly 0.3&ndash;1.0 mA.</p>
-          <p class="result-detail">An SI of 1.0 is the ideal outcome: complete selectivity between target fibers and off-target populations. This validates the core premise of Bova &mdash; selective cervical VNS is computationally achievable with a standard bipolar cuff.</p>
+          <p>SI = (vagal myelinated %) &minus; max(unmyelinated %, sympathetic %). Peaks at <strong>SI &asymp; 1.0</strong> at ~0.91 mA &mdash; meaning near-complete myelinated recruitment with 0% off-target activation. However, SI is trivially high here because unmyelinated thresholds are &gt;2 mA &mdash; fiber-type selectivity is a biophysical given, not an engineering achievement.</p>
+          <p class="result-detail">The non-trivial result is <em>spatial</em> selectivity: can we target specific fascicle groups? Our <a href="#electrodes">electrode comparison</a> shows that current steering achieves &eta; = 0.85 &mdash; a meaningful metric that depends on electrode design, not just fiber physics.</p>
         </div>
       </div>
 
