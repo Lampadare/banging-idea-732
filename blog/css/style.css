@@ -1067,6 +1067,53 @@ tbody tr:last-child td {
   border: 1px solid var(--border);
 }
 
+/* ---- EXPERT CARD ---- */
+
+.expert-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.expert-header h3 {
+  font-size: 1.25rem;
+  color: var(--bg-dark);
+  margin-bottom: 0.25rem;
+}
+
+.expert-role {
+  font-size: 0.95rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.expert-insights {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .expert-insights {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.expert-insight h4 {
+  font-size: 0.95rem;
+  color: var(--bg-dark);
+  margin-bottom: 0.5rem;
+}
+
+.expert-insight p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
 /* ---- PROCESS TIMELINE ---- */
 
 .process-timeline {
