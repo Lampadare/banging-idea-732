@@ -34,9 +34,6 @@ const APPROACHES = {
         { name: 'Sedation (xylazine 0.05mg/kg IV)', lo: 6, hi: 12 },
         { name: 'Local anaesthesia (lidocaine 2%)', lo: 2, hi: 5 },
       ]},
-      { title: 'Procedure — Imaging', items: [
-        { name: 'Portable ultrasound (amortised per head)', lo: 10, hi: 20 },
-      ]},
       { title: 'Procedure — Consumables', items: [
         { name: 'Sterile surgical drape + field', lo: 4, hi: 8 },
         { name: 'Scalpel + surgical tools (amortised)', lo: 3, hi: 8 },
@@ -277,25 +274,46 @@ function EconomicsPage() {
         </div>
 
         <div className="chart-card">
-          <div className="chart-title">Phase Cost Comparison (log scale, range per head)</div>
-          <ResponsiveContainer width="100%" height={280}>
-            <BarChart data={Object.entries(APPROACHES).map(([key, a]) => {
-              const lo = a.sections.reduce((s, sec) => s + sec.items.reduce((ss, i) => ss + i.lo, 0), 0)
-              const hi = a.sections.reduce((s, sec) => s + sec.items.reduce((ss, i) => ss + i.hi, 0), 0)
-              return { name: a.name.split(' — ')[0], low: lo, range: hi - lo, lo, hi, label: `$${lo}–${hi}` }
-            })} margin={{ left: 20, top: 30 }}>
-              <XAxis dataKey="name" tick={{ fontSize: 13, fontWeight: 700 }} />
-              <YAxis scale="log" domain={[1, 3000]} tickFormatter={v => `$${v}`} ticks={[10, 100, 1000, 3000]} />
-              <Tooltip formatter={(v, name, item) => name === 'range' ? `$${item.payload.lo}–${item.payload.hi}` : `$${v}`} />
-              <Bar dataKey="low" stackId="a" fill="transparent" name="min" />
-              <Bar dataKey="range" stackId="a" radius={[6, 6, 0, 0]} name="range"
-                   label={{ position: 'top', formatter: (v, item) => item && item.payload ? item.payload.label : '', fontSize: 11, fontWeight: 700, fill: 'var(--text)' }}>
-                {Object.entries(APPROACHES).map(([key]) => (
-                  <Cell key={key} fill={key === approach ? GREEN : '#C9D5CF'} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          <div className="chart-title">Phase Cost Comparison (range per head, log scale)</div>
+          <div className="phase-range-chart">
+            {(() => {
+              const logMin = Math.log10(10)
+              const logMax = Math.log10(3000)
+              const pct = v => ((Math.log10(v) - logMin) / (logMax - logMin)) * 100
+              const ticks = [10, 30, 100, 300, 1000, 3000]
+              return (
+                <>
+                  <div className="prc-ticks">
+                    {ticks.map(t => (
+                      <div key={t} className="prc-tick" style={{ left: `${pct(t)}%` }}>
+                        <span>${t}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {Object.entries(APPROACHES).map(([key, a]) => {
+                    const lo = a.sections.reduce((s, sec) => s + sec.items.reduce((ss, i) => ss + i.lo, 0), 0)
+                    const hi = a.sections.reduce((s, sec) => s + sec.items.reduce((ss, i) => ss + i.hi, 0), 0)
+                    const loPct = pct(lo)
+                    const hiPct = pct(hi)
+                    const active = key === approach
+                    return (
+                      <div key={key} className="prc-row">
+                        <div className="prc-label">{a.name.split(' — ')[0]}</div>
+                        <div className="prc-track">
+                          <div
+                            className={`prc-bar ${active ? 'active' : ''}`}
+                            style={{ left: `${loPct}%`, width: `${hiPct - loPct}%` }}
+                          >
+                            <span className="prc-value">${lo}–${hi}</span>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </>
+              )
+            })()}
+          </div>
         </div>
       </div>
 
