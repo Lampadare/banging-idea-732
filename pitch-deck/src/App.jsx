@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { ShieldOff, FlaskConical, Thermometer, Pill, Users, ShieldCheck, DollarSign, Beaker, Cpu, Activity } from 'lucide-react'
+import { ShieldOff, FlaskConical, Thermometer, Pill, Users, ShieldCheck, DollarSign, Beaker, Cpu, Activity, ChevronLeft, ChevronRight } from 'lucide-react'
 import './App.css'
 
-const TOTAL = 17
+const TOTAL = 22
 
 function Reveal({ children, delay = 0, y = 20 }) {
   const ref = useRef(null)
@@ -25,8 +25,35 @@ function ScaleIn({ children, delay = 0, className = '' }) {
   )
 }
 
+/* Paper-slam entrance — drops from above with rotation, overshoots, settles */
+function SlamImage({ src, className = '', delay = 0, finalRotate = 0, fromRotate = -25 }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+  return (
+    <motion.img
+      ref={ref}
+      src={src}
+      alt=""
+      className={className}
+      initial={{ opacity: 0, scale: 2.4, rotate: fromRotate, y: -220 }}
+      animate={inView ? {
+        opacity: [0, 1, 1, 1],
+        scale: [2.4, 0.92, 1.04, 1],
+        y: [-220, 18, -6, 0],
+        rotate: [fromRotate, finalRotate - 3, finalRotate + 1.5, finalRotate],
+      } : {}}
+      transition={{
+        duration: 0.72,
+        delay,
+        times: [0, 0.55, 0.8, 1],
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    />
+  )
+}
+
 function SlideLogo() {
-  return <img src="/logo.png" alt="BoVa" className="slide-logo" />
+  return <img src="/logo.png" alt="Bova" className="slide-logo" />
 }
 
 function Circles({ config }) {
@@ -38,31 +65,47 @@ function Circles({ config }) {
 /* ═══ S1 — HOOK ═══ */
 function S1() {
   return (
-    <div className="slide bg-img bg-clear hook-video-bg" id="slide-0">
+    <div className="slide bg-img bg-clear hook-video-bg hook-centered" id="slide-0">
       <video className="hook-video" src="/cow-closeup.mp4" autoPlay loop muted playsInline />
       <div className="hook-video-overlay" />
       <SlideLogo />
-      <Circles config={[
-        { size: 500, top: '-15%', right: '-10%', type: 'ring' },
-        { size: 200, bottom: '10%', left: '5%', type: 'ring' },
-      ]} />
       <div className="slide-inner">
-        <div className="hero-wrap">
-          <div className="hero-left">
-            <Reveal><img src="/logo.png" alt="BoVa" className="logo" /></Reveal>
-            <Reveal delay={0.1}><div className="hero-tagline">1 billion dollars lost every year.</div></Reveal>
-            <Reveal delay={0.2}><div className="hero-tagline-sub">Same nerve. Different animal.</div></Reveal>
+        <Reveal delay={0.2}>
+          <div className="hook-headline">1.3 billion dollars lost every year.</div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ PROBLEM CIRCLES — three broken systems ═══ */
+function S_ProblemCircles() {
+  const problems = [
+    { n: '01', title: 'Stress-degraded meat' },
+    { n: '02', title: 'Chronic disease' },
+    { n: '03', title: 'Antibiotic overreliance' },
+  ]
+  return (
+    <div className="slide sage" id="slide-problem-circles">
+      <SlideLogo />
+      <div className="slide-inner" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Reveal>
+          <div className="label">The Problem</div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="title" style={{ fontSize: 'clamp(32px, 4.2vw, 52px)', marginBottom: 56, textAlign: 'center' }}>
+            Three broken systems.
           </div>
-          <div className="hero-right">
-            <ScaleIn delay={0.3}>
-              <div className="hero-circle-outer">
-                <div className="hero-circle-inner">
-                  <div className="hero-number">$1B</div>
-                  <div className="hero-number-label">Lost yearly</div>
-                </div>
+        </Reveal>
+        <div className="problem-circles">
+          {problems.map((p, i) => (
+            <ScaleIn key={i} delay={0.2 + i * 0.15}>
+              <div className="problem-circle">
+                <div className="problem-circle-num">{p.n}</div>
+                <div className="problem-circle-title">{p.title}</div>
               </div>
             </ScaleIn>
-          </div>
+          ))}
         </div>
       </div>
     </div>
@@ -642,23 +685,14 @@ function S14_Roadmap() {
     {
       num: '01',
       title: 'Nerve Cuff Validation',
-      timeline: 'Months 1–24',
-      units: '40 head pen trial',
-      output: 'Efficacy + safety data, parameter optimisation',
     },
     {
       num: '02',
       title: 'VNS Efficacy Trial',
-      timeline: 'Months 24–36',
-      units: '120–150 head (3× scale up)',
-      output: 'Active vs sham vs SOC — CVM pre-submission',
     },
     {
       num: '03',
       title: 'Stent at Scale',
-      timeline: 'Year 3–5',
-      units: '100,000 units',
-      output: 'Disposable stent + reusable wireless collar',
       highlight: true,
     },
   ]
@@ -686,9 +720,9 @@ function S14_Roadmap() {
               <div className="roadmap-circle-v2">{p.num}</div>
               <div className="roadmap-card-v2">
                 <div className="roadmap-card-title">{p.title}</div>
-                <div className="roadmap-card-timeline">{p.timeline}</div>
-                <div className="roadmap-card-meta">{p.units}</div>
-                <div className="roadmap-card-output">{p.output}</div>
+                {p.timeline && <div className="roadmap-card-timeline">{p.timeline}</div>}
+                {p.units && <div className="roadmap-card-meta">{p.units}</div>}
+                {p.output && <div className="roadmap-card-output">{p.output}</div>}
               </div>
             </ScaleIn>
           ))}
@@ -929,41 +963,59 @@ function S_TessmanPoints() {
   )
 }
 
-/* ═══ TESSMAN LOWER-THIRD ═══ */
+/* ═══ TESSMAN CITATION SLIDE ═══ */
 function S_Tessman() {
   return (
-    <div className="slide" id="slide-tessman" style={{ background: 'transparent', justifyContent: 'flex-end', alignItems: 'center', padding: '0 0 48px' }}>
-      <div className="lt-stack">
-        <div className="lower-third">
-          <div className="lt-header">
-            <div className="lt-avatar">
-              <img src="/tessman.png" alt="Dr. Ronald Tessman" />
+    <div className="slide sage" id="slide-tessman">
+      <SlideLogo />
+      <div className="slide-inner" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Reveal>
+          <div className="label" style={{ textAlign: 'center' }}>Field Validation</div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="title" style={{ textAlign: 'center', fontSize: 'clamp(34px, 4.5vw, 52px)', marginBottom: 12 }}>
+            We spoke with <span className="hi">Dr. Ronald Tessman DVM PhD</span>.
+          </div>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <div className="subtitle" style={{ textAlign: 'center', margin: '0 auto 40px', maxWidth: 760 }}>
+            17 years as a beef cattle technical consultant at Bayer, Merial, and Elanco. We walked him through our device and pricing thesis.
+          </div>
+        </Reveal>
+        <ScaleIn delay={0.3}>
+          <div className="lt-stack">
+            <div className="lower-third">
+              <div className="lt-header">
+                <div className="lt-avatar">
+                  <img src="/tessman.png" alt="Dr. Ronald Tessman" />
+                </div>
+                <div className="lt-name-block">
+                  <div className="lt-name">Dr. Ronald Tessman DVM PhD</div>
+                  <div className="lt-title">Beef Cattle Technical Consultant · 17 years of experience</div>
+                </div>
+                <div className="lt-logos">
+                  <img src="/logos/bayer.svg" alt="Bayer" className="lt-logo-img" />
+                  <img src="/logos/merial.svg" alt="Merial" className="lt-logo-img" />
+                  <img src="/logos/elanco.svg" alt="Elanco" className="lt-logo-img" />
+                </div>
+              </div>
             </div>
-            <div className="lt-name-block">
-              <div className="lt-name">Dr. Ronald Tessman DVM PhD</div>
-              <div className="lt-title">Beef Cattle Technical Consultant · 17 years of experience</div>
-            </div>
-            <div className="lt-logos">
-              <img src="/logos/bayer.svg" alt="Bayer" className="lt-logo-img" />
-              <img src="/logos/merial.svg" alt="Merial" className="lt-logo-img" />
-              <img src="/logos/elanco.svg" alt="Elanco" className="lt-logo-img" />
+            <div className="lt-wtp-card">
+              <div className="lt-wtp-label">Willingness to pay</div>
+              <div className="lt-wtp-values">
+                <div className="lt-wtp-circle">
+                  <div className="lt-wtp-num">$30</div>
+                  <div className="lt-wtp-sub">today</div>
+                </div>
+                <div className="lt-wtp-arrow">→</div>
+                <div className="lt-wtp-circle highlight">
+                  <div className="lt-wtp-num">$60</div>
+                  <div className="lt-wtp-sub">with proof</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="lt-wtp-card">
-          <div className="lt-wtp-label">Willingness to pay</div>
-          <div className="lt-wtp-values">
-            <div className="lt-wtp-circle">
-              <div className="lt-wtp-num">$30</div>
-              <div className="lt-wtp-sub">today</div>
-            </div>
-            <div className="lt-wtp-arrow">→</div>
-            <div className="lt-wtp-circle highlight">
-              <div className="lt-wtp-num">$60</div>
-              <div className="lt-wtp-sub">with proof</div>
-            </div>
-          </div>
-        </div>
+        </ScaleIn>
       </div>
     </div>
   )
@@ -973,9 +1025,10 @@ function S_Tessman() {
 function S_VagusControls() {
   const functions = [
     { title: 'Inflammation', body: 'Cholinergic anti-inflammatory pathway' },
-    { title: 'Gut Motility', body: 'Rumen + digestive efferents' },
-    { title: 'Stress Response', body: 'Autonomic cortisol regulation' },
-    { title: 'Immune Function', body: 'Splenic nerve macrophage signalling' },
+    { title: 'Digestion', body: 'Rumen + gut motility' },
+    { title: 'Stress', body: 'Autonomic cortisol regulation' },
+    { title: 'Immune', body: 'Splenic macrophage signalling' },
+    { title: 'Eructation', body: 'Methane release + bloat' },
   ]
   return (
     <div className="slide vagus-video-bg" id="slide-vagus-fns">
@@ -1014,38 +1067,43 @@ function S_VNSProven() {
   return (
     <div className="slide" id="slide-vns-proven">
       <SlideLogo />
-      {/* Faded FDA document scans in the background */}
-      <img src="/fda-approval-1.jpeg" alt="" className="fda-bg fda-bg-1" />
-      <img src="/fda-approval-2.jpeg" alt="" className="fda-bg fda-bg-2" />
-      <div className="slide-inner" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 2 }}>
+      {/* FDA decision document slammed down with the approval line highlighted */}
+      <div className="fda-paper-frame">
+        <SlamImage src="/fda-approval-2.jpeg" className="fda-paper-single" delay={0.4} fromRotate={-14} finalRotate={-2} />
+        <motion.div
+          className="fda-highlight"
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.75, delay: 1.35, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </div>
+      <div className="slide-inner vns-proven-layout">
+        <div className="vns-proven-header">
+          <Reveal>
+            <div className="label">Not New Science</div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="title" style={{ fontSize: 'clamp(36px, 5vw, 60px)', marginBottom: 0 }}>
+              Vagus nerve stimulation has been <span className="hi">FDA-approved since 1997</span>.
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ GOAT DISSECTION — wet lab proof ═══ */
+function S_GoatDemo() {
+  return (
+    <div className="slide demo-fullscreen" id="slide-goat-demo">
+      <video className="demo-fullscreen-video" src="/goat.mp4" autoPlay loop muted playsInline />
+      <div className="demo-fullscreen-overlay" />
+      <SlideLogo />
+      <div className="demo-fullscreen-meta">
         <Reveal>
-          <div className="label">Not New Science</div>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="title" style={{ fontSize: 'clamp(36px, 5vw, 60px)', marginBottom: 24 }}>
-            Vagus nerve stimulation has been <span className="hi">FDA-approved since 1997</span>.
-          </div>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <div className="vns-proven-stats">
-            <div className="vnsp-stat">
-              <div className="vnsp-num">1997</div>
-              <div className="vnsp-label">FDA approval for epilepsy</div>
-            </div>
-            <div className="vnsp-stat">
-              <div className="vnsp-num">1M+</div>
-              <div className="vnsp-label">Human implants worldwide</div>
-            </div>
-            <div className="vnsp-stat highlight">
-              <div className="vnsp-num">0</div>
-              <div className="vnsp-label">Attempts in cattle — until now</div>
-            </div>
-          </div>
-        </Reveal>
-        <Reveal delay={0.5}>
-          <div className="subtitle" style={{ textAlign: 'center', margin: '40px auto 0', maxWidth: 700, fontSize: 'clamp(16px, 1.8vw, 20px)' }}>
-            You'd expect it to be harder in a 600-kilo animal. <strong>It's actually simpler.</strong> The bovine vagus is a single fused cable — larger, more accessible, and the procedure works under standing sedation. No operating theatre required.
-          </div>
+          <div className="demo-fullscreen-title">Anatomical validation study.</div>
         </Reveal>
       </div>
     </div>
@@ -1061,7 +1119,7 @@ function S_DeviceCuff() {
         <Reveal>
           <div className="phase-header">
             <div className="phase-header-pill">THE DEVICE</div>
-            <div className="title" style={{ color: 'var(--green)', fontSize: 'clamp(36px, 4.5vw, 52px)', marginBottom: 0, textAlign: 'center' }}>BoVa Nerve Cuff</div>
+            <div className="title" style={{ color: 'var(--green)', fontSize: 'clamp(36px, 4.5vw, 52px)', marginBottom: 0, textAlign: 'center' }}>Bova Nerve Cuff</div>
           </div>
         </Reveal>
         <Reveal delay={0.1}>
@@ -1093,41 +1151,124 @@ function S_DeviceCuff() {
   )
 }
 
-/* ═══ PRODUCT DEMOS — exploded view + MEA connector ═══ */
-function S_ProductDemos() {
+/* ═══ PRODUCT DEMO — exploded view (full-bleed) ═══ */
+function S_DemoExploded() {
   return (
-    <div className="slide sage" id="slide-product-demos">
+    <div className="slide demo-fullscreen" id="slide-demo-exploded">
+      <video className="demo-fullscreen-video" src="/exploded-view.mp4" autoPlay loop muted playsInline />
+      <div className="demo-fullscreen-overlay" />
       <SlideLogo />
-      <div className="slide-inner">
+      <div className="demo-fullscreen-meta">
         <Reveal>
-          <div className="phase-header">
-            <div className="phase-header-pill">THE BUILD</div>
-            <div className="title" style={{ color: 'var(--green)', fontSize: 'clamp(32px, 4vw, 48px)', marginBottom: 0, textAlign: 'center' }}>Not a render — it's CAD.</div>
+          <div className="demo-fullscreen-title">The Build</div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ PRODUCT DEMO — MEA connector (full-bleed) ═══ */
+function S_DemoMEA() {
+  return (
+    <div className="slide demo-fullscreen" id="slide-demo-mea">
+      <video className="demo-fullscreen-video" src="/mea-connector.mp4" autoPlay loop muted playsInline />
+      <div className="demo-fullscreen-overlay" />
+      <SlideLogo />
+      <div className="demo-fullscreen-meta">
+        <Reveal>
+          <div className="demo-fullscreen-title">The Connector</div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ NERVE FIELDS — cross-section field + sweet spot combined ═══ */
+function S_NerveFields() {
+  return (
+    <div className="slide nerve-slide" id="slide-nerve-fields">
+      <SlideLogo />
+      <div className="slide-inner nerve-minimal">
+        <Reveal>
+          <div className="label nerve-label">Simulation · 03</div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="nerve-title-center">
+            Eight contacts. <span className="nerve-hi">Sweet spot.</span>
           </div>
         </Reveal>
-        <Reveal delay={0.15}>
-          <div className="demo-grid">
-            <div className="demo-card">
-              <div className="demo-video-wrap">
-                <video src="/exploded-view.mp4" autoPlay loop muted playsInline />
-              </div>
-              <div className="demo-meta">
-                <div className="demo-label">EXPLODED VIEW</div>
-                <div className="demo-title">Full implant stack</div>
-                <div className="demo-body">Cuff, electrode array, ASIC, IPG housing — every layer modelled to spec.</div>
-              </div>
+        <div className="nerve-dual-figures">
+          <ScaleIn delay={0.2} className="nerve-figure-hero nerve-figure-dual">
+            <img src="/nerve1.jpg" alt="Cross-section field distribution" className="nerve-figure" />
+          </ScaleIn>
+          <ScaleIn delay={0.3} className="nerve-figure-hero nerve-figure-dual">
+            <img src="/nerve2.jpg" alt="Optimal target regions — top 6 fascicles" className="nerve-figure" />
+          </ScaleIn>
+        </div>
+        <Reveal delay={0.4}>
+          <div className="nerve-eta-row">
+            <div className="nerve-eta">
+              <div className="nerve-eta-val">0.62</div>
+              <div className="nerve-eta-label">Bipolar</div>
             </div>
-            <div className="demo-card">
-              <div className="demo-video-wrap">
-                <video src="/mea-connector.mp4" autoPlay loop muted playsInline />
-              </div>
-              <div className="demo-meta">
-                <div className="demo-label">MEA CONNECTOR</div>
-                <div className="demo-title">8-channel electrode interface</div>
-                <div className="demo-body">Fascicle-selective routing — the piece that makes closed-loop stimulation possible.</div>
-              </div>
+            <div className="nerve-eta-arrow">→</div>
+            <div className="nerve-eta">
+              <div className="nerve-eta-val">0.83</div>
+              <div className="nerve-eta-label">4 contact</div>
+            </div>
+            <div className="nerve-eta-arrow">→</div>
+            <div className="nerve-eta highlight">
+              <div className="nerve-eta-val">0.85</div>
+              <div className="nerve-eta-label">8 contact</div>
+            </div>
+            <div className="nerve-eta-arrow">=</div>
+            <div className="nerve-eta dimmed">
+              <div className="nerve-eta-val">0.85</div>
+              <div className="nerve-eta-label">16 contact</div>
             </div>
           </div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ NERVE 3 — pig → bovine PCA transform ═══ */
+function S_Nerve3() {
+  return (
+    <div className="slide nerve-slide" id="slide-nerve-3">
+      <SlideLogo />
+      <div className="slide-inner nerve-minimal">
+        <Reveal>
+          <div className="label nerve-label">Simulation · 01</div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="nerve-title-center">Pig → bovine.</div>
+        </Reveal>
+        <ScaleIn delay={0.2} className="nerve-figure-hero nerve-figure-hero-wide">
+          <img src="/nerve3.png" alt="P12-1 pig to bovine PCA transform" className="nerve-figure nerve-figure-wide" />
+        </ScaleIn>
+        <Reveal delay={0.35}>
+          <div className="nerve-caption">57 vagal + 46 sympathetic fascicles · first bovine vagosympathetic trunk model</div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/* ═══ NERVE 4 — video demonstration (full-bleed) ═══ */
+function S_Nerve4() {
+  return (
+    <div className="slide demo-fullscreen" id="slide-nerve-4">
+      <video className="demo-fullscreen-video" src="/nerve5.mp4" autoPlay loop muted playsInline />
+      <div className="demo-fullscreen-overlay" />
+      <SlideLogo />
+      <div className="demo-fullscreen-meta">
+        <Reveal>
+          <div className="demo-fullscreen-label nerve-label">Simulation · 02</div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="demo-fullscreen-title">FEM in motion.</div>
         </Reveal>
       </div>
     </div>
@@ -1137,57 +1278,20 @@ function S_ProductDemos() {
 /* ═══ SIMULATION — FIRST BOVINE VNS FEM ═══ */
 function S_Simulation() {
   return (
-    <div className="slide sage" id="slide-simulation">
+    <div className="slide sage sim-result-slide" id="slide-simulation">
       <SlideLogo />
-      <div className="slide-inner">
+      <div className="slide-inner sim-result-layout">
         <Reveal>
-          <div className="phase-header">
-            <div className="phase-header-pill">THE SIMULATION</div>
-            <div className="title" style={{ color: 'var(--green)', fontSize: 'clamp(32px, 4vw, 48px)', marginBottom: 0, textAlign: 'center' }}>First bovine vagus nerve simulation ever run.</div>
+          <div className="label">The Result</div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="sim-result-title">
+            Selectivity Index = <span className="hi">1.00</span>
           </div>
         </Reveal>
-        <div className="sim-layout">
-          <Reveal delay={0.15}>
-            <div className="sim-problem">
-              <div className="sim-section-label">THE GAP</div>
-              <div className="sim-section-title">Zero published data on the bovine vagus nerve</div>
-              <ul className="sim-bullets">
-                <li>No fibre counts</li>
-                <li>No fascicle maps</li>
-                <li>No chronic recordings</li>
-              </ul>
-            </div>
-          </Reveal>
-          <Reveal delay={0.3}>
-            <div className="sim-solution">
-              <div className="sim-section-label">OUR APPROACH</div>
-              <div className="sim-flow">
-                <div className="sim-step">
-                  <div className="sim-step-num">1</div>
-                  <div className="sim-step-text">Pig vagus morphometry</div>
-                </div>
-                <div className="sim-arrow">→</div>
-                <div className="sim-step">
-                  <div className="sim-step-num">2</div>
-                  <div className="sim-step-text">Bovine geometry adapt</div>
-                </div>
-                <div className="sim-arrow">→</div>
-                <div className="sim-step">
-                  <div className="sim-step-num">3</div>
-                  <div className="sim-step-text">Full FEM simulation</div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-        <Reveal delay={0.5}>
-          <div className="sim-outcome">
-            <div className="sim-outcome-pill">
-              <div className="sim-outcome-label">Therapeutic Window</div>
-              <div className="sim-outcome-value">Anti-inflammatory pathway selected · Cardiac side effects avoided</div>
-            </div>
-          </div>
-        </Reveal>
+        <ScaleIn delay={0.2}>
+          <div className="sim-result-caption">at 0.91 mA · 2,850 axons · first bovine VNS simulation ever run</div>
+        </ScaleIn>
       </div>
     </div>
   )
@@ -1208,17 +1312,23 @@ function S_Conclusion() {
           </div>
         </Reveal>
         <Reveal delay={0.2}>
-          <div className="subtitle" style={{ textAlign: 'center', margin: '0 auto 36px', maxWidth: 640 }}>
-            We've documented everything on our blog — science, economics, simulations, engineering. Scan for the full report.
+          <div className="subtitle" style={{ textAlign: 'center', margin: '0 auto 36px', maxWidth: 700 }}>
+            Ex vivo bovine cervical vagus — abattoir tissue, morphometry and impedance spectroscopy. Turns every simulation number into real-tissue data before a single live animal.
           </div>
         </Reveal>
         <Reveal delay={0.3}>
-          <div className="conclusion-qr">
+          <a
+            className="conclusion-qr"
+            href="https://bova.martinlombard.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="qr-url">bova.martinlombard.com</div>
             <div className="qr-box">
-              <img src="/qrcode.png" alt="Scan for BoVa report" />
+              <img src="/qrcode.png" alt="Scan for Bova report" />
             </div>
-            <div className="qr-label">Read the full BoVa report</div>
-          </div>
+            <div className="qr-label">Read the full Bova report</div>
+          </a>
         </Reveal>
       </div>
     </div>
@@ -1268,7 +1378,7 @@ function FontPicker() {
                     fontStyle: f.italic ? 'italic' : 'normal',
                   }}
                 >
-                  BoVa
+                  Bova
                 </div>
                 <div className="font-name">{f.name}</div>
                 <div className="font-vibe">{f.vibe}</div>
@@ -1288,126 +1398,43 @@ function S13() {
       <div className="slide-inner">
         <div className="close-wrap">
           <Reveal>
-            <img src="/logo.png" alt="BoVa" className="logo-close-big" />
+            <img src="/logo.png" alt="Bova" className="logo-close-big" />
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="close-brand-big">BoVa</div>
+            <div className="close-brand-big">Bova</div>
           </Reveal>
           <Reveal delay={0.4}>
             <div className="close-motto-big">Neuromodulation for the herd.</div>
           </Reveal>
         </div>
       </div>
+      <Reveal delay={0.6}>
+        <a
+          className="dashboard-cta"
+          href="https://bova-dashboard.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="dashboard-cta-label">Live Dashboard</span>
+          <span className="dashboard-cta-arrow">→</span>
+        </a>
+      </Reveal>
     </div>
   )
 }
 
-/* ═══════════════════════════════════════
-   PRESENTER NOTES
-   ═══════════════════════════════════════ */
-const NOTES = [
-  {
-    slide: 'SLIDE 1',
-    title: 'HOOK',
-    body: `<span class="cue">"$1.3 billion lost every year to two preventable conditions in cattle. The technology to fix both already exists. It was FDA-approved for humans last year. Nobody has applied it to the beef industry. Until now."</span>`,
-  },
-  {
-    slide: 'SLIDE 2',
-    title: 'FARMING HASN\'T CHANGED',
-    body: `<span class="cue">"Consumers don't want antibiotics or hormones. Lab-grown meat is decades away. Methane is still unsolved. And cows are farmed the same way we've done it for thousands of years. The industry is ready for a real innovation."</span>`,
-  },
-  {
-    slide: 'SLIDE 3',
-    title: 'BRD',
-    body: `<span class="cue">"BRD. Billion-dollar problem. 16% of cattle get sick at arrival. Published cost is $23 a case — that's just the drug. Real cost: $80 to $200 all-in. We confirmed that with operators. Current fix: mass antibiotics. Drug resistance is growing. California already banned it."</span>`,
-  },
-  {
-    slide: 'SLIDE 4',
-    title: 'DARK CUTTING',
-    body: `<span class="cue">"Second problem. Pre-slaughter stress spikes cortisol, depletes glycogen, destroys meat quality. $288 million a year. Nearly $39 per carcass in packer discounts. Different mechanism, but addressable through the same nerve."</span>`,
-  },
-  {
-    slide: 'SLIDE 5',
-    title: 'GUT MOTILITY',
-    body: `<span class="cue">"Third opportunity. A cow is a meat factory and the bottleneck is the digestive system. The most common surgery on cattle is literally cutting a window in their stomach. Cervical VNS can modulate gut motility and improve feed-to-meat ratio. This is our research bet — mechanisms 1 and 2 are the beachhead."</span>`,
-  },
-  {
-    slide: 'SLIDE 6',
-    title: 'VNS IS PROVEN',
-    body: `<span class="cue">"VNS is 50 years old. It's not speculative science. SetPoint Medical got FDA PMA approval in August 2025 for the anti-inflammatory mechanism. We didn't invent the technology. We're the first to apply it to cattle. Three mechanisms, tiered by readiness: inflammation is our beachhead, stress is secondary, gut motility is the research play."</span>`,
-  },
-  {
-    slide: 'SLIDE 7',
-    title: 'DEVICE',
-    body: `<span class="cue">"Cervical vagus nerve. Closest to the skin. 15-minute procedure under local anaesthesia — replicates an existing cattle surgery. Biocompatible cuff electrode developed with Imperial, MintNeuro stimulation chips, closed-loop ultrasound feedback. Plus an analog front-end to record neural activity 24/7. The device doesn't just stimulate — it generates data."</span>`,
-  },
-  {
-    slide: 'SLIDE 8',
-    title: 'WHITE SPACE',
-    body: `<span class="cue">"Humans: complete data, FDA devices. Pigs: full morphometry. Sheep: chronic recordings. Bovine: nothing. Zero. No one has ever stimulated a cow's vagus nerve. First team to generate this dataset owns the electrode design space."</span>`,
-  },
-  {
-    slide: 'SLIDE 9',
-    title: 'UNIT ECONOMICS',
-    body: `<span class="cue">"$29 to $63 value per head. Device costs $10-24 at scale. Mechanisms 1 and 2 cover the device cost. Mechanism 3 drives profitability. The data play is pure upside. $500 million TAM, US only."</span>`,
-  },
-  {
-    slide: 'SLIDE 10',
-    title: 'VALIDATION',
-    body: `<span class="cue">"We spoke with Dr. Ron Tessman — DVM PhD, 17 years at Bayer, Merial, and Elanco. He confirmed BRD damage is driven by runaway host inflammation, not just bacteria. He said the biggest industry problem is no internal measurement system exists. A device that senses and stimulates is exactly what's missing. His pricing envelope: $20-50 for diagnosis, up to $100 with therapy. 8+ operators confirmed $80-200 all-in costs. Nexa Labs confirmed regulatory path."</span>`,
-  },
-  {
-    slide: 'SLIDE 11',
-    title: 'DATA PLAY',
-    body: `<span class="cue">"Every device we implant doesn't just stimulate — it records. 24/7 vagal nerve data. 1,000 cows in year one gives us the world's largest mammal peripheral nerve dataset. That data subsidises our costs, advances the science, and is directly licensable to human VNS companies — SetPoint, LivaNova, Inspire. Same playbook as Loyal with dog longevity. Serious science, accessible outcomes."</span>`,
-  },
-  {
-    slide: 'SLIDE 12',
-    title: 'ROADMAP',
-    body: `<span class="cue">"$20K anatomy. $75K dose titration. $200K inflammation model. $750K field trial. $1 million total. 24 months to commercial proof of concept."</span>`,
-  },
-  {
-    slide: 'SLIDE 13',
-    title: 'UNIT ECONOMICS TABLE',
-    body: `<span class="cue">"Phase 1: 40 head nerve cuff, $1,150 to $2,200 per head, $50 to 90k total — research cost, generates the dataset. Phase 2: 120-150 head VNS efficacy trial, active vs sham vs SOC, $70 to 165 per head, $200 to 400k total. Phase 3: 100 thousand units, 48 to 83 dollars per head. Breakeven to plus $12 per head at scale."</span>`,
-  },
-  {
-    slide: 'SLIDE 14',
-    title: 'ROADMAP — PHASE TIMELINE',
-    body: `<span class="cue">"Phase 1: nerve cuff validation, months 1 to 24, 40 head pen trial. Efficacy data, safety profile, parameter optimisation. Phase 2: stent prototype testing, months 24 to 36, 40 head pen trial. CVM pre-submission, device iteration, pilot feedlot partner. Phase 3: stent at scale, year 3 to 5, 100 thousand units. Disposable stent plus reusable wireless collar subscription."</span>`,
-  },
-  {
-    slide: 'SLIDE 15',
-    title: 'CLOSE',
-    body: `<span class="cue">"$1.3 billion in losses. Zero competitors. $1 million to proof of concept. The science is FDA-validated. We are the team to close the gap."</span>
-
-Don't say thank you. Don't say any questions. Stop.`,
-  },
-]
-
-function NotesPanel({ currentSlide, open, onToggle }) {
-  const note = NOTES[currentSlide] || NOTES[0]
-  return (
-    <>
-      <button className={`notes-toggle ${open ? 'active' : ''}`} onClick={onToggle} title="Toggle notes (N)">N</button>
-      {!open && <div className="notes-hint">Press N for notes</div>}
-      <div className={`notes-panel ${open ? 'open' : ''}`}>
-        <div className="notes-inner">
-          <div className="notes-slide-label">{note.slide}</div>
-          <div className="notes-title">{note.title}</div>
-          <div className="notes-body" dangerouslySetInnerHTML={{ __html: note.body }} />
-        </div>
-      </div>
-    </>
-  )
-}
 
 /* ═══════════════════════════════════════
    APP
    ═══════════════════════════════════════ */
 export default function App() {
   const [cur, setCur] = useState(0)
-  const [notesOpen, setNotesOpen] = useState(false)
+
+  const goTo = useCallback((i) => {
+    const clamped = Math.max(0, Math.min(i, TOTAL - 1))
+    // Use explicit pixel scroll so scroll-snap-type: mandatory can't fight us
+    window.scrollTo({ top: clamped * window.innerHeight, behavior: 'smooth' })
+  }, [])
 
   const onScroll = useCallback(() => {
     setCur(Math.min(Math.round(window.scrollY / window.innerHeight), TOTAL - 1))
@@ -1420,51 +1447,69 @@ export default function App() {
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'j') {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'j') {
         e.preventDefault()
-        document.getElementById(`slide-${Math.min(cur + 1, TOTAL - 1)}`)?.scrollIntoView({ behavior: 'smooth' })
-      } else if (e.key === 'ArrowUp' || e.key === 'k') {
+        goTo(cur + 1)
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'k') {
         e.preventDefault()
-        document.getElementById(`slide-${Math.max(cur - 1, 0)}`)?.scrollIntoView({ behavior: 'smooth' })
+        goTo(cur - 1)
       }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [cur])
+  }, [cur, goTo])
 
   return (
     <>
       <div className="progress-bar" style={{ width: `${((cur + 1) / TOTAL) * 100}%` }} />
-      <nav className="nav-dots">
-        {Array.from({ length: TOTAL }).map((_, i) => (
-          <button key={i} className={`nav-dot ${i === cur ? 'active' : ''}`} onClick={() => document.getElementById(`slide-${i}`)?.scrollIntoView({ behavior: 'smooth' })} aria-label={`Slide ${i + 1}`} />
-        ))}
+      <nav className="nav-arrows" aria-label="Slide navigation">
+        <button
+          className="nav-arrow"
+          onClick={() => goTo(cur - 1)}
+          disabled={cur === 0}
+          aria-label="Previous slide"
+        >
+          <ChevronLeft size={22} strokeWidth={2.5} />
+        </button>
+        <div className="nav-arrow-count">{cur + 1} / {TOTAL}</div>
+        <button
+          className="nav-arrow"
+          onClick={() => goTo(cur + 1)}
+          disabled={cur === TOTAL - 1}
+          aria-label="Next slide"
+        >
+          <ChevronRight size={22} strokeWidth={2.5} />
+        </button>
       </nav>
       {/* ═══ THE PROBLEM — Dameer (42s) ═══ */}
       <S1 />                {/* Hook — $1.3B lost, same nerve different animal */}
+      <S_ProblemCircles />  {/* Three broken systems — stress meat / disease / antibiotics */}
       <S_VagusControls />   {/* Vagus controls: inflammation / gut / stress / immune */}
       <S_VNSProven />       {/* VNS FDA-approved since 1997, never in cattle + 600kg simpler */}
+      <S_GoatDemo />        {/* Goat dissection wet-lab video (proof the procedure works) */}
 
       {/* ═══ THE DEVICE — Martin (~50s) ═══ */}
       <S_DeviceCuff />      {/* Nerve cuff — 8 electrodes, IPG, 5yr life */}
-      <S_ProductDemos />    {/* CAD exploded view + MEA connector demos */}
-      <S_Simulation />      {/* First bovine VNS FEM simulation ever run */}
+      <S_DemoExploded />    {/* Full-screen exploded-view CAD video */}
+      <S_DemoMEA />         {/* Full-screen MEA connector CAD video */}
+      <S_Nerve3 />          {/* Pig -> bovine PCA transform (comes first) */}
+      <S_Nerve4 />          {/* FEM video demonstration */}
+      <S_NerveFields />     {/* Cross-section field + sweet spot combined */}
 
       {/* ═══ ROADMAP & COMPETITIVE EDGE — Sidney ═══ */}
       <S_Tessman />         {/* Tessman lower-third citation */}
-      <S_TessmanPoints />   {/* Tessman 3 key points */}
       <S14_Roadmap />       {/* Commercial roadmap (wavy path) */}
       <S14b_Phase1 />       {/* Phase 1 — Nerve cuff validation */}
       <S14c_Phase2 />       {/* Phase 2 — VNS efficacy trial (CVM + feedlot) */}
       <S14d_Phase3 />       {/* Phase 3 — Stentrode, minimally invasive long-term */}
+      <S_TessmanPoints />   {/* Tessman 3 key points — validation before economics */}
       <S13_Roadmap />       {/* Unit economics circles */}
       <S11 />               {/* Moonshot — 100k cows */}
       <S11b_Licensing />    {/* Licensing to SetPoint/LivaNova/Inspire */}
 
       {/* ═══ CONCLUSION ═══ */}
       <S_Conclusion />      {/* $5,000 first experiment + QR / blog */}
-      <S13 />               {/* BoVa logo + motto close */}
-      <NotesPanel currentSlide={cur} open={notesOpen} onToggle={() => setNotesOpen(p => !p)} />
+      <S13 />               {/* Bova logo + motto close */}
     </>
   )
 }

@@ -100,11 +100,11 @@ const APPROACHES = {
    ECONOMICS CALCULATOR
    ════════════════════════════════════════ */
 function EconomicsPage() {
-  const [approach, setApproach] = useState('cuff')
+  const [approach, setApproach] = useState('stentCommercial')
   const [herdSize, setHerdSize] = useState(200)
   const [brdRate, setBrdRate] = useState(16.2)
-  const [brdCost, setBrdCost] = useState(50)
-  const [brdReduction, setBrdReduction] = useState(25)
+  const [brdCost, setBrdCost] = useState(600)
+  const [brdReduction, setBrdReduction] = useState(70)
   const [darkCutRate, setDarkCutRate] = useState(1.8)
   const [darkCutDiscount, setDarkCutDiscount] = useState(38.75)
   const [darkCutReduction, setDarkCutReduction] = useState(30)
@@ -204,8 +204,8 @@ function EconomicsPage() {
             <div className="slider-grid">
               <Slider label="Herd size" value={herdSize} set={setHerdSize} min={50} max={5000} step={50} suffix=" head" />
               <Slider label="BRD incidence" value={brdRate} set={setBrdRate} min={5} max={30} step={0.1} suffix="%" />
-              <Slider label="BRD cost per case" value={brdCost} set={setBrdCost} min={30} max={250} prefix="$" />
-              <Slider label="BRD reduction" value={brdReduction} set={setBrdReduction} min={10} max={50} suffix="%" />
+              <Slider label="BRD cost per case (all-in)" value={brdCost} set={setBrdCost} min={100} max={1000} prefix="$" />
+              <Slider label="BRD reduction" value={brdReduction} set={setBrdReduction} min={10} max={80} suffix="%" />
               <Slider label="Dark cut rate" value={darkCutRate} set={setDarkCutRate} min={0.5} max={5} step={0.1} suffix="%" />
               <Slider label="Dark cut discount" value={darkCutDiscount} set={setDarkCutDiscount} min={20} max={60} step={0.25} prefix="$" suffix="/cwt" />
               <Slider label="Dark cut reduction" value={darkCutReduction} set={setDarkCutReduction} min={10} max={60} suffix="%" />
@@ -969,8 +969,8 @@ export default function App() {
     <div className="app">
       <div className="sidebar">
         <div className="sidebar-logo">
-          <img src="/logo.png" alt="BoVa" />
-          <span>BoVa</span>
+          <img src="/logo.png" alt="Bova" />
+          <span>Bova</span>
         </div>
         <nav className="sidebar-nav">
           <button className={`nav-item ${page === 'economics' ? 'active' : ''}`} onClick={() => setPage('economics')}>

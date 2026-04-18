@@ -114,9 +114,59 @@
 
 .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--green); z-index: 1000; transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 
-.nav-dots { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 1000; }
-.nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); border: none; cursor: pointer; transition: all 0.3s ease; padding: 0; }
-.nav-dot.active { background: var(--green); transform: scale(1.5); }
+.nav-arrows {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  padding: 6px 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+}
+
+.nav-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: var(--green);
+  color: white;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+  padding: 0;
+}
+
+.nav-arrow:hover:not(:disabled) {
+  background: var(--green-dark, #1e7654);
+  transform: translateY(-1px);
+}
+
+.nav-arrow:disabled {
+  background: #d4d9d5;
+  cursor: default;
+  opacity: 0.55;
+}
+
+.nav-arrow-count {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-sec);
+  padding: 0 8px;
+  min-width: 54px;
+  text-align: center;
+}
 
 /* ══════════════════════════════════════
    TYPOGRAPHY — BIG AND READABLE
@@ -440,6 +490,51 @@
 }
 
 .slide.close-black .slide-logo { filter: brightness(10); opacity: 0.6; }
+
+/* Dashboard CTA button — bottom right of last slide */
+.dashboard-cta {
+  position: absolute;
+  right: 48px;
+  bottom: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px 14px 26px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  color: white;
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  z-index: 10;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+}
+
+.dashboard-cta:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.dashboard-cta-arrow {
+  font-size: 18px;
+  font-weight: 800;
+  transition: transform 0.2s ease;
+}
+
+.dashboard-cta:hover .dashboard-cta-arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 700px) {
+  .dashboard-cta { right: 20px; bottom: 20px; padding: 12px 18px; font-size: 12px; }
+}
 
 /* ══════════════════════════════════════
    FONT PICKER GRID (temporary)
@@ -889,6 +984,34 @@
 /* ══════════════════════════════════════
    SIMULATION SLIDE
    ══════════════════════════════════════ */
+/* Minimal result slide — SI=1.00 hero */
+.sim-result-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 18px;
+}
+
+.sim-result-title {
+  font-size: clamp(48px, 7vw, 104px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.sim-result-caption {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(13px, 1.1vw, 16px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Legacy three-col sim-layout (unused by the new minimal result slide) */
 .sim-layout {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
@@ -1035,72 +1158,334 @@
 }
 
 /* ══════════════════════════════════════
-   PRODUCT DEMOS (exploded view + MEA connector)
+   NERVE — technical simulation slides
    ══════════════════════════════════════ */
-.demo-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  margin-top: 32px;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
+.slide.nerve-slide {
+  background: #0b0f0d;
+  color: #e8f0ec;
 }
 
-.demo-card {
-  background: white;
-  border: 1px solid rgba(45, 168, 122, 0.18);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(45, 168, 122, 0.08);
+.slide.nerve-slide::before,
+.slide.nerve-slide::after { display: none; }
+
+.slide.nerve-slide .slide-logo {
+  filter: brightness(10);
+  opacity: 0.8;
+}
+
+/* Minimal nerve layout — label, title, figure, optional caption */
+.nerve-minimal {
   display: flex;
   flex-direction: column;
-}
-
-.demo-video-wrap {
+  align-items: center;
+  gap: 18px;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  background: #0a1510;
-  overflow: hidden;
-  position: relative;
+  max-width: 1200px;
+  text-align: center;
 }
 
-.demo-video-wrap video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.nerve-title-center {
+  font-size: clamp(36px, 4.2vw, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: white;
+  letter-spacing: -0.02em;
 }
 
-.demo-meta {
-  padding: 20px 24px 24px;
-}
-
-.demo-label {
+.nerve-caption {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: var(--green);
-  margin-bottom: 8px;
+  font-size: clamp(12px, 0.95vw, 14px);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(232, 240, 236, 0.55);
 }
 
-.demo-title {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1.25;
-  margin-bottom: 8px;
+.nerve-figure-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  max-width: 820px;
+  width: 100%;
 }
 
-.demo-body {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--text-sec);
+.nerve-figure-hero .nerve-figure {
+  max-height: 58vh;
+}
+
+.nerve-figure-hero-wide {
+  max-width: 1100px;
+}
+
+.nerve-figure-hero-wide .nerve-figure-wide {
+  max-height: 38vh;
+}
+
+/* Two figures side-by-side on the combined nerve slide */
+.nerve-dual-figures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.nerve-figure-dual {
+  padding: 10px;
+}
+
+.nerve-figure-dual .nerve-figure {
+  max-height: 42vh;
 }
 
 @media (max-width: 900px) {
-  .demo-grid { grid-template-columns: 1fr; }
+  .nerve-dual-figures { grid-template-columns: 1fr; }
+}
+
+/* Legacy two-col nerve-layout kept in case of re-use */
+.nerve-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 56px;
+  align-items: center;
+  width: 100%;
+  max-width: 1240px;
+}
+
+.nerve-layout-stacked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 1240px;
+}
+
+.nerve-copy { display: flex; flex-direction: column; gap: 16px; }
+
+.nerve-label {
+  color: var(--green-light, #7ad4a8) !important;
+  letter-spacing: 3px !important;
+}
+
+.nerve-title {
+  font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.nerve-hi {
+  color: var(--green-light, #7ad4a8);
+}
+
+.nerve-body {
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.6;
+  color: rgba(232, 240, 236, 0.78);
+  max-width: 520px;
+}
+
+.nerve-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nerve-bullets li {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(232, 240, 236, 0.72);
+  padding-left: 18px;
+  position: relative;
+}
+
+.nerve-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green-light, #7ad4a8);
+}
+
+.nerve-bullets li strong { color: white; font-weight: 700; }
+
+.nerve-figure-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.nerve-figure-wrap-wide {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.nerve-figure {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 62vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.nerve-figure-wide {
+  max-height: 40vh;
+}
+
+/* Recruitment η row on nerve2 */
+.nerve-eta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.nerve-eta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  min-width: 74px;
+}
+
+.nerve-eta.highlight {
+  background: rgba(122, 212, 168, 0.12);
+  border-color: var(--green-light, #7ad4a8);
+  box-shadow: 0 0 0 2px rgba(122, 212, 168, 0.18);
+}
+
+.nerve-eta.dimmed { opacity: 0.5; }
+
+.nerve-eta-val {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.nerve-eta.highlight .nerve-eta-val { color: var(--green-light, #7ad4a8); }
+
+.nerve-eta-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(232, 240, 236, 0.6);
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.nerve-eta-arrow {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(232, 240, 236, 0.4);
+}
+
+@media (max-width: 900px) {
+  .nerve-layout { grid-template-columns: 1fr; gap: 24px; }
+  .nerve-figure { max-height: 42vh; }
+}
+
+/* ══════════════════════════════════════
+   PRODUCT DEMOS — full-screen video slides
+   ══════════════════════════════════════ */
+.slide.demo-fullscreen {
+  background: #0a1510;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.slide.demo-fullscreen::before,
+.slide.demo-fullscreen::after { display: none; }
+
+.demo-fullscreen-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.demo-fullscreen-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.28) 0%,
+    rgba(0, 0, 0, 0.1) 30%,
+    rgba(0, 0, 0, 0) 55%
+  );
+}
+
+.slide.demo-fullscreen .slide-logo {
+  filter: brightness(10);
+  opacity: 0.85;
+  z-index: 3;
+}
+
+.demo-fullscreen-meta {
+  position: absolute;
+  left: 6vw;
+  bottom: 9vh;
+  max-width: 560px;
+  z-index: 2;
+  color: white;
+}
+
+.demo-fullscreen-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--green-light, #7ad4a8);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.demo-fullscreen-title {
+  font-size: clamp(44px, 5.5vw, 72px);
+  font-weight: 800;
+  line-height: 1.05;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+
+.demo-fullscreen-body {
+  font-size: clamp(16px, 1.35vw, 20px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 500px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* ══════════════════════════════════════
@@ -1131,6 +1516,25 @@
 }
 
 .slide.hook-video-bg .slide-inner { position: relative; z-index: 2; }
+
+/* Centered text-only hook */
+.slide.hook-centered .slide-inner {
+  max-width: 1200px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hook-headline {
+  font-size: clamp(28px, 4.6vw, 84px);
+  font-weight: 800;
+  line-height: 1.05;
+  color: white;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
+}
 
 /* ══════════════════════════════════════
    CLOSE SLIDE — CATTLE BACKGROUND
@@ -1215,13 +1619,17 @@
    ══════════════════════════════════════ */
 .vagus-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  max-width: 1100px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
+  .vagus-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 700px) {
   .vagus-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -1250,35 +1658,136 @@
 }
 
 /* ══════════════════════════════════════
-   FDA APPROVAL DOCUMENT BACKGROUNDS
+   FDA APPROVAL — PAPER SLAM + HIGHLIGHT
    ══════════════════════════════════════ */
-.fda-bg {
+.fda-paper-frame {
   position: absolute;
-  z-index: 0;
-  opacity: 0.12;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  width: min(680px, 56vw);
+  z-index: 1;
   pointer-events: none;
-  transform: rotate(-2deg);
-  box-shadow: 0 20px 60px rgba(90, 62, 18, 0.3);
-  border: 2px solid var(--outline);
+}
+
+.fda-paper-single {
+  display: block;
+  width: 100%;
+  height: auto;
   background: #fff;
+  border: 1px solid rgba(90, 62, 18, 0.4);
+  box-shadow:
+    0 32px 72px rgba(0, 0, 0, 0.32),
+    0 12px 28px rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.14);
+  transform-origin: center center;
+  will-change: transform, opacity;
 }
 
-.fda-bg-1 {
-  top: 8%;
-  left: 2%;
-  width: 280px;
-  transform: rotate(-4deg);
+/* Highlighter marker over the "FDA concurred … approval order to Cyberonics … 1997" line.
+   Positioned relative to the framed paper; coordinates are % of the image. */
+.fda-highlight {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 1.5%;
+  height: 11%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 232, 0, 0.55) 0%,
+    rgba(255, 212, 0, 0.62) 100%
+  );
+  mix-blend-mode: multiply;
+  transform-origin: left center;
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(255, 220, 0, 0.35);
 }
 
-.fda-bg-2 {
-  top: 18%;
-  right: 2%;
-  width: 300px;
-  transform: rotate(3deg);
+/* Text content sits above the paper so title/stats stay legible */
+.slide#slide-vns-proven .slide-inner {
+  position: relative;
+  z-index: 3;
+}
+
+/* Header sits absolute-top so the slide's flex-center doesn't pull it down
+   into the FDA paper — title stays out of the way of the centered image. */
+.slide#slide-vns-proven .slide-inner.vns-proven-layout {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 8vw;
+  z-index: 3;
+}
+
+.vns-proven-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 1000px;
 }
 
 @media (max-width: 900px) {
-  .fda-bg { display: none; }
+  .fda-paper-frame { display: none; }
+}
+
+/* ══════════════════════════════════════
+   PROBLEM CIRCLES (three broken systems)
+   ══════════════════════════════════════ */
+.problem-circles {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.problem-circle {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--outline);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(90, 62, 18, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.problem-circle:hover { transform: translateY(-4px); }
+
+.problem-circle-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--green);
+  margin-bottom: 14px;
+}
+
+.problem-circle-title {
+  font-size: clamp(20px, 1.9vw, 26px);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+  max-width: 180px;
+}
+
+@media (max-width: 900px) {
+  .problem-circle { width: 200px; height: 200px; padding: 20px; }
+  .problem-circle-title { font-size: 17px; }
 }
 
 /* ══════════════════════════════════════
@@ -1286,23 +1795,23 @@
    ══════════════════════════════════════ */
 .vns-proven-stats {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .vnsp-stat {
-  width: 220px;
-  height: 220px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   background: var(--bg-sage);
-  border: 4px solid var(--outline);
+  border: 3px solid var(--outline);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 10px;
   text-align: center;
 }
 
@@ -1313,10 +1822,10 @@
 
 .vnsp-num {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 48px;
+  font-size: 30px;
   font-weight: 800;
   color: var(--green-dark);
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   line-height: 1;
 }
 
@@ -1324,13 +1833,13 @@
 
 .vnsp-label {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 700;
   color: var(--text-sec);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 12px;
-  max-width: 160px;
+  letter-spacing: 0.4px;
+  margin-top: 8px;
+  max-width: 110px;
   line-height: 1.3;
 }
 
@@ -1344,16 +1853,44 @@
   flex-direction: column;
   align-items: center;
   gap: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.conclusion-qr:hover {
+  transform: translateY(-3px);
+}
+
+.qr-url {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(16px, 1.5vw, 22px);
+  font-weight: 800;
+  color: var(--green-dark);
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.conclusion-qr:hover .qr-url {
+  color: var(--green);
 }
 
 .qr-box {
-  width: 440px;
-  height: 440px;
+  width: 360px;
+  height: 360px;
   background: white;
   border: 6px solid var(--outline);
   border-radius: 24px;
-  padding: 18px;
+  padding: 16px;
   box-shadow: 0 8px 40px rgba(90, 62, 18, 0.18);
+  transition: box-shadow 0.2s ease;
+}
+
+.conclusion-qr:hover .qr-box {
+  box-shadow: 0 12px 48px rgba(90, 62, 18, 0.28);
 }
 
 .qr-box img {
@@ -2593,21 +3130,7 @@
 }
 
 /* ══════════════════════════════════════
-   NOTES PANEL
-   ══════════════════════════════════════ */
-.notes-toggle { position: fixed; bottom: 20px; left: 20px; z-index: 2000; background: var(--green); color: white; border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px rgba(45,168,122,0.3); display: flex; align-items: center; justify-content: center; }
-.notes-toggle.active { background: var(--text); }
-.notes-panel { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1500; background: #1A2B23; color: #E8F0EC; border-top: 3px solid var(--green); transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); max-height: 35vh; overflow-y: auto; }
-.notes-panel.open { transform: translateY(0); }
-.notes-inner { max-width: 800px; margin: 0 auto; padding: 24px 32px; }
-.notes-slide-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
-.notes-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: white; }
-.notes-body { font-size: 14px; line-height: 1.7; color: rgba(232,240,236,0.75); }
-.notes-body .cue { color: var(--green); font-weight: 600; font-style: italic; }
-.notes-hint { position: fixed; bottom: 24px; left: 64px; z-index: 2000; font-size: 11px; color: var(--text-muted); font-weight: 500; pointer-events: none; }
-
-/* ══════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — TABLET
    ══════════════════════════════════════ */
 @media (max-width: 900px) {
   .slide { padding: 48px 6vw; }
@@ -2620,4 +3143,163 @@
   .context-grid { flex-direction: column; }
   .econ-layout { grid-template-columns: 1fr; }
   .roadmap-connector { display: none; }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — MOBILE PHONE (< 700px)
+   ══════════════════════════════════════ */
+@media (max-width: 700px) {
+  /* Slide frame — tighter padding, use small-viewport-height to handle mobile chrome */
+  .slide {
+    padding: 32px 5vw;
+    height: 100svh;
+    max-height: 100svh;
+    min-height: 100svh;
+  }
+
+  /* Disable mandatory snap on mobile, user scrolls freely */
+  html { scroll-snap-type: none; }
+
+  /* ── Hook slide ── */
+  .hook-headline {
+    white-space: normal;
+    font-size: clamp(28px, 8vw, 40px);
+    line-height: 1.12;
+    padding: 0 4vw;
+  }
+
+  /* ── Problem circles ── */
+  .problem-circles { gap: 14px; }
+  .problem-circle {
+    width: 150px;
+    height: 150px;
+    padding: 14px;
+  }
+  .problem-circle-title { font-size: 13px; max-width: 120px; }
+  .problem-circle-num { font-size: 10px; margin-bottom: 8px; }
+
+  /* ── Vagus controls (5 systems) ── */
+  .vagus-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .vagus-card { padding: 16px 12px; border-width: 2px; border-radius: 12px; }
+  .vagus-card-title { font-size: 15px; margin-bottom: 4px; }
+  .vagus-card-body { font-size: 10px; line-height: 1.35; }
+  .slide.vagus-video-bg .title { font-size: 26px !important; margin-bottom: 20px !important; }
+
+  /* ── FDA slide ── */
+  .slide#slide-vns-proven .slide-inner.vns-proven-layout {
+    top: 36px;
+    padding: 0 5vw;
+  }
+  .slide#slide-vns-proven .title { font-size: 26px !important; line-height: 1.2; }
+  .slide#slide-vns-proven .label { font-size: 11px; }
+  .fda-paper-frame {
+    top: 58%;
+    width: 78vw;
+  }
+
+  /* ── Nerve slides ── */
+  .nerve-title-center { font-size: clamp(24px, 6.5vw, 34px); }
+  .nerve-figure-hero { padding: 8px; border-radius: 12px; }
+  .nerve-figure-hero .nerve-figure { max-height: 46vh; }
+  .nerve-dual-figures { grid-template-columns: 1fr; gap: 10px; }
+  .nerve-figure-dual .nerve-figure { max-height: 34vh; }
+  .nerve-eta-row { gap: 4px; }
+  .nerve-eta { min-width: 58px; padding: 6px 8px; }
+  .nerve-eta-val { font-size: 15px; }
+  .nerve-eta-label { font-size: 8px; }
+  .nerve-eta-arrow { font-size: 13px; }
+  .nerve-caption { font-size: 10px; letter-spacing: 1px; }
+
+  /* ── Full-bleed demo slides ── */
+  .demo-fullscreen-meta {
+    left: 5vw;
+    right: 5vw;
+    bottom: 14vh;
+    max-width: none;
+  }
+  .demo-fullscreen-title { font-size: clamp(34px, 9vw, 52px); }
+  .demo-fullscreen-label { font-size: 11px; margin-bottom: 12px; }
+  .demo-fullscreen-body { font-size: 14px; }
+
+  /* ── Device cuff ── */
+  .device-spec-row { flex-direction: column; gap: 10px; }
+  .device-spec-card { width: 100%; padding: 16px; }
+  .device-spec-num { font-size: 28px; }
+  .device-cuff-tagline { font-size: 14px; }
+  .phase-header-pill { font-size: 10px; padding: 4px 12px; }
+
+  /* ── Tessman citation card ── */
+  .lower-third { padding: 16px 18px; width: calc(100% - 20px); }
+  .lt-header { flex-direction: column; gap: 12px; text-align: center; }
+  .lt-avatar { width: 56px; height: 56px; }
+  .lt-name { font-size: 18px; }
+  .lt-title { font-size: 12px; }
+  .lt-logos { padding: 8px 12px; gap: 12px; }
+  .lt-logo-img { height: 20px; }
+  .lt-wtp-card { padding: 16px 20px; }
+  .lt-wtp-circle { width: 84px; height: 84px; }
+  .lt-wtp-num { font-size: 22px; }
+  .lt-wtp-sub { font-size: 9px; }
+  .lt-wtp-arrow { font-size: 20px; }
+
+  /* ── Tessman 3 points ── */
+  .tessman-points { grid-template-columns: 1fr; gap: 16px; }
+  .tessman-simple-circle { width: 180px; height: 180px; }
+
+  /* ── Roadmap ── */
+  .roadmap-wavy { min-height: auto; }
+  .roadmap-wavy-path { display: none; }
+  .roadmap-item-v2 { position: static !important; margin-bottom: 18px; }
+  .roadmap-circle-v2 { width: 48px; height: 48px; font-size: 18px; }
+  .roadmap-card-v2 { padding: 12px 14px; max-width: none; }
+  .roadmap-card-title { font-size: 14px; }
+
+  /* ── Phase detail slides (unit economics, cost table) ── */
+  .phase-circle-wrap { padding: 18px 14px; }
+  .phase-circle-num { width: 52px; height: 52px; font-size: 20px; }
+  .phase-detail-circle { width: 78px; height: 78px; }
+  .phase-detail-num { font-size: 18px; }
+  .phase-detail-label { font-size: 9px; }
+  .phase1-layout-v2 { flex-direction: column; gap: 18px; }
+  .phase1-stats-col { flex-direction: row; justify-content: center; }
+  .cycle-diagram { transform: scale(0.78); }
+
+  /* ── Moonshot flywheel ── */
+  .moonshot-flywheel { flex-direction: column; gap: 16px; }
+  .flywheel-stage { width: 100%; max-width: 280px; }
+
+  /* ── Licensing logos ── */
+  .licensing-logos { gap: 14px; }
+  .licensing-logo { max-width: 100px; }
+
+  /* ── Conclusion / QR ── */
+  .qr-box { width: 240px; height: 240px; padding: 12px; border-width: 4px; }
+  .qr-url { font-size: 15px; }
+  .qr-label { font-size: 10px; }
+  #slide-conclusion .title { font-size: 26px !important; }
+  #slide-conclusion .subtitle { font-size: 13px !important; padding: 0 4vw; }
+
+  /* ── Close slide ── */
+  .close-brand-big { font-size: clamp(60px, 18vw, 96px) !important; }
+  .close-motto-big { font-size: clamp(14px, 4vw, 20px) !important; }
+  .logo-close-big { width: 96px !important; }
+  .dashboard-cta {
+    right: 16px;
+    bottom: 80px; /* clear of the nav arrow pill */
+    padding: 10px 14px;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+  }
+
+  /* ── Navigation ── */
+  .nav-arrows {
+    bottom: 16px;
+    padding: 4px 6px;
+    gap: 6px;
+  }
+  .nav-arrow { width: 34px; height: 34px; }
+  .nav-arrow-count { font-size: 11px; min-width: 48px; padding: 0 6px; }
+
+  /* ── Slide logo corner ── */
+  .slide-logo { top: 18px; left: 18px; height: 22px; }
 }
