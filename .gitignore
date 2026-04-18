@@ -20,3 +20,12 @@ dist/
 
 # Misc
 *.txt
+
+# Source media in root (converted copies live in */public/)
+/*.mov
+/*.mp4
+/*.jpg
+/*.jpeg
+/*.png
+/*.PNG
+/*.gif
